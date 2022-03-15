@@ -9,12 +9,14 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     :root {
-      --white: #fff;
-      --black: #000;
+      --white: #F3FFE2;
       --dark-blue: #021E33;
-      --light-blue: #1695A3;
+      --blue-1: #225378;
+      --blue-2: #1695A3;
+      --light-blue: #ACF0F2;
+      --orange: #EB7F00;
       --green: #11A131;
-      --light-green: #ACF0F2;
+      --black: #000;
     }
 
     body {
