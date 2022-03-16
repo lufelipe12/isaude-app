@@ -2,13 +2,16 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 import api from "../../services/api";
+import { useUser } from "../user";
 
 const VaccinesContext = createContext([]);
 
 export const VaccinesProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([]);
 
-  const token = "";
+  const { user } = useUser();
+
+  const { token } = user;
 
   const getVaccines = () => {
     api
