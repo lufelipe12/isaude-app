@@ -8,55 +8,58 @@ const VaccinesContext = createContext([]);
 export const VaccinesProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([]);
 
+  const token = "";
+
   const getVaccines = () => {
-    // console.log("buscou");
-    // api
-    //   .get("")
-    //   .then((response) => setVaccines(response.data))
-    //   .catch((err) => console.log(err));
+    api
+      .get("/vaccines", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => setVaccines(response.data))
+      .catch((err) => console.log(err));
   };
 
-  // useEffect(() => {
-  //   getVaccines();
-  // }, []);
+  useEffect(() => {
+    getVaccines();
+    delVaccine();
+  }, []);
 
-  const addVaccine = (vaccine) => {
-    //fazer requisição post ao invés do setVaccine
-    //buscando dados no modal de cadastro de vacinas
-    //   api
-    //     .post("/vaccines", vaccine, {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     })
-    //     .then((_) => {
-    //       toast.success("Vacina cadastrada");
-    //     })
-    //     .catch((err) => toast.error("Ops!! Algo deu errado."));
-    // };
+  const addVaccine = (vaccine, userId) => {
+    api
+      .post(
+        "/vaccines",
+        { userId: userId, ...vaccine },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((_) => {
+        toast.success("Vacina cadastrada");
+      })
+      .catch((err) => toast.error("Ops!! Algo deu errado."));
 
     setVaccines([...vaccines, vaccine]);
   };
 
-  const changeVaccine = (vaccine) => {
-    //requisição put pelo id
-    // api
-    //   .put(`/vaccines/${idToChange}`, vaccine, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((_) => {
-    //     toast.success("Vacina atualizada");
-    //   })
-    //   .catch((err) => toast.error("Ops!! Algo deu errado."));
+  const changeVaccine = (vaccine, idToChange) => {
+    api
+      .put(`/vaccines/${idToChange}`, vaccine, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((_) => {
+        toast.success("Vacina atualizada");
+      })
+      .catch((err) => toast.error("Ops!! Algo deu errado."));
   };
 
   const delVaccine = (id) => {
-    //requisição de delete no card de produto dentro do botão
-    // api
-    //   .delete(`/vaccines/${id}`, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((_) => {
-    //     toast.success("Vacina deletada").catch((err) => console.log(err));
-    //   });
+    api
+      .delete(`/vaccines/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((_) => {
+        toast.success("Vacina deletada").catch((err) => console.log(err));
+      });
   };
 
   return (
