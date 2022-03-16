@@ -1,14 +1,15 @@
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router-dom";
-import Input from "../../components/Input";
-import { useState } from "react";
-import { Container } from "./styles";
+import { useForm } from "react-hook-form"
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { Redirect, useHistory } from "react-router-dom"
+import Input from "../../components/Input"
+import { useState } from "react"
+import { Container } from "./styles"
+import Select from '../../components/Select'
 
 const Register = () => {
-  const [select, setSelect] = useState("");
-  const history = useHistory();
+  const history = useHistory()
+  
   const formSchema = yup.object().shape({
     name: yup
       .string()
@@ -28,7 +29,7 @@ const Register = () => {
       .string()
       .oneOf([yup.ref("password")], "Senha Diferente")
       .required("Campo obrigatório"),
-  });
+  })
 
   const {
     register,
@@ -36,22 +37,22 @@ const Register = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
-  });
+  })
 
   const onSubmit = (data) => {
-    console.log("teste");
+    console.log(data)
     // axios
     //   .post("link", data)
     //   .then((response) => {
-    //     history.push("/login");
+    //     history.push("/login")
     //   })
     //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    //     console.log(err)
+    //   })
     // if (authenticated) {
-    //   return <Redirect to="/dashboard" />;
+    //   return <Redirect to="/dashboard" />
     // }
-  };
+  }
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,7 +87,7 @@ const Register = () => {
         />
 
         <Input
-          name="dob"
+          name="dateOfBirth"
           label=""
           type="date"
           helperText={errors.dob?.message}
@@ -98,9 +99,6 @@ const Register = () => {
         <select
           {...register("gender")}
           defaultValue={"Genero"}
-          onChange={(event) => {
-            setSelect(event.target.value);
-          }}
         >
           <option value="Genero">Gênero</option>
           <option value="Masculino">Masculino</option>
@@ -120,9 +118,7 @@ const Register = () => {
         <select
           {...register("state")}
           defaultValue={"Estado"}
-          onChange={(event) => {
-            setSelect(event.target.value);
-          }}
+     
         >
           <option value="Estado">Estado</option>
           <option value="AC">AC</option>
@@ -179,6 +175,6 @@ const Register = () => {
         {/* Já possui uma conta? Faça o <Redirect to={"/login"}>Login</Redirect> */}
       </span>
     </Container>
-  );
-};
-export default Register;
+  )
+}
+export default Register
