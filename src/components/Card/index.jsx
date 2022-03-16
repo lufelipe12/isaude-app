@@ -15,47 +15,50 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from "./styles";
+} from './styles'
 
-import { FaRegEdit, FaTrash } from "react-icons/fa";
+import { FaRegEdit, FaTrash } from 'react-icons/fa'
 
 function Card({ vaccine }) {
   return (
     <>
       <Container>
         <ContainerTop>
-          <ContainerButtons>
-            <button>
-              <FaRegEdit />
-            </button>
-            <button>
-              <FaTrash />
-            </button>
-          </ContainerButtons>
           <h3>{vaccine.name}</h3>
         </ContainerTop>
 
         <ContainerInfo>
           <ContainerColumn>
-            <Info type={"label"}>Aplicação</Info>
+            <Info type={'label'}>Aplicação</Info>
             <Info>{vaccine.application_date}</Info>
-            <Info type={"label"}>Próxima</Info>
+            <Info type={'label'}>Próxima</Info>
             <Info>{vaccine.date_next_dose}</Info>
           </ContainerColumn>
           <ContainerColumn>
-            <Info type={"label"}>Fabricante</Info>
+            <Info type={'label'}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
-            <Info type={"label"}>Lote</Info>
+            <Info type={'label'}>Lote</Info>
             <Info>{vaccine.batch}</Info>
           </ContainerColumn>
         </ContainerInfo>
         <ContainerStatus>
-          <Info>Local: {vaccine.local}</Info>
+          <div>
+            <Info>Local: {vaccine.local}</Info>
+            <ContainerButtons>
+              <button>
+                <FaRegEdit />
+              </button>
+              <button>
+                <FaTrash />
+              </button>
+            </ContainerButtons>
+          </div>
+
           <Status>VACINADO</Status>
         </ContainerStatus>
       </Container>
     </>
-  );
+  )
 }
 
-export default Card;
+export default Card
