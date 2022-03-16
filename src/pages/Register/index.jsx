@@ -5,7 +5,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import Input from "../../components/Input";
 import { useState } from "react";
 import { Container } from "./styles";
-import { FaMailBulk } from "react-icons/fa";
 
 const Register = () => {
   const [select, setSelect] = useState("");
@@ -108,6 +107,15 @@ const Register = () => {
           <option value="Feminino">Feminino</option>
           <option value="Outros">Outros</option>
         </select>
+        <Input
+          name="city"
+          label=""
+          type="text"
+          helperText={errors.city?.message}
+          error={!!errors.city}
+          register={register}
+          // icon={FaMailBulk}
+        />
 
         <select
           {...register("state")}
