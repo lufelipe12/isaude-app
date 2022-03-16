@@ -21,7 +21,6 @@ export const VaccinesProvider = ({ children }) => {
 
   useEffect(() => {
     getVaccines();
-    delVaccine();
   }, []);
 
   const addVaccine = (vaccine, userId) => {
@@ -43,7 +42,7 @@ export const VaccinesProvider = ({ children }) => {
 
   const changeVaccine = (vaccine, idToChange) => {
     api
-      .put(`/vaccines/${idToChange}`, vaccine, {
+      .patch(`/vaccines/${idToChange}`, vaccine, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((_) => {
