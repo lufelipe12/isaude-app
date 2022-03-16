@@ -1,23 +1,27 @@
 import {useState} from "react"
-import ModalComponent from "../../components/ModalComponent"
+
+import NewVaccineModal from "../../components/NewVaccineModal"
 
 const Dashboard = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
 
-  function openModal() {
-    setIsModalOpen(true)
+  function openNewVaccineModal() {
+    setIsNewVaccineModalOpen(true)
   }
 
-  function closeModal() {
-    setIsModalOpen(false)
+  function closeNewVaccineModal() {
+    setIsNewVaccineModalOpen(false)
   }
   return (
     <div>
-      <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
-        <h1>Teste de Modal Para ver como está </h1>
-      </ModalComponent>
+      <NewVaccineModal
+        isModalOpen={isNewVaccineModalOpen}
+        closeModal={closeNewVaccineModal}
+      />
       Dashboard
-      <button onClick={openModal}>Abrir Modal de teste</button>
+      <button onClick={openNewVaccineModal}>
+        Abrir Modal Para cadastrar nova vacina
+      </button>
     </div>
   )
 }
