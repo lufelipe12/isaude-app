@@ -1,54 +1,57 @@
-import { createContext, useState, useContext, useEffect } from "react";
-import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { createContext, useState, useContext, useEffect } from "react"
+import { toast } from "react-toastify"
+import { useHistory } from "react-router-dom"
 
-import api from "../../services/api";
+import api from "../../services/api"
 
-const UserContext = createContext();
+const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-  const history = useHistory();
+  const history = useHistory()
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({})
 
   const getUser = () => {
-    // setUser({
-    //   token: localStorage.getItem("@user:token") || "",
-    //   info: localStorage.getItem("@user:info") || {},
-    // });
-  };
+    setUser({
+      token: localStorage.getItem("@iSaude:token") || "",
+      info: localStorage.getItem("@iSaude:info") || {},
+    })
+  }
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    getUser()
+  }, [])
 
   const login = (user) => {
-    // api
-    //   .post("/sessions", user)
-    //   .then((response) => {
-    //     toast.success("Bem vindo!");
-    //     localStorage.setItem(
-    //       "@iSaude:token",
-    //       JSON.stringify(response.data.token)
-    //     );
-    //     localStorage.setItem(
-    //       "@iSaude:user",
-    //       JSON.stringify(response.data.user)
-    //     );
-    //     // setAuth(true);
-    //     return history.push("/dashboard");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Email ou senha inválidos");
-    //     console.log(err);
-    //   });
-  };
+    api
+      .post("/login", user)
+      .then((response) => {
+        toast.success("Bem vindo!")
+        localStorage.setItem(
+          "@iSaude:token",
+          JSON.stringify(response.data.accessToken)
+        )
+        localStorage.setItem(
+          "@iSaude:user",
+          JSON.stringify(response.data.user)
+        )
+        // setUser({ ...user, token: response.data.accessToken, info: response.data.user })
+
+        history.push('/dashboard')
+      })
+      .catch((err) => {
+        toast.error("Email ou senha inválidos")
+        console.log(err)
+      })
+  }
+
+  const logout = () => localStorage.clear()
 
   return (
-    <UserContext.Provider value={{ user, login }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
-  );
-};
+  )
+}
 
-export const useUser = () => useContext(UserContext);
+export const useUser = () => useContext(UserContext)

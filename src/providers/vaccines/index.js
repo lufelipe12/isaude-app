@@ -24,7 +24,7 @@ export const VaccinesProvider = ({ children }) => {
     //fazer requisição post ao invés do setVaccine
     //buscando dados no modal de cadastro de vacinas
     //   api
-    //     .post("", vaccine, {
+    //     .post("/vaccines", vaccine, {
     //       headers: { Authorization: `Bearer ${token}` },
     //     })
     //     .then((_) => {
@@ -39,7 +39,7 @@ export const VaccinesProvider = ({ children }) => {
   const changeVaccine = (vaccine) => {
     //requisição put pelo id
     // api
-    //   .put(`...${idToChange}`, vaccine, {
+    //   .put(`/vaccines/${idToChange}`, vaccine, {
     //     headers: { Authorization: `Bearer ${token}` },
     //   })
     //   .then((_) => {
@@ -51,7 +51,7 @@ export const VaccinesProvider = ({ children }) => {
   const delVaccine = (id) => {
     //requisição de delete no card de produto dentro do botão
     // api
-    //   .delete(`...${id}`, {
+    //   .delete(`/vaccines/${id}`, {
     //     headers: { Authorization: `Bearer ${token}` },
     //   })
     //   .then((_) => {
