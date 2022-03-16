@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -39,6 +39,36 @@ export const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    .modal-content {
+      width: 100%;
+    max-width: 370px;
+    background: #fff;
+    padding: 2rem;
+    position: relative;
+    border-radius: 8px;
+    
+}
+
+.modal-overlay {
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close-modal{
+    color: var(--grey-1);
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 36px;
+    top: 21px;
+}
 
 
 `
