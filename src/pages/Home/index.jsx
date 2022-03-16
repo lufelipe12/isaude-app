@@ -1,8 +1,5 @@
-import {Button} from "../../components/Button"
-import { NewsCarousel } from "../../components/NewsCarousel/"
 const Home = () => {
-  return <div>
-      <NewsCarousel/>
-    </div>
+  return <div>Home</div>
 }
+
 export default Home

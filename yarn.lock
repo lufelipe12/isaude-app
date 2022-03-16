@@ -1501,14 +1501,22 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
+<<<<<<< HEAD
 "@mui/icons-material@^5.4.1":
+=======
+"@mui/icons-material@^5.5.1":
+>>>>>>> 8269fb68230727fc35e2142614b79510ab6eb81a
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.5.1.tgz#848a57972617411370775980cbc6990588d4aafb"
   integrity sha512-40f68p5+Yhq3dCn3QYHqQt5RETPyR3AkDw+fma8PtcjqvZ+d+jF84kFmT6NqwA3he7TlwluEtkyAmPzUE4uPdA==
   dependencies:
     "@babel/runtime" "^7.17.2"
 
+<<<<<<< HEAD
 "@mui/material@^5.4.1", "@mui/material@^5.5.1":
+=======
+"@mui/material@^5.5.1":
+>>>>>>> 8269fb68230727fc35e2142614b79510ab6eb81a
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.5.1.tgz#9ca89a8b32afd59c843a5bc0332b0786cf9bf1d0"
   integrity sha512-bJSYgymgSZ7btPTNnWFrr2EmGoVQc4A/0WLfP/ESY2dxnhnbFDwt7twiOKmJp3u84YXriEDt5v9EZQLf7A+y0Q==
