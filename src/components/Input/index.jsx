@@ -1,12 +1,12 @@
-import TextField from '@mui/material'
+import { TextField } from "@mui/material";
 
 const Input = ({
   name,
   label,
-  register = '',
-  error = '',
-  helperText = '',
-  icon: Icon,
+  register,
+  error = "",
+  helperText = "",
+  // icon: Icon,
   ...rest
 }) => {
   return (
@@ -15,11 +15,11 @@ const Input = ({
         name={name}
         label={label}
         {...register(name)}
-        error={error}
+        error={!!error}
         helperText={helperText}
         {...rest}
       />
     </>
-  )
-}
-export default Input
+  );
+};
+export default Input;
