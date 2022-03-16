@@ -1,11 +1,6 @@
-import { TextField } from '@mui/material'
+import { TextField } from "@mui/material";
 
-const Input = ({
-  name,
-  label,
-  register = '',
-  ...rest
-}) => {
+const Input = ({ name, label, register = "", ...rest }) => {
   return (
     <>
       <TextField
@@ -17,6 +12,6 @@ const Input = ({
         {...rest}
       />
     </>
-  )
-}
-export default Input
+  );
+};
+export default Input;
