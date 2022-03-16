@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     :root {
       --white: #FFFFFF;
       --beige: #F3FFE2;
+      --grey:#EBEDEE;
+      --grey-2:#868E96;
       --dark-blue: #021E33;
       --blue-1: #225378;
       --blue-2: #1695A3;
@@ -28,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body, input, button {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-size: 1rem;
     }
 
@@ -41,4 +43,4 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 
-`
+`;
