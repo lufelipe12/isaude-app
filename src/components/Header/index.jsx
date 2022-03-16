@@ -4,16 +4,33 @@ import { StyledHeader, StyledNav } from "./styles";
 import { useHistory, Link } from "react-router-dom";
 
 const Header = () => {
+  const history = useHistory();
+
+  const backHome = () => {
+    history.push("/");
+  };
+
   return (
     <StyledHeader>
-      <img src={logo} alt="logoiSaude" />
+      <img src={logo} alt="logoiSaude" onClick={backHome} />
       <StyledNav>
-        <div>
-          <Link to="/">Home</Link>
-          <Link>Sobre</Link>
-          <Link to="/register">Cadastrar</Link>
-          <Link to="/login">Entrar</Link>
-        </div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <hr />
+          <li>
+            <Link>Sobre</Link>
+          </li>
+          <hr />
+          <li>
+            <Link to="/register">Cadastrar</Link>
+          </li>
+          <li>
+            <Link to="/login">Entrar</Link>
+          </li>
+          <hr />
+        </ul>
       </StyledNav>
     </StyledHeader>
   );
