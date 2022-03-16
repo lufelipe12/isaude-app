@@ -1,71 +1,15 @@
-import { createContext, useState, useContext, useEffect } from "react";
-import { toast } from "react-toastify";
+import { createContext, useState, useContext } from 'react'
 
-import api from "../../services/api";
-
-const VaccinesContext = createContext([]);
+const VaccinesContext = createContext([])
 
 export const VaccinesProvider = ({ children }) => {
-  const [vaccines, setVaccines] = useState([]);
-
-  const getVaccines = () => {
-    // console.log("buscou");
-    // api
-    //   .get("")
-    //   .then((response) => setVaccines(response.data))
-    //   .catch((err) => console.log(err));
-  };
-
-  // useEffect(() => {
-  //   getVaccines();
-  // }, []);
-
-  const addVaccine = (vaccine) => {
-    //fazer requisição post ao invés do setVaccine
-    //buscando dados no modal de cadastro de vacinas
-    //   api
-    //     .post("/vaccines", vaccine, {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     })
-    //     .then((_) => {
-    //       toast.success("Vacina cadastrada");
-    //     })
-    //     .catch((err) => toast.error("Ops!! Algo deu errado."));
-    // };
-
-    setVaccines([...vaccines, vaccine]);
-  };
-
-  const changeVaccine = (vaccine) => {
-    //requisição put pelo id
-    // api
-    //   .put(`/vaccines/${idToChange}`, vaccine, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((_) => {
-    //     toast.success("Vacina atualizada");
-    //   })
-    //   .catch((err) => toast.error("Ops!! Algo deu errado."));
-  };
-
-  const delVaccine = (id) => {
-    //requisição de delete no card de produto dentro do botão
-    // api
-    //   .delete(`/vaccines/${id}`, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((_) => {
-    //     toast.success("Vacina deletada").catch((err) => console.log(err));
-    //   });
-  };
+  const [vaccines, setVaccines] = useState([])
 
   return (
-    <VaccinesContext.Provider
-      value={{ vaccines, addVaccine, changeVaccine, delVaccine }}
-    >
+    <VaccinesContext.Provider value={{ vaccines }}>
       {children}
     </VaccinesContext.Provider>
-  );
-};
+  )
+}
 
-export const useVaccines = () => useContext(VaccinesContext);
+export const useVaccines = () => useContext(VaccinesContext)
