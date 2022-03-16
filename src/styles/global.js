@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-  
+        
     }
 
     body, input, button {
