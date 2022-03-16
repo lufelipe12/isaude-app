@@ -1,12 +1,14 @@
 import { createContext, useState, useContext } from 'react'
 
-const VaccinesContext = createContext()
+const VaccinesContext = createContext([])
 
 export const VaccinesProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([])
 
   return (
-    <VaccinesContext.Provider value={{ vaccines }}>{children}</VaccinesContext.Provider>
+    <VaccinesContext.Provider value={{ vaccines }}>
+      {children}
+    </VaccinesContext.Provider>
   )
 }
 
