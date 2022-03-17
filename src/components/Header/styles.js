@@ -70,6 +70,17 @@ export const StyledNav = styled.nav`
     justify-content: flex-end;
   }
 
+  button {
+    width: 50px;
+    color: #fff;
+    background-color: var(--dark-blue-2);
+    font-size: 20px;
+    :hover {
+      background-color: var(--dark-blue-2);
+      color: #fff;
+    }
+  }
+
   @media (min-width: 768px) {
     width: 500px;
     display: flex;
@@ -97,17 +108,6 @@ export const StyledNav = styled.nav`
 
     a {
       font-size: 19px;
-    }
-
-    button {
-      width: 50px;
-      color: #fff;
-      background-color: var(--dark-blue-2);
-      font-size: 20px;
-      :hover {
-        background-color: var(--dark-blue-2);
-        color: #fff;
-      }
     }
   }
 `;
