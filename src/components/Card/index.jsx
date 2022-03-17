@@ -11,7 +11,7 @@ import {
 
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 
-function Card({ vaccine, type, status = "VACINADO" }) {
+function Card({ vaccine, type, status = "VACINADO",setVaccineToChange, openEditVaccineModal }) {
   //Uma condição para as datas das vacinas definira a dinâmica
   // if date is approaching, else type="approaching" status="Vacinação Proxima"
   // if date is undefined, else type="not-vaccinated" status="Não Vacinado"
@@ -19,6 +19,10 @@ function Card({ vaccine, type, status = "VACINADO" }) {
   //passando o type por props
 
   //a prop status se refere a children de <Status>{status}</Status>
+  function handleOpenEditVaccineModal() {
+    setVaccineToChange(vaccine)
+    openEditVaccineModal()
+  }
   return (
     <>
       <Container type={type}>
@@ -44,7 +48,7 @@ function Card({ vaccine, type, status = "VACINADO" }) {
           <div>
             <Info>Local: {vaccine.location}</Info>
             <ContainerButtons>
-              <button>
+              <button onClick={handleOpenEditVaccineModal}>
                 <FaRegEdit />
               </button>
               <button>
