@@ -15,11 +15,15 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from './styles'
+} from "./styles"
 
-import { FaRegEdit, FaTrash } from 'react-icons/fa'
+import {FaRegEdit, FaTrash} from "react-icons/fa"
 
-function Card({ vaccine }) {
+function Card({vaccine, setVaccineToChange, openEditVaccineModal}) {
+  function handleOpenEditVaccineModal() {
+    setVaccineToChange(vaccine)
+    openEditVaccineModal()
+  }
   return (
     <>
       <Container>
@@ -29,15 +33,15 @@ function Card({ vaccine }) {
 
         <ContainerInfo>
           <ContainerColumn>
-            <Info type={'label'}>Aplicação</Info>
+            <Info type={"label"}>Aplicação</Info>
             <Info>{vaccine.applicationDate}</Info>
-            <Info type={'label'}>Próxima</Info>
+            <Info type={"label"}>Próxima</Info>
             <Info>{vaccine.nextShot}</Info>
           </ContainerColumn>
           <ContainerColumn>
-            <Info type={'label'}>Fabricante</Info>
+            <Info type={"label"}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
-            <Info type={'label'}>Lote</Info>
+            <Info type={"label"}>Lote</Info>
             <Info>{vaccine.lote}</Info>
           </ContainerColumn>
         </ContainerInfo>
@@ -45,7 +49,7 @@ function Card({ vaccine }) {
           <div>
             <Info>Local: {vaccine.location}</Info>
             <ContainerButtons>
-              <button>
+              <button onClick={handleOpenEditVaccineModal}>
                 <FaRegEdit />
               </button>
               <button>
