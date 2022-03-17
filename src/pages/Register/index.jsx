@@ -192,7 +192,7 @@ const Register = () => {
           register={register}
           // icon={FaMailBulk}
         />
-        <button type='submit'>Cadastrar</button>
+        <Button colorType='terciary' type='submit'>Cadastrar</Button>
       </form>
 
       <span>
