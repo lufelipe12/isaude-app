@@ -22,9 +22,9 @@ export const VaccinesProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    getVaccines();
-  }, []);
+  // useEffect(() => {
+  //   getVaccines();
+  // }, []);
 
   const addVaccine = (vaccine, userId) => {
     api

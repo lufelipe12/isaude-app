@@ -1,10 +1,9 @@
-import { Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import Route from './route'
 
 const Routes = () => {
     return (
