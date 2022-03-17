@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 
 import { useHistory, Link } from "react-router-dom";
 
-const Header = ({ dash }) => {
+const Header = ({ dash = false }) => {
   const history = useHistory();
 
   const backHome = () => {
