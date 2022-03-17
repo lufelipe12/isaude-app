@@ -64,6 +64,11 @@ export const StyledNav = styled.nav`
     font-size: 14px;
     font-weight: bold;
   }
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
 
   @media (min-width: 768px) {
     width: 500px;
@@ -83,13 +88,26 @@ export const StyledNav = styled.nav`
     }
 
     li {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: rgba(0, 0, 0, 0);
-      width: 50px;
+      width: 100px;
     }
 
     a {
       font-size: 19px;
+    }
+
+    button {
+      width: 50px;
+      color: #fff;
+      background-color: var(--dark-blue-2);
+      font-size: 20px;
+      :hover {
+        background-color: var(--dark-blue-2);
+        color: #fff;
+      }
     }
   }
 `;
