@@ -13,7 +13,7 @@ export const ContainerCarousel = styled.div`
         border:none;
         border-radius:4px;
         color:var(--blue-2);
-        background-color:var(--light-blue-1); 
+        background-color:var(--light-blue-2); 
     }
     
     

@@ -1,12 +1,11 @@
 import { CarouselCardStyled } from "./styles"
 
 export const CarouselCard = ({item}) => {
+    console.log(item)
     return(
-        <CarouselCardStyled>
-            <p>{item.name}</p>
-            <p>{item.description}</p>
-            <p>Outra coisa</p>
-            <p>Coisa</p>
+        <CarouselCardStyled img={item.img}>
+            <h3>{item.title}</h3>
+            <p>{item.data}</p>
         </CarouselCardStyled>
     )
 }
