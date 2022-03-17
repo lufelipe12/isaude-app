@@ -1,11 +1,3 @@
-//Receber por prop o objeto vacina.
-
-//Exibir as seguintes informações: Nome, nome do fabricante, data da aplicação, lote, local,
-//data da próxima dose (se houver próxima data, exibir a próxima data. se não houver, colocar dose única ou esquema completo)
-
-// Deve conter um botão para deletar a vacina e um botão para editar, que abre o modal para editar a vacina.
-//Seguir a estilização do figma.
-
 import {
   Container,
   ContainerTop,

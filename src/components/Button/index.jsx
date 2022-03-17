@@ -1,7 +1,7 @@
 import { ButtonStyled } from './styles'
 
 const Button = ({ children, colorType, ...rest }) => {
-  // type -> accepts one of the three options: Primary, Secondary, Tertiary
+  // colorType -> accepts one of the three options: primary, secondary, tertiary
 
   return (
     <ButtonStyled>
