@@ -73,12 +73,10 @@ export const StyledNav = styled.nav`
   button {
     width: 50px;
     color: #fff;
+    font-weight: bold;
     background-color: var(--dark-blue-2);
     font-size: 20px;
-    :hover {
-      background-color: var(--dark-blue-2);
-      color: #fff;
-    }
+    border: none;
   }
 
   @media (min-width: 768px) {
