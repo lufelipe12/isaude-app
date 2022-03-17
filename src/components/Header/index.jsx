@@ -1,6 +1,5 @@
 import logo from "../../assets/logo.png";
 import { StyledHeader, StyledNav } from "./styles";
-import Button from "../../components/Button";
 
 import { useHistory, Link } from "react-router-dom";
 
@@ -41,7 +40,7 @@ const Header = ({ dash = false }) => {
           </ul>
         ) : (
           <div>
-            <Button onClick={logout}>Sair</Button>
+            <button onClick={logout}>Sair</button>
           </div>
         )}
       </StyledNav>

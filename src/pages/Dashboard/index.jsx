@@ -1,11 +1,19 @@
-import { useVaccines } from "../../providers/vaccines";
+import { useVaccines } from "../../providers/vaccines"
 import { useUser } from "../../providers/user"
-import Card from "../../components/Card";
-import Header from "../../components/Header";
-import { CardContainer, UserContainer, UserData, UserInfos } from "./styles";
-import pdfMaker from "../../utils/pfvGen";
-import { useEffect } from "react";
-import { GrDocumentPdf } from "react-icons/gr";
+import Card from "../../components/Card"
+import Header from "../../components/Header"
+import {
+  CardContainer,
+  DashHeader,
+  StyledContainer,
+  UserContainer,
+  UserData,
+  UserInfos,
+} from "./styles"
+import pdfMaker from "../../utils/pfvGen"
+import { useEffect } from "react"
+import { GrDocumentPdf } from "react-icons/gr"
+import { MdAddCircle } from "react-icons/md"
 
 const Dashboard = () => {
   const { vaccines, getVaccines } = useVaccines()
@@ -14,68 +22,13 @@ const Dashboard = () => {
   console.log(vaccines)
 
   useEffect(() => {
-    getVaccines();
-  }, []);
-
-
-  // const user = {
-  //   name: "FULANA DA SILVA",
-  //   birthday: "30/9/0000",
-  //   gender: "Feminino",
-  //   cpf: "00000000000",
-  //   cns: "70000000000",
-  // };
-
-  // const vaccines = [
-  //   {
-  //     userId: 2,
-  //     name: "Covid-19",
-  //     manufacturer: "Oxford",
-  //     lote: 2337593279,
-  //     applicationDate: "19/01/2022",
-  //     shot: 2,
-  //     location: "Araguari",
-  //     totalShots: 2,
-  //     nextShot: "20/04/2022",
-  //   },
-  //   {
-  //     userId: 2,
-  //     name: "Covid-19",
-  //     manufacturer: "Oxford",
-  //     lote: 2337593279,
-  //     applicationDate: "19/01/2022",
-  //     shot: 2,
-  //     location: "Araguari",
-  //     totalShots: 2,
-  //     nextShot: "20/04/2022",
-  //   },
-  //   {
-  //     userId: 2,
-  //     name: "Covid-19",
-  //     manufacturer: "Oxford",
-  //     lote: 2337593279,
-  //     applicationDate: "19/01/2022",
-  //     shot: 2,
-  //     location: "Araguari",
-  //     totalShots: 2,
-  //     nextShot: "20/04/2022",
-  //   },
-  //   {
-  //     userId: 2,
-  //     name: "Covid-19",
-  //     manufacturer: "Oxford",
-  //     lote: 2337593279,
-  //     applicationDate: "19/01/2022",
-  //     shot: 2,
-  //     location: "Araguari",
-  //     totalShots: 2,
-  //     nextShot: "20/04/2022",
-  //   },
-  // ];
-
+    getVaccines()
+  }, [])
+ 
   return (
     <main>
       <Header dash />
+      <DashHeader>
       <UserContainer>
         <img
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
@@ -102,17 +55,23 @@ const Dashboard = () => {
             </div>
           </UserData>
         </UserInfos>
+        </UserContainer>
         <button onClick={() => pdfMaker(user, vaccines)}>
           <GrDocumentPdf style={{ "fontSize": "23px" }} />
         </button>
-      </UserContainer>
+      </DashHeader>
       <CardContainer>
         {vaccines.map((vaccine, index) => (
           <Card vaccine={vaccine} key={index} />
         ))}
       </CardContainer>
+      <StyledContainer>
+        <button onClick={() => console.log("Abrir modal de adicionar")}>
+          <MdAddCircle style={{ "font-size": "40px" }} />
+        </button>
+      </StyledContainer>
     </main>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
