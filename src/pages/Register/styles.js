@@ -1,24 +1,35 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
+  width: 300px;
+  height: 565px;
+
   background: var(--white);
   border-radius: 10px;
 
   form {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
     width: 300px;
-    padding: 30px;
+    height: 565px;
+    padding: 20px;
   }
-`
+`;
 
-export const Error = styled.span`
-  color: var(--error);
-  font-size: 12px;
-  text-align: left;
-`
+export const ContainerRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const FullContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #021e33;
+`;
+export const InputContainer = styled.div``;

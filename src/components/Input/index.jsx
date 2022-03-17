@@ -1,4 +1,5 @@
 import { TextField } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Input = ({
   name,
@@ -6,7 +7,7 @@ const Input = ({
   register,
   error = "",
   helperText = "",
-  // icon: Icon,
+  Icon,
   ...rest
 }) => {
   return (
@@ -20,6 +21,16 @@ const Input = ({
         error={!!error}
         helperText={helperText}
         {...rest}
+        InputProps={
+          Icon && {
+            startAdornment: (
+              <InputAdornment position="start">
+                {" "}
+                <Icon />
+              </InputAdornment>
+            ),
+          }
+        }
       />
     </>
   );
