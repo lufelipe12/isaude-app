@@ -10,9 +10,10 @@ import {
   UserContainer,
   UserInfos,
   UserData,
-  GrDocumentPdf,
   CardContainer,
 } from "./styles";
+
+import { GrDocumentPdf } from "react-icons/gr";
 
 const Dashboard = () => {
   // Estados e funções do modal para cadastrar uma nova vacina:
