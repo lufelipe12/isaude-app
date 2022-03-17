@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const ButtonStyled = styled.div`
   button {
@@ -20,13 +20,13 @@ export const ButtonStyled = styled.div`
     background-color: var(--blue-2);
   }
 
-  .secondary {
-    color: #fff;
+  .Secondary {
+    color: var(--white);
     background-color: var(--green);
   }
 
-  .terciary {
-    color: #fff;
+  .Tertiary {
+    color: var(--white);
     background-color: var(--orange);
   }
-`
+`;
