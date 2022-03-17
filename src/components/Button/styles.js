@@ -15,17 +15,17 @@ export const ButtonStyled = styled.div`
     background-color: var(--light-blue-1);
   }
 
-  .Primary {
+  .primary {
     color: var(--light-blue-1);
     background-color: var(--blue-2);
   }
 
-  .Secondary {
+  .secondary {
     color: #fff;
     background-color: var(--green);
   }
 
-  .Tertiary {
+  .terciary {
     color: #fff;
     background-color: var(--orange);
   }

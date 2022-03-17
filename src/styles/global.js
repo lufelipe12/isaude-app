@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -7,7 +7,6 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       outline: 0;
     }
-
     :root {
       --white: #FFFFFF;
       --beige: #F3FFE2;
@@ -21,24 +20,21 @@ export const GlobalStyle = createGlobalStyle`
       --black: #000;
       --error: #ff0000;
       --success: #3FE864;
+      --grey:#EBEDEE;
+      --grey-2:#868E96;
     }
-
     body {
         
     }
-
     body, input, button {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-size: 1rem;
     }
-
     h1, h2, h3 , h4 , h5 , h6 {
         font-weight: 700;
     }
-
     button {
         cursor: pointer;
     }
 
-
-`
+`;
