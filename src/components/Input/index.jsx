@@ -1,9 +1,12 @@
-import { TextField } from '@mui/material'
+import { TextField } from "@mui/material";
 
 const Input = ({
   name,
   label,
-  register = '',
+  register,
+  error = "",
+  helperText = "",
+  // icon: Icon,
   ...rest
 }) => {
   return (
@@ -14,9 +17,11 @@ const Input = ({
         {...register(name)}
         variant="outlined"
         fullWidth
+        error={!!error}
+        helperText={helperText}
         {...rest}
       />
     </>
-  )
-}
-export default Input
+  );
+};
+export default Input;
