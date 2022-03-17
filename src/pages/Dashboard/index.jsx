@@ -1,5 +1,6 @@
 import { useVaccines } from "../../providers/vaccines";
 import Card from "../../components/Card";
+import Header from "../../components/Header";
 
 const Dashboard = () => {
   // const { vaccines } = useVaccines()
@@ -40,11 +41,14 @@ const Dashboard = () => {
   ];
 
   return (
-    <div>
-      {vaccines.map((vaccine, index) => (
-        <Card vaccine={vaccine} key={index} />
-      ))}
-    </div>
+    <>
+      <Header dash />
+      <div>
+        {vaccines.map((vaccine, index) => (
+          <Card vaccine={vaccine} key={index} />
+        ))}
+      </div>
+    </>
   );
 };
 

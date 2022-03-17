@@ -18,9 +18,9 @@ export const UserProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const login = (user) => {
     api
@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => localStorage.clear();
 
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
   );
