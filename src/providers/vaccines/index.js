@@ -14,6 +14,7 @@ export const VaccinesProvider = ({ children }) => {
   const { token } = user
 
   const getVaccines = () => {
+    console.log(token)
     api
       .get('/vaccines', {
         headers: { Authorization: `Bearer ${token}` },
