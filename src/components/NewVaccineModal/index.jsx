@@ -1,5 +1,5 @@
 import ModalComponent from "../ModalComponent"
-import {Container, InputContainer} from "./styles"
+import {Container} from "./styles"
 import Input from "../Input"
 
 import {useForm} from "react-hook-form"
@@ -30,26 +30,57 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
       <Container onSubmit={handleSubmit(onSubmitFunction)}>
         <h2>Cadastrar nova vacina</h2>
-        <InputContainer>
-          <Input
-            name="name" // o que vai ser passado para o register
-            label="Digite o nome da vacina" // placeholder
-            type="text"
-            helperText={errors.name?.message}
-            error={!!errors.password}
-            register={register}
-          />
-        </InputContainer>
-        <InputContainer>
-          <Input
-            name="manufacturer" // o que vai ser passado para o register
-            label="Digite o nome do Fabricante" // placeholder
-            type="text"
-            helperText={errors.manufacturer?.message}
-            error={!!errors.password}
-            register={register}
-          />
-        </InputContainer>
+
+        <Input
+          name="name" // o que vai ser passado para o register
+          label="Digite o nome da vacina" // placeholder
+          type="text"
+          helperText={errors.name?.message}
+          error={!!errors.name}
+          register={register}
+        />
+
+        <Input
+          name="manufacturer" // o que vai ser passado para o register
+          label="Digite o nome do Fabricante" // placeholder
+          type="text"
+          helperText={errors.manufacturer?.message}
+          error={!!errors.manufacturer}
+          register={register}
+        />
+        <Input
+          name="lote" // o que vai ser passado para o register
+          label="Digite o lote da vacina que você tomou" // placeholder
+          type="text"
+          helperText={errors.lote?.message}
+          error={!!errors.lote}
+          register={register}
+        />
+        <Input
+          name="applicationDate" // o que vai ser passado para o register
+          label="Digite a data da aplicação" // placeholder
+          type="text"
+          helperText={errors.applicationDate?.message}
+          error={!!errors.applicationDate}
+          register={register}
+        />
+        <Input
+          name="location" // o que vai ser passado para o register
+          label="Digite o local da aplicação" // placeholder
+          type="text"
+          helperText={errors.location?.message}
+          error={!!errors.location}
+          register={register}
+        />
+        <Input
+          name="nextShot" // o que vai ser passado para o register
+          label="Digite a data da próxima dose" // placeholder
+          type="text"
+          helperText={errors.nextShot?.message}
+          error={!!errors.nextShot}
+          register={register}
+        />
+
         <button type="submit">Submit Teste</button>
       </Container>
     </ModalComponent>
