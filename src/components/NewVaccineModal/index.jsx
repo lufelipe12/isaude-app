@@ -1,6 +1,7 @@
 import ModalComponent from "../ModalComponent"
 import {Container} from "./styles"
 import Input from "../Input"
+import Button from "../Button"
 
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
@@ -19,18 +20,32 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     nextShot: yup.string().required("Campo Obrigatório! "),
   })
 
+  const initialForm = {
+    name: "",
+    manufacturer: "",
+    lote: "",
+    applicationDate: "",
+    location: "",
+    nextShot: "",
+  }
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
 
-  const user = JSON.parse(localStorage.getItem("@iSaude:user"))
-  const userId = user.id
+  // Descomentar essas duas linhas após a feature de login estar pronta:
+
+  //   const user = JSON.parse(localStorage.getItem("@iSaude:user"))
+  //   const userId = user.id
 
   const onSubmitFunction = (data) => {
     console.log(data)
-    // addVaccine(data, userId)
+    // addVaccine(data, userId) -> Descomentar após a feature de login estar pronta.
+    reset(initialForm)
+    closeModal()
   }
 
   return (
@@ -88,7 +103,9 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
           register={register}
         />
 
-        <button type="submit">Submit Teste</button>
+        <Button type="submit" colorType="Primary">
+          Submit Teste
+        </Button>
       </Container>
     </ModalComponent>
   )

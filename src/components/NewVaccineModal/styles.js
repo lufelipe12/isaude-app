@@ -1,7 +1,13 @@
 import styled from "styled-components"
 
 export const Container = styled.form`
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   h2 {
+    margin-bottom: 20px;
   }
 `
 
