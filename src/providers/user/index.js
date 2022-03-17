@@ -18,9 +18,9 @@ export const UserProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const login = (user) => {
     api
