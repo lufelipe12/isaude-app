@@ -5,8 +5,11 @@ import Input from "../Input"
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
+import {useVaccines} from "../../providers/vaccines"
 
 const NewVaccineModal = ({isModalOpen, closeModal}) => {
+  const {addVaccine} = useVaccines()
+
   const schema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório!"),
     manufacturer: yup.string().required("Campo Obrigatório!"),
@@ -22,8 +25,12 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
 
+  const user = JSON.parse(localStorage.getItem("@iSaude:user"))
+  const userId = user.id
+
   const onSubmitFunction = (data) => {
     console.log(data)
+    // addVaccine(data, userId)
   }
 
   return (
