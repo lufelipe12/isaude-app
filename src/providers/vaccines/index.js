@@ -23,8 +23,8 @@ export const VaccinesProvider = ({ children }) => {
   }
 
   // useEffect(() => {
-  //   getVaccines()
-  // })
+  //   getVaccines();
+  // }, []);
 
   const addVaccine = (vaccine, userId) => {
     api
@@ -70,7 +70,7 @@ export const VaccinesProvider = ({ children }) => {
     >
       {children}
     </VaccinesContext.Provider>
-  )
-}
+  );
+};
 
-export const useVaccines = () => useContext(VaccinesContext)
+export const useVaccines = () => useContext(VaccinesContext);
