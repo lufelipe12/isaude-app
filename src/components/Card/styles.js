@@ -32,6 +32,7 @@ export const Container = styled.div`
         `;
     }
   }}
+  margin: 20px;
 `;
 
 export const ContainerTop = styled.div`
