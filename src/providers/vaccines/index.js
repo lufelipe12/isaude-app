@@ -60,7 +60,7 @@ export const VaccinesProvider = ({ children }) => {
          toast.success('Vacina deletada')
          getVaccines()
         })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(token))
       
   }
 

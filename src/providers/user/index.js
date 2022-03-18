@@ -21,10 +21,10 @@ export const UserProvider = ({ children }) => {
         toast.success("Bem vindo!")
         localStorage.setItem(
           "@iSaude:token",
-          JSON.stringify(response.data.accessToken)
+          response.data.accessToken
         )
         localStorage.setItem(
-          "@iSaude:user",
+          "@iSaude:info",
           JSON.stringify(response.data.user)
         )
         setUser({ ...user, token: response.data.accessToken, info: response.data.user })

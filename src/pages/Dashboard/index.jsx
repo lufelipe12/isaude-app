@@ -62,6 +62,7 @@ const Dashboard = () => {
           alt="userImage"
         />
         <UserInfos>
+          {console.log(user.info.name)}
           <h3>{user.info.name}</h3>
           <UserData>
             <div>
