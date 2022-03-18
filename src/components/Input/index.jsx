@@ -1,4 +1,5 @@
-import { TextField } from "@mui/material"
+import {TextField} from "@mui/material"
+import {DesktopDatePicker} from "@mui/lab"
 
 const Input = ({
   name,
@@ -7,6 +8,7 @@ const Input = ({
   error = "",
   helperText = "",
   icon: Icon,
+  date = false,
 
   ...rest
 }) => {
@@ -21,8 +23,13 @@ const Input = ({
         error={!!error}
         helperText={helperText}
         {...rest}
+        InputLabelProps={
+          date && {
+            shrink: true,
+          }
+        }
       />
     </>
-  );
-};
-export default Input;
+  )
+}
+export default Input

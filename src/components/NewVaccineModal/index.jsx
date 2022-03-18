@@ -9,7 +9,6 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useVaccines} from "../../providers/vaccines"
 
 const NewVaccineModal = ({isModalOpen, closeModal}) => {
-
   const {addVaccine} = useVaccines()
 
   const schema = yup.object().shape({
@@ -36,7 +35,6 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     reset,
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
-
 
   const onSubmitFunction = (data) => {
     addVaccine(data)
@@ -76,11 +74,12 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="applicationDate" // o que vai ser passado para o register
-          label="" // placeholder
+          label="Data da aplicação" // placeholder
           type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
+          date
         />
         <Input
           name="location" // o que vai ser passado para o register
@@ -92,11 +91,12 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="nextShot" // o que vai ser passado para o register
-          label="" // placeholder
+          label="Data da próxima dose" // placeholder
           type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
+          date
         />
 
         <Button type="submit" colorType="Primary">
