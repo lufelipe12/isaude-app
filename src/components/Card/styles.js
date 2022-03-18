@@ -6,7 +6,21 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background: var(--white);
-  border: 4px solid var(--blue-2);
+  ${(props) => {
+    if (props.time <= 0) {
+      return `
+      border: var(--error) 4px solid;
+    `;
+    } else if (props.time < 1) {
+      return `
+      border: var(--orange) 4px solid;
+    `;
+    } else {
+      return `
+        border: var(--blue-2) 4px solid;
+    `;
+    }
+  }};
   border-radius: 11px;
   width: 280px;
   height: 280px;
@@ -22,9 +36,22 @@ export const ContainerTop = styled.div`
   align-items: center;
   flex-direction: column;
   /* margin-top: 20px; */
-  color: var(--blue-2);
   h3 {
-    color: var(--blue-2);
+    ${(props) => {
+      if (props.time <= 0) {
+        return `
+      color: var(--error) ;
+    `;
+      } else if (props.time < 1) {
+        return `
+      color: var(--orange) ;
+    `;
+      } else {
+        return `
+        color: var(--blue-2) ;
+    `;
+      }
+    }};
     margin: 12px 0px;
   }
 `;
@@ -104,24 +131,18 @@ export const Status = styled.h3`
   border-radius: 4px;
 
   ${(props) => {
-    switch (props.type) {
-      case "vaccinated":
-        return css`
-          background: var(--green);
-        `;
-      case "upcoming":
-        return css`
-          background: var(--orange);
-        `;
-      case "not-vaccinated":
-        return css`
-          background: var(--error);
-        `;
-
-      default:
-        return css`
-          background: var(--green);
-        `;
+    if (props.time <= 0) {
+      return `
+      background-color: var(--error) ;
+    `;
+    } else if (props.time < 1) {
+      return `
+      background-color: var(--orange) ;
+    `;
+    } else {
+      return `
+        background-color: var(--blue-2) ;
+    `;
     }
-  }}
+  }};
 `;

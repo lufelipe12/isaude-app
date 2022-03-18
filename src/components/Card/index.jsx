@@ -5,7 +5,7 @@
 
 // Deve conter um botão para deletar a vacina e um botão para editar, que abre o modal para editar a vacina.
 //Seguir a estilização do figma.
-import { useVaccines } from "../../providers/vaccines"
+import { useVaccines } from "../../providers/vaccines";
 import {
   Container,
   ContainerTop,
@@ -15,23 +15,46 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from "./styles"
+} from "./styles";
 
-import {FaRegEdit, FaTrash} from "react-icons/fa"
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 
-function Card({vaccine, setVaccineToChange, openEditVaccineModal}) {
+function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
+  const { delVaccine } = useVaccines();
 
-  const { delVaccine } = useVaccines()
-  
-  function handleOpenEditVaccineModal() {
-    setVaccineToChange(vaccine)
-    openEditVaccineModal()
+  const atualDate = new Date();
+
+  const monthToMs = 2628000000;
+
+  function dataConverter(data) {
+    const dataArr = data.split("/");
+    let newDataArr = [];
+
+    for (let i = 0; i < dataArr.length; i++) {
+      if (i < dataArr.length - 1) {
+        newDataArr.unshift(dataArr[i]);
+      } else {
+        newDataArr.push(dataArr[i]);
+      }
+    }
+    const formatedData = newDataArr.join("/");
+
+    return formatedData;
   }
-  
+
+  const nextShotDate = new Date(dataConverter(vaccine.nextShot));
+
+  const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2);
+
+  function handleOpenEditVaccineModal() {
+    setVaccineToChange(vaccine);
+    openEditVaccineModal();
+  }
+
   return (
     <>
-      <Container>
-        <ContainerTop>
+      <Container time={time}>
+        <ContainerTop time={time}>
           <h3>{vaccine.name}</h3>
         </ContainerTop>
 
@@ -62,11 +85,17 @@ function Card({vaccine, setVaccineToChange, openEditVaccineModal}) {
             </ContainerButtons>
           </div>
 
-          <Status>VACINADO</Status>
+          <Status time={time}>
+            {time <= 0
+              ? "NÃO VACINADO"
+              : time < 1
+              ? "VACINAÇÃO PRÓXIMA"
+              : "VACINADO"}
+          </Status>
         </ContainerStatus>
       </Container>
     </>
-  )
+  );
 }
 
-export default Card
+export default Card;
