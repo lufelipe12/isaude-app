@@ -12,6 +12,7 @@ import Button from "../../components/Button";
 import InputMask from "react-input-mask";
 import InputAdornment from "@mui/material/InputAdornment";
 import axios from "axios";
+import logo from "../../assets/logo.png";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -245,15 +246,15 @@ const Register = () => {
           <Button colorType="terciary" type="submit">
             Cadastrar
           </Button>
+          <p>
+            Já possui uma conta? Faça o
+            <span onClick={() => history.push("/login")}> login</span>
+          </p>
         </form>
-        <p>
-          Já possui uma conta? Faça o
-          <span onClick={() => history.push("/login")}> login</span>
-        </p>
       </Container>
       <ImageContainer>
         <figure>
-          <img src="" alt="" />
+          <img src={logo} alt="ImageRegister" />
         </figure>
       </ImageContainer>
     </FullContainer>

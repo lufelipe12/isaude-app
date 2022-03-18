@@ -7,6 +7,7 @@ const Input = ({
   error = "",
   helperText = "",
   icon: Icon,
+
   ...rest
 }) => {
   return (

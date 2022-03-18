@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 300px;
-  height: 710px;
+  height: 680px;
   background: var(--white);
   border-radius: 10px;
 
@@ -11,7 +11,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin: 0 auto;
-    width: 300px;
+    width: 100%;
     height: 680px;
     padding: 20px;
   }
@@ -45,10 +45,12 @@ export const Container = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 617px;
-    height: 793px;
+    width: 40%;
+    height: 680px;
+    margin-left: 50px;
     form {
-      width: 580px;
+      width: 100%;
+      height: 680px;
     }
   }
 `;
@@ -69,11 +71,15 @@ export const FullContainer = styled.div`
 `;
 export const InputContainer = styled.div``;
 export const ImageContainer = styled.div`
-  width: 200px;
-  height: 200px;
-  background: red;
+  width: 60%;
+  height: 100vh;
   display: none;
   @media (min-width: 768px) {
+    img {
+      width: 100%;
+      height: 100vh;
+    }
     display: flex;
+    flex-direction: row;
   }
 `;
