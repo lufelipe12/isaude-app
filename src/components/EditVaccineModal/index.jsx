@@ -9,7 +9,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useVaccines} from "../../providers/vaccines"
 
 const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
-  const {changeVaccine} = useVaccines()
+  const { changeVaccine } = useVaccines()
 
   const schema = yup.object().shape({
     name: yup.string(),
@@ -36,18 +36,14 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
 
-  // Descomentar essas duas linhas após a feature de login estar pronta:
-
-  //   const user = JSON.parse(localStorage.getItem("@iSaude:user"))
-  //   const userId = user.id
-
   const onSubmitFunction = (data) => {
-    console.log(data)
-
-    // changeVaccine(data, vaccineToChange.id) -> Descomentar após a feature de login estar pronta.
+    changeVaccine(data, vaccineToChange.id) 
     reset(initialForm)
     closeModal()
   }
+
+  // const vaccine = vaccines.find(vaccine => vaccine.id === vaccineToChange.id)
+  // console.log(vaccine)
 
   return (
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>

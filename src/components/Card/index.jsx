@@ -5,7 +5,7 @@
 
 // Deve conter um botão para deletar a vacina e um botão para editar, que abre o modal para editar a vacina.
 //Seguir a estilização do figma.
-
+import { useVaccines } from "../../providers/vaccines"
 import {
   Container,
   ContainerTop,
@@ -20,10 +20,14 @@ import {
 import {FaRegEdit, FaTrash} from "react-icons/fa"
 
 function Card({vaccine, setVaccineToChange, openEditVaccineModal}) {
+
+  const { delVaccine } = useVaccines()
+  
   function handleOpenEditVaccineModal() {
     setVaccineToChange(vaccine)
     openEditVaccineModal()
   }
+  
   return (
     <>
       <Container>
@@ -52,7 +56,7 @@ function Card({vaccine, setVaccineToChange, openEditVaccineModal}) {
               <button onClick={handleOpenEditVaccineModal}>
                 <FaRegEdit />
               </button>
-              <button>
+              <button onClick={() => delVaccine(vaccine.id)}>
                 <FaTrash />
               </button>
             </ContainerButtons>

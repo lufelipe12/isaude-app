@@ -18,7 +18,7 @@ import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
 
 const Dashboard = () => {
-  const { vaccines, getVaccines, addVaccine } = useVaccines()
+  const { vaccines, getVaccines } = useVaccines()
   const { user } = useUser()
 
   // Estados e funções do modal para cadastrar uma nova vacina:
@@ -84,7 +84,7 @@ const Dashboard = () => {
         </UserInfos>
         </UserContainer>
         <button onClick={() => pdfMaker(user, vaccines)}>
-          <GrDocumentPdf style={{ "fontSize": "23px" }} />
+          <GrDocumentPdf style={{ fontSize: "23px" }} />
         </button>
       </DashHeader>
       <CardContainer>
@@ -99,7 +99,7 @@ const Dashboard = () => {
       </CardContainer>
       <StyledContainer>
         <button  onClick={openNewVaccineModal}>
-          <MdAddCircle style={{ "font-size": "40px" }} />
+          <MdAddCircle style={{ fontSize: "40px" }} />
         </button>
 
         <div>

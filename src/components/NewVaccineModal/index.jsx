@@ -9,6 +9,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useVaccines} from "../../providers/vaccines"
 
 const NewVaccineModal = ({isModalOpen, closeModal}) => {
+
   const {addVaccine} = useVaccines()
 
   const schema = yup.object().shape({
@@ -36,14 +37,9 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
 
-  // Descomentar essas duas linhas após a feature de login estar pronta:
-
-  //   const user = JSON.parse(localStorage.getItem("@iSaude:user"))
-  //   const userId = user.id
 
   const onSubmitFunction = (data) => {
-    console.log(data)
-    // addVaccine(data, userId) -> Descomentar após a feature de login estar pronta.
+    addVaccine(data)
     reset(initialForm)
     closeModal()
   }
@@ -55,7 +51,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
 
         <Input
           name="name" // o que vai ser passado para o register
-          label="Digite o nome da vacina" // placeholder
+          label="Vacina" // placeholder
           type="text"
           helperText={errors.name?.message}
           error={!!errors.name}
@@ -64,7 +60,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
 
         <Input
           name="manufacturer" // o que vai ser passado para o register
-          label="Digite o nome do Fabricante" // placeholder
+          label="Fabricante" // placeholder
           type="text"
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
@@ -72,7 +68,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="lote" // o que vai ser passado para o register
-          label="Digite o lote da vacina que você tomou" // placeholder
+          label="Lote" // placeholder
           type="text"
           helperText={errors.lote?.message}
           error={!!errors.lote}
@@ -80,15 +76,15 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="applicationDate" // o que vai ser passado para o register
-          label="Digite a data da aplicação" // placeholder
-          type="text"
+          label="" // placeholder
+          type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
         />
         <Input
           name="location" // o que vai ser passado para o register
-          label="Digite o local da aplicação" // placeholder
+          label="Local da aplicação" // placeholder
           type="text"
           helperText={errors.location?.message}
           error={!!errors.location}
@@ -96,8 +92,8 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="nextShot" // o que vai ser passado para o register
-          label="Digite a data da próxima dose" // placeholder
-          type="text"
+          label="" // placeholder
+          type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
