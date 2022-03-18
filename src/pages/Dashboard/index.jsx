@@ -11,19 +11,46 @@ import {
   UserInfos,
 } from "./styles"
 import pdfMaker from "../../utils/pfvGen"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { GrDocumentPdf } from "react-icons/gr"
 import { MdAddCircle } from "react-icons/md"
+import NewVaccineModal from "../../components/NewVaccineModal"
+import EditVaccineModal from "../../components/EditVaccineModal"
 
 const Dashboard = () => {
   const { vaccines, getVaccines } = useVaccines()
-
   const { user } = useUser()
-  console.log(vaccines)
+
+  // Estados e funções do modal para cadastrar uma nova vacina:
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+
+  // Estado para armazenar qual vacina quer mudar ao clicar no botão.
+  const [vaccineToChange, setVaccineToChange] = useState("")
+
+  //Estados e funções do modal para editar uma vacina:
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
 
   useEffect(() => {
     getVaccines()
   }, [])
+
+  function openNewVaccineModal() {
+    setIsNewVaccineModalOpen(true)
+  }
+
+  function closeNewVaccineModal() {
+    setIsNewVaccineModalOpen(false)
+  }
+
+  function openEditVaccineModal() {
+    setIsEditVaccineModalOpen(true)
+  }
+
+  function closeEditVaccineModal() {
+    setIsEditVaccineModalOpen(false)
+  }
+
+
  
   return (
     <main>
@@ -57,18 +84,36 @@ const Dashboard = () => {
         </UserInfos>
         </UserContainer>
         <button onClick={() => pdfMaker(user, vaccines)}>
-          <GrDocumentPdf style={{ "fontSize": "23px" }} />
+          <GrDocumentPdf style={{ fontSize: "23px" }} />
         </button>
       </DashHeader>
       <CardContainer>
         {vaccines.map((vaccine, index) => (
-          <Card vaccine={vaccine} key={index} />
+          <Card
+            vaccine={vaccine}
+            key={index}
+            setVaccineToChange={setVaccineToChange}
+            openEditVaccineModal={openEditVaccineModal}
+          />
         ))}
       </CardContainer>
       <StyledContainer>
-        <button onClick={() => console.log("Abrir modal de adicionar")}>
-          <MdAddCircle style={{ "font-size": "40px" }} />
+        <button  onClick={openNewVaccineModal}>
+          <MdAddCircle style={{ fontSize: "40px" }} />
         </button>
+
+        <div>
+        <NewVaccineModal
+          isModalOpen={isNewVaccineModalOpen}
+          closeModal={closeNewVaccineModal}
+        />
+        <EditVaccineModal
+          isModalOpen={isEditVaccineModalOpen}
+          closeModal={closeEditVaccineModal}
+          vaccineToChange={vaccineToChange}
+        />
+
+      </div>
       </StyledContainer>
     </main>
   )

@@ -1,14 +1,14 @@
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { Redirect, useHistory } from 'react-router-dom'
-import { FaMailBulk } from 'react-icons/fa'
-import { MenuItem } from '@mui/material'
+import {useForm} from "react-hook-form"
+import * as yup from "yup"
+import {yupResolver} from "@hookform/resolvers/yup"
+import {Redirect, useHistory} from "react-router-dom"
+import {FaMailBulk} from "react-icons/fa"
+import {MenuItem} from "@mui/material"
 
-import Input from '../../components/Input'
-import { Container } from './styles'
-import Select from '../../components/Select'
-import Button from '../../components/Button'
+import Input from "../../components/Input"
+import {Container} from "./styles"
+import Select from "../../components/Select"
+import Button from "../../components/Button"
 
 const Register = () => {
   const history = useHistory()
@@ -16,37 +16,37 @@ const Register = () => {
   const formSchema = yup.object().shape({
     name: yup
       .string()
-      .required('Campo obrigatório')
+      .required("Campo obrigatório")
       .matches(
-        '[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$',
-        'O nome deve conter apenas letras'
+        "[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$",
+        "O nome deve conter apenas letras"
       ),
-    email: yup.string().email('E-mail inválido').required('Campo obrigatório'),
-    gender: yup.string().required('Campo obrigatório'),
-    dateOfBirth: yup.string().required('Campo obrigatório'),
-    state: yup.string().required('Campo obrigatório'),
-    city: yup.string().required('Campo obrigatório'),
-    cpf: yup.string().required('Campo obrigatório'),
-    password: yup.string().required('Campo obrigatório'),
+    email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
+    gender: yup.string().required("Campo obrigatório"),
+    dateOfBirth: yup.string().required("Campo obrigatório"),
+    state: yup.string().required("Campo obrigatório"),
+    city: yup.string().required("Campo obrigatório"),
+    cpf: yup.string().required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),
     passwordConfirm: yup
       .string()
-      .oneOf([yup.ref('password')], 'Senha Diferente')
-      .required('Campo obrigatório'),
+      .oneOf([yup.ref("password")], "Senha Diferente")
+      .required("Campo obrigatório"),
   })
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm({
     resolver: yupResolver(formSchema),
   })
 
   //{
-    const onSubmit = (data) => {
-      delete data.passwordConfirm
+  const onSubmit = (data) => {
+    delete data.passwordConfirm
     console.log(data)
-    
+
     // axios
     //   .post("link", data)
     //   .then((response) => {
@@ -61,43 +61,43 @@ const Register = () => {
   }
 
   const arrayOfStates = [
-    'AC',
-    'AL',
-    'AP',
-    'AM',
-    'BA',
-    'DF',
-    'ES',
-    'GO',
-    'MA',
-    'MT',
-    'MS',
-    'MG',
-    'PA',
-    'PB',
-    'PR',
-    'PE',
-    'PI',
-    'RJ',
-    'RN',
-    'RS',
-    'RO',
-    'RR',
-    'SC',
-    'SP',
-    'SE',
-    'TO',
+    "AC",
+    "AL",
+    "AP",
+    "AM",
+    "BA",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MT",
+    "MS",
+    "MG",
+    "PA",
+    "PB",
+    "PR",
+    "PE",
+    "PI",
+    "RJ",
+    "RN",
+    "RS",
+    "RO",
+    "RR",
+    "SC",
+    "SP",
+    "SE",
+    "TO",
   ]
 
-  const arrayOfGenders = ['Feminino', 'Masculino', 'Outros']
+  const arrayOfGenders = ["Feminino", "Masculino", "Outros"]
 
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
-          name='name'
-          label='Nome'
-          type='text'
+          name="name"
+          label="Nome"
+          type="text"
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
@@ -105,9 +105,9 @@ const Register = () => {
         />
 
         <Input
-          name='email'
-          label='Email'
-          type='email'
+          name="email"
+          label="Email"
+          type="email"
           helperText={errors.email?.message}
           error={!!errors.email}
           register={register}
@@ -115,9 +115,9 @@ const Register = () => {
         />
 
         <Input
-          name='cpf'
-          label='CPF'
-          type='text'
+          name="cpf"
+          label="CPF"
+          type="text"
           helperText={errors.cpf?.message}
           error={!!errors.cpf}
           register={register}
@@ -125,19 +125,18 @@ const Register = () => {
         />
 
         <Input
-          name='dateOfBirth'
-          label=''
-          type='date'
+          name="dateOfBirth"
+          label=""
+          type="date"
           helperText={errors.dateOfBirth?.message}
           error={!!errors.dateOfBirth}
           register={register}
           // icon={FaMailBulk}
-        
-/>
+        />
 
         <Select
-          name='gender'
-          label='Gênero'
+          name="gender"
+          label="Gênero"
           register={register}
           error={!!errors.gender}
           helperText={errors.gender?.message}
@@ -160,9 +159,9 @@ const Register = () => {
         />
 
         <Select
-          name='state'
+          name="state"
           register={register}
-          label='Estado'
+          label="Estado"
           error={!!errors.state}
           helperText={errors.state?.message}
         >
@@ -174,9 +173,9 @@ const Register = () => {
         </Select>
 
         <Input
-          name='password'
-          label='Senha'
-          type='password'
+          name="password"
+          label="Senha"
+          type="password"
           helperText={errors.password?.message}
           error={!!errors.password}
           register={register}
@@ -184,15 +183,17 @@ const Register = () => {
         />
 
         <Input
-          name='passwordConfirm'
-          label='Confirmar Senha'
-          type='password'
+          name="passwordConfirm"
+          label="Confirmar Senha"
+          type="password"
           helperText={errors.passwordConfirm?.message}
           error={!!errors.passwordConfirm}
           register={register}
           // icon={FaMailBulk}
         />
-        <Button colorType='terciary' type='submit'>Cadastrar</Button>
+        <Button colorType="terciary" type="submit">
+          Cadastrar
+        </Button>
       </form>
 
       <span>
