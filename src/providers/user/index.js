@@ -9,12 +9,15 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const history = useHistory();
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    token: localStorage.getItem("@iSaude:token") || "",
+    info: JSON.parse(localStorage.getItem("@iSaude:info")) || {}
+  });
 
   const getUser = () => {
     setUser({
       token: localStorage.getItem("@iSaude:token") || "",
-      info: localStorage.getItem("@iSaude:info") || {},
+      info: JSON.parse(localStorage.getItem("@iSaude:info")) || {},
     });
   };
 

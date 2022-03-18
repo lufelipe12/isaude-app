@@ -1,13 +1,38 @@
-import {useState} from "react"
-import {useVaccines} from "../../providers/vaccines"
+import { useVaccines } from "../../providers/vaccines"
+import { useUser } from "../../providers/user"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
+import {
+  CardContainer,
+  DashHeader,
+  StyledContainer,
+  UserContainer,
+  UserData,
+  UserInfos,
+} from "./styles"
+import pdfMaker from "../../utils/pfvGen"
+import { useEffect, useState } from "react"
+import { GrDocumentPdf } from "react-icons/gr"
+import { MdAddCircle } from "react-icons/md"
 import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
 
 const Dashboard = () => {
+  const { vaccines, getVaccines, addVaccine } = useVaccines()
+  const { user } = useUser()
+
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+
+  // Estado para armazenar qual vacina quer mudar ao clicar no botão.
+  const [vaccineToChange, setVaccineToChange] = useState("")
+
+  //Estados e funções do modal para editar uma vacina:
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+
+  useEffect(() => {
+    getVaccines()
+  }, [])
 
   function openNewVaccineModal() {
     setIsNewVaccineModalOpen(true)
@@ -17,9 +42,6 @@ const Dashboard = () => {
     setIsNewVaccineModalOpen(false)
   }
 
-  //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
-
   function openEditVaccineModal() {
     setIsEditVaccineModalOpen(true)
   }
@@ -28,50 +50,44 @@ const Dashboard = () => {
     setIsEditVaccineModalOpen(false)
   }
 
-  // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState("")
-
-  const vaccines = [
-    {
-      userId: 2,
-      name: "Febre Amarela",
-      manufacturer: "Oxford",
-      lote: 2337593279,
-      applicationDate: "19/01/2022",
-      shot: 2,
-      location: "Araguari",
-      totalShots: 2,
-      nextShot: "20/04/2022",
-    },
-    {
-      userId: 2,
-      name: "Covid-19",
-      manufacturer: "Oxford",
-      lote: 2337593279,
-      applicationDate: "19/01/2022",
-      shot: 2,
-      location: "Araguari",
-      totalShots: 2,
-      nextShot: "20/04/2022",
-    },
-    {
-      userId: 2,
-      name: "Tétano",
-      manufacturer: "Oxford",
-      lote: 2337593279,
-      applicationDate: "19/01/2022",
-      shot: 2,
-      location: "Araguari",
-      totalShots: 2,
-      nextShot: "20/04/2022",
-    },
-  ]
-
+ 
   return (
-    <>
+    <main>
       <Header dash />
-      <div>
+      <DashHeader>
+      <UserContainer>
+        <img
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+          alt="userImage"
+        />
+        <UserInfos>
+          <h3>{user.info.name}</h3>
+          <UserData>
+            <div>
+              <span>Nascimento</span>
+              <p>{user.info.dateOfBirth}</p>
+            </div>
+            <div>
+              <span>Sexo</span>
+              <p>{user.info.gender}</p>
+            </div>
+            <div>
+              <span>CPF</span>
+              <p>{user.info.cpf}</p>
+            </div>
+            <div>
+              <span>Estado</span>
+              <p>{user.info.state}</p>
+            </div>
+          </UserData>
+        </UserInfos>
+        </UserContainer>
+        <button onClick={() => pdfMaker(user, vaccines)}>
+          <GrDocumentPdf style={{ "fontSize": "23px" }} />
+        </button>
+      </DashHeader>
+      <CardContainer>
         {vaccines.map((vaccine, index) => (
           <Card
             vaccine={vaccine}
@@ -80,8 +96,13 @@ const Dashboard = () => {
             openEditVaccineModal={openEditVaccineModal}
           />
         ))}
-      </div>
-      <div>
+      </CardContainer>
+      <StyledContainer>
+        <button  onClick={openNewVaccineModal}>
+          <MdAddCircle style={{ "font-size": "40px" }} />
+        </button>
+
+        <div>
         <NewVaccineModal
           isModalOpen={isNewVaccineModalOpen}
           closeModal={closeNewVaccineModal}
@@ -91,15 +112,10 @@ const Dashboard = () => {
           closeModal={closeEditVaccineModal}
           vaccineToChange={vaccineToChange}
         />
-        Dashboard
-        <button onClick={openNewVaccineModal}>
-          Abrir Modal Para cadastrar nova vacina
-        </button>
-        <button onClick={openEditVaccineModal}>
-          Abrir Modal de Editar vacina
-        </button>
+
       </div>
-    </>
+      </StyledContainer>
+    </main>
   )
 }
 
