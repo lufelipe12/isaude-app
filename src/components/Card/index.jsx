@@ -16,7 +16,6 @@ import {
   Status,
   ContainerButtons,
 } from "./styles";
-
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 
 function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
@@ -57,7 +56,6 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
         <ContainerTop time={time}>
           <h3>{vaccine.name}</h3>
         </ContainerTop>
-
         <ContainerInfo>
           <ContainerColumn>
             <Info type={"label"}>Aplicação</Info>
@@ -84,7 +82,6 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
               </button>
             </ContainerButtons>
           </div>
-
           <Status time={time}>
             {time <= 0
               ? "NÃO VACINADO"

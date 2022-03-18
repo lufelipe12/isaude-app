@@ -35,7 +35,6 @@ export const ContainerTop = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* margin-top: 20px; */
   h3 {
     ${(props) => {
       if (props.time <= 0) {
@@ -64,7 +63,6 @@ export const ContainerButtons = styled.div`
     color: #323232;
     margin: 5px;
   }
-
   button:hover {
     color: var(--orange);
   }
@@ -108,13 +106,11 @@ export const ContainerStatus = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-top: 10px;
-
-  > div {
+  div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 `;
 
@@ -129,6 +125,8 @@ export const Status = styled.h3`
   padding-top: 7px;
 
   border-radius: 4px;
+
+  background: var(--green);
 
   ${(props) => {
     if (props.time <= 0) {
