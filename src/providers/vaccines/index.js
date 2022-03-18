@@ -10,10 +10,7 @@ export const VaccinesProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([]);
 
   const { user } = useUser();
-  const { info } = user;
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxmZkBlbWFpbC5jb20iLCJpYXQiOjE2NDc2MTQ0MTMsImV4cCI6MTY0NzYxODAxMywic3ViIjoiMSJ9.PL8BFvP5bKtFQkjmBA7P6-ed4oEmZauRF7Rks4z88Fo";
+  const { token, info } = user;
 
   const getVaccines = () => {
     api
