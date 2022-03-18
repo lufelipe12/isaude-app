@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const ButtonStyled = styled.div`
   button {
-    width: 100%;
+    width: 140px;
     height: 38px;
     font-size: 15px;
     font-weight: 600;
@@ -20,6 +20,7 @@ export const ButtonStyled = styled.div`
     background-color: var(--blue-2);
   }
 
+<<<<<<< HEAD
   .secondary {
     color: #fff;
     background-color: var(--green);
@@ -27,6 +28,15 @@ export const ButtonStyled = styled.div`
 
   .terciary {
     color: #fff;
+=======
+  .Secondary {
+    color: var(--white);
+    background-color: var(--green);
+  }
+
+  .Tertiary {
+    color: var(--white);
+>>>>>>> feature-component-footer
     background-color: var(--orange);
   }
 `;

@@ -20,6 +20,7 @@
     "react-hook-form": "^7.28.0",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
+    "react-material-ui-carousel": "^3.3.1",
     "react-modal": "^3.14.4",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "5",

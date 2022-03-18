@@ -22,7 +22,7 @@ const Dashboard = () => {
   const { user } = useUser()
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
   const [vaccineToChange, setVaccineToChange] = useState("")
@@ -35,19 +35,19 @@ const Dashboard = () => {
   }, [])
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true)
+    setIsNewVaccineModalOpen(true);
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false)
+    setIsNewVaccineModalOpen(false);
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true)
+    setIsEditVaccineModalOpen(true);
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false)
+    setIsEditVaccineModalOpen(false);
   }
 
 
@@ -119,4 +119,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard;

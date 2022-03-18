@@ -1,10 +1,10 @@
-import { createContext, useState, useContext } from "react"
-import { toast } from "react-toastify"
-import { useHistory } from "react-router-dom"
+import { createContext, useState, useContext, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
-import api from "../../services/api"
+import api from "../../services/api";
 
-const UserContext = createContext()
+const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const history = useHistory()
