@@ -1,20 +1,19 @@
-import logo from "../../assets/logo.png";
-import { StyledHeader, StyledNav } from "./styles";
+import logo from "../../assets/logo.png"
+import { StyledHeader, StyledNav } from "./styles"
 
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom"
 
 const Header = ({ dash = false }) => {
-  const history = useHistory();
+  const history = useHistory()
 
   const backHome = () => {
-    history.push("/");
-  };
+    history.push("/")
+  }
 
   const logout = () => {
-    //função de remover usuário autenticado
-    localStorage.clear();
-    history.push("/");
-  };
+    localStorage.clear()
+    history.push("/")
+  }
 
   return (
     <StyledHeader>
@@ -45,7 +44,7 @@ const Header = ({ dash = false }) => {
         )}
       </StyledNav>
     </StyledHeader>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
