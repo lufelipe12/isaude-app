@@ -1,17 +1,26 @@
-import {useForm} from "react-hook-form"
-import * as yup from "yup"
-import {yupResolver} from "@hookform/resolvers/yup"
-import {Redirect, useHistory} from "react-router-dom"
-import {FaMailBulk} from "react-icons/fa"
-import {MenuItem} from "@mui/material"
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Redirect, useHistory } from 'react-router-dom'
+import { MenuItem } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import IconButton from '@mui/material/IconButton'
 
-import Input from "../../components/Input"
-import {Container} from "./styles"
-import Select from "../../components/Select"
-import Button from "../../components/Button"
+import Input from '../../components/Input'
+import { Container } from './styles'
+import Select from '../../components/Select'
+import Button from '../../components/Button'
 
 const Register = () => {
   const history = useHistory()
+
+  const [showPassword, setShowPassword] = useState({
+    password: false,
+    confirmPassword: false
+  })
 
   const formSchema = yup.object().shape({
     name: yup
@@ -41,6 +50,13 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   })
+
+
+  const handleClickShowPassword = () => setShowPassword       ({...showPassword, password: !showPassword.password})
+  const handleClickShowConfirmPassword = () => setShowPassword({...showPassword, confirmPassword: !showPassword.confirmPassword})
+
+  const handleMouseDownPassword = (event) => event.preventDefault()
+
 
   //{
   const onSubmit = (data) => {
@@ -90,6 +106,34 @@ const Register = () => {
   ]
 
   const arrayOfGenders = ["Feminino", "Masculino", "Outros"]
+
+  const inputPropsPassword = {
+    endAdornment:(
+     <InputAdornment position='end'>
+       <IconButton
+         aria-label='toggle password visibility'
+         onClick={handleClickShowPassword}
+         onMouseDown={handleMouseDownPassword}
+         edge='end'
+       >
+         {showPassword.password ? <VisibilityOff /> : <Visibility />}
+       </IconButton>
+     </InputAdornment>
+   )}
+
+   const inputPropsConfirmPassword = {
+     endAdornment:(
+      <InputAdornment position='end'>
+        <IconButton
+          aria-label='toggle password visibility'
+          onClick={handleClickShowConfirmPassword}
+          onMouseDown={handleMouseDownPassword}
+          edge='end'
+        >
+          {showPassword.confirmPassword ? <VisibilityOff /> : <Visibility />}
+        </IconButton>
+      </InputAdornment>
+    )}
 
   return (
     <Container>
@@ -173,22 +217,24 @@ const Register = () => {
         </Select>
 
         <Input
-          name="password"
-          label="Senha"
-          type="password"
+          name='password'
+          label='Senha'
+          type={showPassword.password ? 'text' : 'password'}
           helperText={errors.password?.message}
           error={!!errors.password}
           register={register}
+          InputProps = {inputPropsPassword}
           // icon={FaMailBulk}
         />
 
         <Input
-          name="passwordConfirm"
-          label="Confirmar Senha"
-          type="password"
+          name='passwordConfirm'
+          label='Confirmar Senha'
+          type={showPassword.confirmPassword ? 'text' : 'password'}
           helperText={errors.passwordConfirm?.message}
           error={!!errors.passwordConfirm}
           register={register}
+          InputProps = {inputPropsConfirmPassword}
           // icon={FaMailBulk}
         />
         <Button colorType="terciary" type="submit">
