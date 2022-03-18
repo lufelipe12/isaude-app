@@ -12,19 +12,19 @@ function Footer() {
     <Container>
       <ContainerLeaders>
         <div>
-          <p>Product Owner</p>
+          <p>Product Owner:</p>
           <ul>
             <li>
               <p>Luiz Felipe Dias</p>
             </li>
           </ul>
-          <p>Tech Leader</p>
+          <p>Tech Lead:</p>
           <ul>
             <li>
               <p>Larissa Paulino</p>
             </li>
           </ul>
-          <p>Scrum Master</p>
+          <p>Scrum Master:</p>
           <ul>
             <li>
               <p>Nehama</p>
@@ -38,7 +38,7 @@ function Footer() {
       </ContainerQuite>
       <ContainerOthers>
         <div>
-          <p>Quality Assurance</p>
+          <p>Quality Assurance:</p>
           <ul>
             <li>Bernardo Enock</li>
             <li>Matheus Porto</li>

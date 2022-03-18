@@ -53,4 +53,8 @@ export const ContainerOthers = styled.div`
   li {
     margin: 20px 0 20px 21px;
   }
+
+  @media (min-width: 768px) {
+    margin: 10px 100px 10px 10px;
+  }
 `;
