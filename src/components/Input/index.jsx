@@ -1,11 +1,14 @@
-import { TextField } from '@mui/material'
+import {TextField} from "@mui/material"
 
 const Input = ({
   name,
   label,
   register,
-  error = '',
-  helperText = '',
+  error = "",
+  helperText = "",
+  icon: Icon,
+  date = false,
+
   ...rest
 }) => {
   return (
@@ -14,11 +17,16 @@ const Input = ({
         name={name}
         label={label}
         {...register(name)}
-        variant='outlined'
+        variant="outlined"
         fullWidth
         error={!!error}
         helperText={helperText}
         {...rest}
+        InputLabelProps={
+          date && {
+            shrink: true,
+          }
+        }
       />
     </>
   )

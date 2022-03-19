@@ -32,7 +32,6 @@ function Card({
   // else type="" status="VACINADO"
   //passando o type por props
 
-  function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
     const { delVaccine } = useVaccines()
 
     function handleOpenEditVaccineModal() {
@@ -80,6 +79,6 @@ function Card({
       </>
     )
   }
-}
+
 
 export default Card

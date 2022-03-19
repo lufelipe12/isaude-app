@@ -184,11 +184,12 @@ const Register = () => {
 
           <Input
             name='dateOfBirth'
-            label=''
+            label='Data de nascimento'
             type='date'
             helperText={errors.dateOfBirth?.message}
             error={!!errors.dateOfBirth}
             register={register}
+            date
           />
 
           <Select

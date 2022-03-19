@@ -76,11 +76,12 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="applicationDate" // o que vai ser passado para o register
-          label="" // placeholder
+          label="Data da aplicação" // placeholder
           type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
+          date
         />
         <Input
           name="location" // o que vai ser passado para o register
@@ -92,14 +93,15 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
         <Input
           name="nextShot" // o que vai ser passado para o register
-          label="" // placeholder
+          label="Próxima dose" // placeholder
           type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
+          date
         />
 
-        <Button type="submit" colorType="Primary">
+        <Button type="submit" colorType="primary">
           Cadastrar vacina
         </Button>
       </Container>

@@ -13,6 +13,7 @@ import {
 import pdfMaker from "../../utils/pfvGen"
 import { useEffect, useState } from "react"
 import { GrDocumentPdf } from "react-icons/gr"
+import Tooltip from '@mui/material/Tooltip';
 import { MdAddCircle } from "react-icons/md"
 import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
@@ -83,9 +84,12 @@ const Dashboard = () => {
           </UserData>
         </UserInfos>
         </UserContainer>
-        <button onClick={() => pdfMaker(user, vaccines)}>
+        <Tooltip title='Gerar PDF das vacinas'>
+           <button onClick={() => pdfMaker(user, vaccines)}>
           <GrDocumentPdf style={{ fontSize: "23px" }} />
         </button>
+        </Tooltip>
+       
       </DashHeader>
       <CardContainer>
         {vaccines.map((vaccine, index) => (
@@ -98,9 +102,12 @@ const Dashboard = () => {
         ))}
       </CardContainer>
       <StyledContainer>
-        <button  onClick={openNewVaccineModal}>
+        <Tooltip title="Cadastrar nova vacina">
+           <button  onClick={openNewVaccineModal}>
           <MdAddCircle style={{ fontSize: "40px" }} />
         </button>
+        </Tooltip>
+       
 
         <div>
         <NewVaccineModal
