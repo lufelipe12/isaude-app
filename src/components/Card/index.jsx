@@ -5,7 +5,7 @@
 
 // Deve conter um botão para deletar a vacina e um botão para editar, que abre o modal para editar a vacina.
 //Seguir a estilização do figma.
-import { useVaccines } from '../../providers/vaccines'
+import { useVaccines } from "../../providers/vaccines";
 import {
   Container,
   ContainerTop,
@@ -15,70 +15,84 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from './styles'
+} from "./styles";
+import { FaRegEdit, FaTrash } from "react-icons/fa";
 
-import { FaRegEdit, FaTrash } from 'react-icons/fa'
+function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
+  const { delVaccine } = useVaccines();
 
-function Card({
-  vaccine,
-  type,
-  status = 'VACINADO',
-  setVaccineToChange,
-  openEditVaccineModal,
-}) {
-  //Uma condição para as datas das vacinas definira a dinâmica
-  // if date is approaching, else type="approaching" status="Vacinação Proxima"
-  // if date is undefined, else type="not-vaccinated" status="Não Vacinado"
-  // else type="" status="VACINADO"
-  //passando o type por props
+  const atualDate = new Date();
 
-    const { delVaccine } = useVaccines()
+  const monthToMs = 2628000000;
 
-    function handleOpenEditVaccineModal() {
-      setVaccineToChange(vaccine)
-      openEditVaccineModal()
+  function dataConverter(data) {
+    const dataArr = data.split("/");
+    let newDataArr = [];
+
+    for (let i = 0; i < dataArr.length; i++) {
+      if (i < dataArr.length - 1) {
+        newDataArr.unshift(dataArr[i]);
+      } else {
+        newDataArr.push(dataArr[i]);
+      }
     }
+    const formatedData = newDataArr.join("/");
 
-    return (
-      <>
-        <Container type={type}>
-          <ContainerTop type={type}>
-            <h3>{vaccine.name}</h3>
-          </ContainerTop>
-
-          <ContainerInfo>
-            <ContainerColumn>
-              <Info type={'label'}>Aplicação</Info>
-              <Info>{vaccine.applicationDate}</Info>
-              <Info type={'label'}>Próxima</Info>
-              <Info>{vaccine.nextShot}</Info>
-            </ContainerColumn>
-            <ContainerColumn>
-              <Info type={'label'}>Fabricante</Info>
-              <Info>{vaccine.manufacturer}</Info>
-              <Info type={'label'}>Lote</Info>
-              <Info>{vaccine.lote}</Info>
-            </ContainerColumn>
-          </ContainerInfo>
-          <ContainerStatus>
-            <div>
-              <Info>Local: {vaccine.location}</Info>
-              <ContainerButtons>
-                <button onClick={handleOpenEditVaccineModal}>
-                  <FaRegEdit />
-                </button>
-                <button onClick={() => delVaccine(vaccine.id)}>
-                  <FaTrash />
-                </button>
-              </ContainerButtons>
-            </div>
-
-            <Status type={type}>{status}</Status>
-          </ContainerStatus>
-        </Container>
-      </>
-    )
+    return formatedData;
   }
 
+  const nextShotDate = new Date(dataConverter(vaccine.nextShot));
+
+  const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2);
+
+  function handleOpenEditVaccineModal() {
+    setVaccineToChange(vaccine);
+    openEditVaccineModal();
+  }
+
+  return (
+    <>
+      <Container time={time}>
+        <ContainerTop time={time}>
+          <h3>{vaccine.name}</h3>
+        </ContainerTop>
+        <ContainerInfo>
+          <ContainerColumn>
+            <Info type={"label"}>Aplicação</Info>
+            <Info>{vaccine.applicationDate}</Info>
+            <Info type={"label"}>Próxima</Info>
+            <Info>{vaccine.nextShot}</Info>
+          </ContainerColumn>
+          <ContainerColumn>
+            <Info type={"label"}>Fabricante</Info>
+            <Info>{vaccine.manufacturer}</Info>
+            <Info type={"label"}>Lote</Info>
+            <Info>{vaccine.lote}</Info>
+          </ContainerColumn>
+        </ContainerInfo>
+        <ContainerStatus>
+          <div>
+            <Info>Local: {vaccine.location}</Info>
+            <ContainerButtons>
+              <button onClick={handleOpenEditVaccineModal}>
+                <FaRegEdit />
+              </button>
+              <button onClick={() => delVaccine(vaccine.id)}>
+                <FaTrash />
+              </button>
+            </ContainerButtons>
+          </div>
+          <Status time={time}>
+            {time <= 0
+              ? "NÃO VACINADO"
+              : time < 1
+              ? "VACINAÇÃO PRÓXIMA"
+              : "VACINADO"}
+          </Status>
+        </ContainerStatus>
+      </Container>
+    </>
+  );
+}
 
 export default Card

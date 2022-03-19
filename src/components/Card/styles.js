@@ -6,6 +6,21 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background: var(--white);
+  ${(props) => {
+    if (props.time <= 0) {
+      return `
+      border: var(--error) 4px solid;
+    `;
+    } else if (props.time < 1) {
+      return `
+      border: var(--orange) 4px solid;
+    `;
+    } else {
+      return `
+        border: var(--blue-2) 4px solid;
+    `;
+    }
+  }};
   border-radius: 11px;
   width: 280px;
   height: 280px;
@@ -13,54 +28,32 @@ export const Container = styled.div`
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
   box-shadow: 0px 10px 13px -7px #000000,
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
-
-  border: 4px solid var(--blue-2);
-
-  ${(props) => {
-    switch (props.type) {
-      case 'approaching':
-        return css`
-          border: 4px solid var(--orange);
-        `
-      case 'not-vaccinated':
-        return css`
-          border: 4px solid var(--error);
-        `
-      default:
-        css`
-          border: 4px solid var(--blue-2);
-        `
-    }
-  }}
   margin: 20px;
-`
-
+`;
 export const ContainerTop = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: var(--blue-2);
   h3 {
+    ${(props) => {
+      if (props.time <= 0) {
+        return `
+      color: var(--error) ;
+    `;
+      } else if (props.time < 1) {
+        return `
+      color: var(--orange) ;
+    `;
+      } else {
+        return `
+        color: var(--blue-2) ;
+    `;
+      }
+    }};
     margin: 12px 0px;
   }
+`;
 
-  ${(props) => {
-    switch (props.type) {
-      case 'approaching':
-        return css`
-          color: var(--orange);
-        `
-      case 'not-vaccinated':
-        return css`
-          color: var(--error);
-        `
-      default:
-        css`
-          color: var(--blue-2);
-        `
-    }
-  }}
-`
 
 export const ContainerButtons = styled.div`
   margin: 2px 0px 0px 0px;
@@ -70,7 +63,6 @@ export const ContainerButtons = styled.div`
     color: #323232;
     margin: 5px;
   }
-
   button:hover {
     color: var(--orange);
   }
@@ -114,13 +106,11 @@ export const ContainerStatus = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-top: 10px;
-
   div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 `
 

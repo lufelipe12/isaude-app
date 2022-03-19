@@ -1,7 +1,7 @@
-import { useVaccines } from "../../providers/vaccines"
-import { useUser } from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from "../../providers/vaccines";
+import { useUser } from "../../providers/user";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import {
   CardContainer,
   DashHeader,
@@ -19,21 +19,21 @@ import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
 
 const Dashboard = () => {
-  const { vaccines, getVaccines } = useVaccines()
-  const { user } = useUser()
+  const { vaccines, getVaccines } = useVaccines();
+  const { user } = useUser();
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
-  const [vaccineToChange, setVaccineToChange] = useState("")
+  const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
 
   useEffect(() => {
-    getVaccines()
-  }, [])
+    getVaccines();
+  }, []);
 
   function openNewVaccineModal() {
     setIsNewVaccineModalOpen(true);
@@ -51,38 +51,36 @@ const Dashboard = () => {
     setIsEditVaccineModalOpen(false);
   }
 
-
- 
   return (
     <main>
       <Header dash />
       <DashHeader>
-      <UserContainer>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
-          alt="userImage"
-        />
-        <UserInfos>
-          <h3>{user.info.name}</h3>
-          <UserData>
-            <div>
-              <span>Nascimento</span>
-              <p>{user.info.dateOfBirth}</p>
-            </div>
-            <div>
-              <span>Sexo</span>
-              <p>{user.info.gender}</p>
-            </div>
-            <div>
-              <span>CPF</span>
-              <p>{user.info.cpf}</p>
-            </div>
-            <div>
-              <span>Estado</span>
-              <p>{user.info.state}</p>
-            </div>
-          </UserData>
-        </UserInfos>
+        <UserContainer>
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+            alt="userImage"
+          />
+          <UserInfos>
+            <h3>{user.info.name}</h3>
+            <UserData>
+              <div>
+                <span>Nascimento</span>
+                <p>{user.info.dateOfBirth}</p>
+              </div>
+              <div>
+                <span>Sexo</span>
+                <p>{user.info.gender}</p>
+              </div>
+              <div>
+                <span>CPF</span>
+                <p>{user.info.cpf}</p>
+              </div>
+              <div>
+                <span>Estado</span>
+                <p>{user.info.state}</p>
+              </div>
+            </UserData>
+          </UserInfos>
         </UserContainer>
         <Tooltip title='Gerar PDF das vacinas'>
            <button onClick={() => pdfMaker(user, vaccines)}>
@@ -110,20 +108,19 @@ const Dashboard = () => {
        
 
         <div>
-        <NewVaccineModal
-          isModalOpen={isNewVaccineModalOpen}
-          closeModal={closeNewVaccineModal}
-        />
-        <EditVaccineModal
-          isModalOpen={isEditVaccineModalOpen}
-          closeModal={closeEditVaccineModal}
-          vaccineToChange={vaccineToChange}
-        />
-
-      </div>
+          <NewVaccineModal
+            isModalOpen={isNewVaccineModalOpen}
+            closeModal={closeNewVaccineModal}
+          />
+          <EditVaccineModal
+            isModalOpen={isEditVaccineModalOpen}
+            closeModal={closeEditVaccineModal}
+            vaccineToChange={vaccineToChange}
+          />
+        </div>
       </StyledContainer>
     </main>
-  )
-}
+  );
+};
 
 export default Dashboard;
