@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
@@ -16,18 +16,18 @@ export const UserProvider = ({ children }) => {
 
   const login = (user) => {
     api
-      .post("/login", user)
+      .post("/user/login", user)
       .then((response) => {
         toast.success("Bem vindo!")
         localStorage.setItem(
           "@iSaude:token",
-          response.data.accessToken
+          response.data.token
         )
         localStorage.setItem(
           "@iSaude:info",
           JSON.stringify(response.data.user)
         )
-        setUser({ ...user, token: response.data.accessToken, info: response.data.user })
+        setUser({ token: response.data.token, info: response.data.user })
 
         history.push("/dashboard")
       })

@@ -37,7 +37,7 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
   } = useForm({resolver: yupResolver(schema)})
 
   const onSubmitFunction = (data) => {
-    changeVaccine(data, vaccineToChange.id) 
+    changeVaccine(data, vaccineToChange._id) 
     reset(initialForm)
     closeModal()
   }

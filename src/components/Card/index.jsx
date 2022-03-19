@@ -32,7 +32,7 @@ function Card({
   // else type="" status="VACINADO"
   //passando o type por props
 
-  function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
+
     const { delVaccine } = useVaccines()
 
     function handleOpenEditVaccineModal() {
@@ -58,7 +58,7 @@ function Card({
               <Info type={'label'}>Fabricante</Info>
               <Info>{vaccine.manufacturer}</Info>
               <Info type={'label'}>Lote</Info>
-              <Info>{vaccine.lote}</Info>
+              <Info>{vaccine.batch}</Info>
             </ContainerColumn>
           </ContainerInfo>
           <ContainerStatus>
@@ -68,7 +68,7 @@ function Card({
                 <button onClick={handleOpenEditVaccineModal}>
                   <FaRegEdit />
                 </button>
-                <button onClick={() => delVaccine(vaccine.id)}>
+                <button onClick={() => delVaccine(vaccine._id)}>
                   <FaTrash />
                 </button>
               </ContainerButtons>
@@ -80,6 +80,6 @@ function Card({
       </>
     )
   }
-}
+
 
 export default Card

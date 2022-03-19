@@ -15,7 +15,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório!"),
     manufacturer: yup.string().required("Campo Obrigatório!"),
-    lote: yup.string().required("Campo Obrigatório! "),
+    batch: yup.string().required("Campo Obrigatório! "),
     applicationDate: yup.string().required("Campo obrigatório!"),
     location: yup.string().required("Campo Obrigatório! "),
     nextShot: yup.string().required("Campo Obrigatório! "),
@@ -24,7 +24,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
   const initialForm = {
     name: "",
     manufacturer: "",
-    lote: "",
+    batch: "",
     applicationDate: "",
     location: "",
     nextShot: "",
@@ -39,6 +39,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
 
 
   const onSubmitFunction = (data) => {
+    console.log(data)
     addVaccine(data)
     reset(initialForm)
     closeModal()
@@ -50,8 +51,8 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         <h2>Cadastrar nova vacina</h2>
 
         <Input
-          name="name" // o que vai ser passado para o register
-          label="Vacina" // placeholder
+          name="name" 
+          label="Vacina" 
           type="text"
           helperText={errors.name?.message}
           error={!!errors.name}
@@ -59,40 +60,40 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
 
         <Input
-          name="manufacturer" // o que vai ser passado para o register
-          label="Fabricante" // placeholder
+          name="manufacturer" 
+          label="Fabricante" 
           type="text"
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
         />
         <Input
-          name="lote" // o que vai ser passado para o register
-          label="Lote" // placeholder
+          name="batch" 
+          label="Lote" 
           type="text"
-          helperText={errors.lote?.message}
-          error={!!errors.lote}
+          helperText={errors.batch?.message}
+          error={!!errors.batch}
           register={register}
         />
         <Input
-          name="applicationDate" // o que vai ser passado para o register
-          label="" // placeholder
+          name="applicationDate" 
+          label="" 
           type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
         />
         <Input
-          name="location" // o que vai ser passado para o register
-          label="Local da aplicação" // placeholder
+          name="location" 
+          label="Local da aplicação" 
           type="text"
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
         />
         <Input
-          name="nextShot" // o que vai ser passado para o register
-          label="" // placeholder
+          name="nextShot" 
+          label="" 
           type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
