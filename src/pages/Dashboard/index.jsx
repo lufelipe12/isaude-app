@@ -95,18 +95,6 @@ const Dashboard = () => {
             openEditVaccineModal={openEditVaccineModal}
           />
         ))}
-        <Card
-          vaccine={{
-            name: "Covid-19",
-            manufacturer: "oxford",
-            lote: "hhfhfhfhf",
-            applicationDate: "21/09/2008",
-            location: "São Paulo",
-            nextShot: "22/09/1999",
-          }}
-          setVaccineToChange={setVaccineToChange}
-          openEditVaccineModal={openEditVaccineModal}
-        />
       </CardContainer>
       <StyledContainer>
         <button onClick={openNewVaccineModal}>
