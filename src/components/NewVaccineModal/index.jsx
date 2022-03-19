@@ -9,7 +9,6 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useVaccines} from "../../providers/vaccines"
 
 const NewVaccineModal = ({isModalOpen, closeModal}) => {
-
   const {addVaccine} = useVaccines()
 
   const schema = yup.object().shape({
@@ -36,7 +35,6 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
     reset,
     formState: {errors},
   } = useForm({resolver: yupResolver(schema)})
-
 
   const onSubmitFunction = (data) => {
     console.log(data)
