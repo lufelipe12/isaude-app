@@ -20,6 +20,9 @@ export const Container = styled.div`
         p{
             margin:50px
         }
+        button{
+            width:140px
+        }
     }
     
     .CarouselSection{

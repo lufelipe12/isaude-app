@@ -7,7 +7,7 @@ import {
 
 import equipe from "../../assets/equipe.jpg";
 
-function Footer() {
+export function Footer() {
   return (
     <Container>
       <ContainerLeaders>
@@ -50,4 +50,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+

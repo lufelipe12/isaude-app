@@ -22,8 +22,28 @@ export const NewsCarousel = () =>{
             title: "Segunda dose",
             date: "17/03/2022",
             img:tranmition
-        }
+        },
+        {
+            title: "Uso de máscaras",
+            date: "10/03/2022",
+            img:vaccine
+        },
     ]
+    let newArr=[]
+    const newsPortions = () => {
+        
+        for (let i =0; i<=Math.floor(news.length/3); i++){
+            newArr.push([]);
+        }
+        // let newArr=[]
+        console.log(newArr)
+        news.forEach((item,index)=>newArr[Math.floor(index/3)]?.push(item) )
+        console.log(newArr)
+
+        return(newArr)
+    }
+    newsPortions()
+    console.log(newArr)
 
     return (
         <ContainerCarousel>
@@ -32,21 +52,11 @@ export const NewsCarousel = () =>{
             // Coursel é o componente da biblioteca, next e prev fazem a troca automática
                 next={ (next, active) => console.log(`we left ${active}, and are now at ${next}`) }
                 prev={ (prev, active) => console.log(`we left ${active}, and are now at ${prev}`) }>
-                {news.map( (item, i) => {
-                    return(
-                        <div className="CarouselBox">
-                            {/* Aquivão as notícias, ainda não sei o farmato, 
-                                por isso falta estilizar e deixei um exemplo.
-                            */}
-                            <CarouselCard key={i} item={item}/>
-                            <CarouselCard key={i} item={item}/>
-                            <CarouselCard key={i} item={item}/>
-                        </div>
-                        
+                {newArr.map((item)=><div className="CarouselBox">
+                            {item.map((card,i)=><CarouselCard key={i} item={card}/>)}
+                        </div>)}
+                    
                 
-                    )
-                })
-            }
             </Carousel>
         </ContainerCarousel>
     )       

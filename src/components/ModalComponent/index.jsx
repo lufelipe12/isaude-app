@@ -7,6 +7,7 @@ const ModalComponent = ({children, isModalOpen, closeModal}) => {
   Modal.setAppElement("#root")
 
   return (
+    
     <Modal
       isOpen={isModalOpen}
       onRequestClose={closeModal}
