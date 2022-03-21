@@ -1,9 +1,16 @@
 import logo from "../../assets/logo.png";
-import { StyledHeader, StyledNav } from "./styles";
+import {
+  StyledHeader,
+  StyledNav,
+  FilterInput,
+  ButtonSearch,
+  ButtonLogout,
+  ContainerSearch,
+} from "./styles";
 
 import { useHistory, Link } from "react-router-dom";
 
-const Header = ({ dash = false }) => {
+const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
   const history = useHistory();
 
   const backHome = () => {
@@ -39,9 +46,16 @@ const Header = ({ dash = false }) => {
             <hr />
           </ul>
         ) : (
-          <div>
-            <button onClick={logout}>Sair</button>
-          </div>
+          <ContainerSearch>
+            <FilterInput
+              type="text"
+              placeholder="Pesquise sua vacina"
+              value={filterInput}
+              onChange={(event) => setFilterInput(event.target.value)}
+            />
+            <ButtonSearch onClick={FilterCards}>Pesquisar</ButtonSearch>
+            <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+          </ContainerSearch>
         )}
       </StyledNav>
     </StyledHeader>

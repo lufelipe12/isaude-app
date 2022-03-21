@@ -1,7 +1,7 @@
-import { useVaccines } from "../../providers/vaccines"
-import { useUser } from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from "../../providers/vaccines";
+import { useUser } from "../../providers/user";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import {
   CardContainer,
   DashHeader,
@@ -9,79 +9,105 @@ import {
   UserContainer,
   UserData,
   UserInfos,
-} from "./styles"
-import pdfMaker from "../../utils/pfvGen"
-import { useEffect, useState } from "react"
-import { GrDocumentPdf } from "react-icons/gr"
-import { MdAddCircle } from "react-icons/md"
-import NewVaccineModal from "../../components/NewVaccineModal"
-import EditVaccineModal from "../../components/EditVaccineModal"
+  ContainerSearchMobile,
+  FilterInputMobile,
+  ButtonSearchMobile,
+} from "./styles";
+import pdfMaker from "../../utils/pfvGen";
+import { useEffect, useState } from "react";
+import { GrDocumentPdf } from "react-icons/gr";
+import { MdAddCircle } from "react-icons/md";
+import NewVaccineModal from "../../components/NewVaccineModal";
+import EditVaccineModal from "../../components/EditVaccineModal";
 
 const Dashboard = () => {
-  const { vaccines, getVaccines } = useVaccines()
-  const { user } = useUser()
+  const { vaccines, getVaccines, setVaccines } = useVaccines();
+  const [filteredVaccines, setFilteredVaccines] = useState(() => vaccines);
+  const [filterInput, setFilterInput] = useState("");
+  const { user } = useUser();
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
-  const [vaccineToChange, setVaccineToChange] = useState("")
+  const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
 
   useEffect(() => {
-    getVaccines()
-  }, [])
+    getVaccines();
+  }, []);
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true)
+    setIsNewVaccineModalOpen(true);
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false)
+    setIsNewVaccineModalOpen(false);
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true)
+    setIsEditVaccineModalOpen(true);
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false)
+    setIsEditVaccineModalOpen(false);
   }
 
+  function FilterCards() {
+    const filterd = vaccines.filter((element) =>
+      element.name.toLowerCase().includes(filterInput.toLowerCase())
+    );
+    setVaccines(filterd);
+  }
 
- 
   return (
     <main>
-      <Header dash />
+      <Header
+        dash
+        setFilterInput={setFilterInput}
+        filterInput={filterInput}
+        FilterCards={FilterCards}
+      />
       <DashHeader>
-      <UserContainer>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
-          alt="userImage"
-        />
-        <UserInfos>
-          <h3>{user.info.name}</h3>
-          <UserData>
-            <div>
-              <span>Nascimento</span>
-              <p>{user.info.dateOfBirth}</p>
-            </div>
-            <div>
-              <span>Sexo</span>
-              <p>{user.info.gender}</p>
-            </div>
-            <div>
-              <span>CPF</span>
-              <p>{user.info.cpf}</p>
-            </div>
-            <div>
-              <span>Estado</span>
-              <p>{user.info.state}</p>
-            </div>
-          </UserData>
-        </UserInfos>
+        <ContainerSearchMobile>
+          <FilterInputMobile
+            type="text"
+            placeholder="Pesquise sua vacina"
+            value={filterInput}
+            onChange={(event) => setFilterInput(event.target.value)}
+          />
+          <ButtonSearchMobile onClick={FilterCards}>
+            Pesquisar
+          </ButtonSearchMobile>
+        </ContainerSearchMobile>
+        <UserContainer>
+          <img
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+            alt="userImage"
+          />
+          <UserInfos>
+            <h3>{user.info.name}</h3>
+            <UserData>
+              <div>
+                <span>Nascimento</span>
+                <p>{user.info.dateOfBirth}</p>
+              </div>
+              <div>
+                <span>Sexo</span>
+                <p>{user.info.gender}</p>
+              </div>
+              <div>
+                <span>CPF</span>
+                <p>{user.info.cpf}</p>
+              </div>
+              <div>
+                <span>Estado</span>
+                <p>{user.info.state}</p>
+              </div>
+            </UserData>
+          </UserInfos>
         </UserContainer>
         <button onClick={() => pdfMaker(user, vaccines)}>
           <GrDocumentPdf style={{ fontSize: "23px" }} />
@@ -98,25 +124,24 @@ const Dashboard = () => {
         ))}
       </CardContainer>
       <StyledContainer>
-        <button  onClick={openNewVaccineModal}>
+        <button onClick={openNewVaccineModal}>
           <MdAddCircle style={{ fontSize: "40px" }} />
         </button>
 
         <div>
-        <NewVaccineModal
-          isModalOpen={isNewVaccineModalOpen}
-          closeModal={closeNewVaccineModal}
-        />
-        <EditVaccineModal
-          isModalOpen={isEditVaccineModalOpen}
-          closeModal={closeEditVaccineModal}
-          vaccineToChange={vaccineToChange}
-        />
-
-      </div>
+          <NewVaccineModal
+            isModalOpen={isNewVaccineModalOpen}
+            closeModal={closeNewVaccineModal}
+          />
+          <EditVaccineModal
+            isModalOpen={isEditVaccineModalOpen}
+            closeModal={closeEditVaccineModal}
+            vaccineToChange={vaccineToChange}
+          />
+        </div>
       </StyledContainer>
     </main>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

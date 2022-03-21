@@ -6,10 +6,10 @@ export const DashHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  button {
+  /* button {
     background-color: rgba(0, 0, 0, 0);
     border: none;
-  }
+  } */
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -96,5 +96,43 @@ export const StyledContainer = styled.div`
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: var(--blue-2);
+  }
+`;
+export const ContainerSearchMobile = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const FilterInputMobile = styled.input`
+  width: 160px;
+  display: block;
+  border-radius: 10px;
+  padding: 8px;
+  border: none;
+  font-size: 15px;
+  background: #f3ffe2;
+  margin-right: 10px;
+  margin-top: 10px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const ButtonSearchMobile = styled.button`
+  display: block;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 10px;
+  background-color: var(--dark-blue);
+
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
