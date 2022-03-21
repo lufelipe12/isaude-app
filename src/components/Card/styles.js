@@ -29,8 +29,9 @@ export const Container = styled.div`
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
   margin: 20px;
   :hover {
-    box-shadow: 0px 3px 4px 3px #000000;
-    -webkit-box-shadow: 0px 8px 10px -5px #000000;
+    transition: 0.6s;
+    box-shadow: 5px 3px 4px 3px #000000;
+    -webkit-box-shadow: 0px 8px 10px 0px #000000;
   }
 `;
 
@@ -84,7 +85,21 @@ export const ContainerColumn = styled.div`
   flex-direction: column;
   margin: 10px 10px 10px 25px;
   padding-left: 5px;
-  border-left: 2px solid #424242;
+  ${(props) => {
+    if (props.time <= 0) {
+      return `
+      border-left: var(--error) 2px solid;
+    `;
+    } else if (props.time < 1) {
+      return `
+      border-left: var(--orange) 2px solid;
+    `;
+    } else {
+      return `
+        border-left: var(--blue-2) 2px solid;
+    `;
+    }
+  }};
 `;
 
 export const Info = styled.p`

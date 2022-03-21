@@ -19,7 +19,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
   const monthToMs = 2628000000;
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/")
+    return data.split("-").reverse().join("/");
   }
 
   const nextShotDate = new Date(vaccine.nextShot);
@@ -38,13 +38,13 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
           <h3>{vaccine.name}</h3>
         </ContainerTop>
         <ContainerInfo>
-          <ContainerColumn>
+          <ContainerColumn time={time}>
             <Info type={"label"}>Aplicação</Info>
             <Info>{dataConverter(vaccine.applicationDate)}</Info>
             <Info type={"label"}>Próxima dose</Info>
             <Info>{dataConverter(vaccine.nextShot)}</Info>
           </ContainerColumn>
-          <ContainerColumn>
+          <ContainerColumn time={time}>
             <Info type={"label"}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
             <Info type={"label"}>Lote</Info>
