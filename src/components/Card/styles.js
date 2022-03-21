@@ -9,15 +9,15 @@ export const Container = styled.div`
     if (props.time <= 0) {
       return `
       border: var(--error) 4px solid;
-    `;
+    `
     } else if (props.time < 1) {
       return `
       border: var(--orange) 4px solid;
-    `;
+    `
     } else {
       return `
         border: var(--blue-2) 4px solid;
-    `;
+    `
     }
   }};
   border-radius: 11px;
@@ -43,15 +43,15 @@ export const ContainerTop = styled.div`
       if (props.time <= 0) {
         return `
       color: var(--error) ;
-    `;
+    `
       } else if (props.time < 1) {
         return `
       color: var(--orange) ;
-    `;
+    `
       } else {
         return `
         color: var(--blue-2) ;
-    `;
+    `
       }
     }};
     margin: 12px 0px;
