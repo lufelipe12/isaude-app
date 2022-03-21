@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import styled, {css} from "styled-components"
+import {motion} from "framer-motion"
 
 export const Container = styled.div`
   display: flex;
@@ -10,15 +10,15 @@ export const Container = styled.div`
     if (props.time <= 0) {
       return `
       border: var(--error) 4px solid;
-    `;
+    `
     } else if (props.time < 1) {
       return `
       border: var(--orange) 4px solid;
-    `;
+    `
     } else {
       return `
         border: var(--blue-2) 4px solid;
-    `;
+    `
     }
   }};
   border-radius: 11px;
@@ -29,7 +29,7 @@ export const Container = styled.div`
   box-shadow: 0px 10px 13px -7px #000000,
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
   margin: 20px;
-`;
+`
 export const ContainerTop = styled.div`
   display: flex;
   align-items: center;
@@ -39,21 +39,20 @@ export const ContainerTop = styled.div`
       if (props.time <= 0) {
         return `
       color: var(--error) ;
-    `;
+    `
       } else if (props.time < 1) {
         return `
       color: var(--orange) ;
-    `;
+    `
       } else {
         return `
         color: var(--blue-2) ;
-    `;
+    `
       }
     }};
     margin: 12px 0px;
   }
-`;
-
+`
 
 export const ContainerButtons = styled.div`
   margin: 2px 0px 0px 0px;
@@ -89,7 +88,7 @@ export const Info = styled.p`
   margin: 5px;
   ${(props) => {
     switch (props.type) {
-      case 'label':
+      case "label":
         return css`
           color: var(--grey-2);
         `
@@ -130,11 +129,11 @@ export const Status = styled.h3`
 
   ${(props) => {
     switch (props.type) {
-      case 'approaching':
+      case "approaching":
         return css`
           background: var(--orange);
         `
-      case 'not-vaccinated':
+      case "not-vaccinated":
         return css`
           background: var(--error);
         `
