@@ -15,7 +15,7 @@ const pdfMaker = (userData, vaccinesList) => {
 
   const title = [
     {
-      text: `Nome: ${userData.name}  Nascimento: ${userData.birthday}  Sexo: ${userData.gender}`,
+      text: `Nome: ${userData.name}  Nascimento: ${userData.dateOfBirth}  Sexo: ${userData.gender}`,
       alignment: "center",
       fontSize: 15,
       bold: true,

@@ -23,13 +23,9 @@ export const VaccinesProvider = ({ children }) => {
 
   const addVaccine = (vaccine) => {
     api
-      .post(
-        `/user/${info._id}/vaccines`,
-        vaccine,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .post(`/user/${info._id}/vaccines`, vaccine, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         toast.success("Vacina cadastrada");
         getVaccines();
@@ -39,7 +35,6 @@ export const VaccinesProvider = ({ children }) => {
   };
 
   const changeVaccine = (vaccine, idToChange) => {
-   
     api
       .patch(`/user/${info._id}/vaccines/${idToChange}`, vaccine, {
         headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +55,7 @@ export const VaccinesProvider = ({ children }) => {
         toast.success("Vacina deletada");
         getVaccines();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(token));
   };
 
   return (

@@ -1,4 +1,4 @@
-import {TextField} from "@mui/material"
+import { TextField } from "@mui/material";
 
 const Input = ({
   name,
@@ -27,6 +27,6 @@ const Input = ({
         }
       />
     </>
-  )
-}
-export default Input
+  );
+};
+export default Input;

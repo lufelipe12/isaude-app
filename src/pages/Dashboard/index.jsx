@@ -1,7 +1,7 @@
-import {useVaccines} from "../../providers/vaccines"
-import {useUser} from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from "../../providers/vaccines";
+import { useUser } from "../../providers/user";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import {
   CardContainer,
   DashHeader,
@@ -9,51 +9,56 @@ import {
   UserContainer,
   UserData,
   UserInfos,
-} from "./styles"
-import pdfMaker from "../../utils/pfvGen"
-import {useEffect, useState} from "react"
-import {GrDocumentPdf} from "react-icons/gr"
-import {MdAddCircle} from "react-icons/md"
-import { Tooltip } from "@mui/material"
-import { Redirect } from "react-router-dom"
-import NewVaccineModal from "../../components/NewVaccineModal"
-import EditVaccineModal from "../../components/EditVaccineModal"
+} from "./styles";
+import pdfMaker from "../../utils/pfvGen";
+import { useEffect, useState } from "react";
+import { GrDocumentPdf } from "react-icons/gr";
+import Tooltip from "@mui/material/Tooltip";
+import { Redirect } from "react-router-dom";
+import { MdAddCircle } from "react-icons/md";
+import NewVaccineModal from "../../components/NewVaccineModal";
+import EditVaccineModal from "../../components/EditVaccineModal";
 
 const Dashboard = () => {
-  const {vaccines, getVaccines} = useVaccines()
-  const {user} = useUser()
+  const { vaccines, getVaccines } = useVaccines();
+  const { user } = useUser();
+
+  const vaccinesOrder = vaccines.sort(
+    (vaccine1, vaccine2) =>
+      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  );
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
-  const [vaccineToChange, setVaccineToChange] = useState('')
+  const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
 
   useEffect(() => {
-    getVaccines()
-  }, [])
+    getVaccines();
+  }, []);
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true)
+    setIsNewVaccineModalOpen(true);
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false)
+    setIsNewVaccineModalOpen(false);
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true)
+    setIsEditVaccineModalOpen(true);
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false)
+    setIsEditVaccineModalOpen(false);
   }
 
   if (!user.token) {
-    return <Redirect to='/login' />
+    return <Redirect to="/login" />;
   }
 
   function dataConverter(data) {
@@ -92,15 +97,15 @@ const Dashboard = () => {
             </UserData>
           </UserInfos>
         </UserContainer>
-        <Tooltip title='Gerar PDF das vacinas'>
-          <button onClick={() => pdfMaker(user, vaccines)}>
-            <GrDocumentPdf style={{ fontSize: '23px' }} />
+        <Tooltip title="Gerar PDF das vacinas">
+          <button onClick={() => pdfMaker(user.info, vaccines)}>
+            <GrDocumentPdf style={{ fontSize: "23px" }} />
           </button>
         </Tooltip>
       </DashHeader>
 
       <CardContainer>
-        {vaccines.map((vaccine, index) => (
+        {vaccinesOrder.map((vaccine, index) => (
           <Card
             vaccine={vaccine}
             key={index}
@@ -110,12 +115,11 @@ const Dashboard = () => {
         ))}
       </CardContainer>
       <StyledContainer>
-        <Tooltip title='Cadastrar nova vacina'>
+        <Tooltip title="Cadastrar nova vacina">
           <button onClick={openNewVaccineModal}>
-            <MdAddCircle style={{ fontSize: '40px' }} />
+            <MdAddCircle style={{ fontSize: "40px" }} />
           </button>
         </Tooltip>
-
         <div>
           <NewVaccineModal
             isModalOpen={isNewVaccineModalOpen}
@@ -129,7 +133,7 @@ const Dashboard = () => {
         </div>
       </StyledContainer>
     </main>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
