@@ -38,6 +38,9 @@ const NewVaccineModal = ({ isModalOpen, closeModal }) => {
 
   const onSubmitFunction = (data) => {
     console.log(data);
+    if (data.nextShot === "") {
+      delete data.nextShot;
+    }
     addVaccine(data);
     reset(initialForm);
     closeModal();
