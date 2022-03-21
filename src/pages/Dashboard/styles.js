@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ export const DashHeader = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
   }
-`;
+`
 
 export const UserContainer = styled.div`
   width: 300px;
@@ -35,7 +35,7 @@ export const UserContainer = styled.div`
     margin: 20px;
     border-radius: 5px;
   }
-`;
+`
 
 export const UserInfos = styled.div`
   width: 200px;
@@ -47,7 +47,7 @@ export const UserInfos = styled.div`
     font-weight: bold;
     font-size: 14px;
   }
-`;
+`
 
 export const UserData = styled.section`
   width: 150px;
@@ -72,7 +72,7 @@ export const UserData = styled.section`
     font-weight: bold;
     font-size: 10px;
   }
-`;
+`
 
 export const CardContainer = styled.div`
   height: 100%;
@@ -85,7 +85,7 @@ export const CardContainer = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
-`;
+`
 
 export const StyledContainer = styled.div`
   width: 100%;
@@ -96,5 +96,9 @@ export const StyledContainer = styled.div`
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: var(--blue-2);
+
+    :hover {
+      color: var(--orange);
+    }
   }
-`;
+`

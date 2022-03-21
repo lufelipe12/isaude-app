@@ -4,7 +4,7 @@ import Button from "../../components/Button"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 
 import { useUser } from "../../providers/user"
 
@@ -22,7 +22,7 @@ const Login = () => {
 
   const history = useHistory()
   
-  const { login } = useUser()
+  const { login, user } = useUser()
   
   const loginSchema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Campo Obrigatório"),
@@ -45,6 +45,10 @@ const Login = () => {
 
 
   const handleLogin = (data) => login(data)
+
+  if (user.token) {
+    return <Redirect to="/dashboard" />
+  }
 
   return (
     <Container>

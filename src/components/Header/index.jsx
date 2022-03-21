@@ -2,6 +2,8 @@ import logo from "../../assets/logo.png"
 import { StyledHeader, StyledNav } from "./styles"
 
 import { useHistory, Link } from "react-router-dom"
+import Tooltip from '@mui/material/Tooltip';
+
 
 const Header = ({ dash = false }) => {
   const history = useHistory()
@@ -17,7 +19,10 @@ const Header = ({ dash = false }) => {
 
   return (
     <StyledHeader>
+      <Tooltip title='Página inicial'>
+        
       <img src={logo} alt="logoiSaude" onClick={backHome} />
+      </Tooltip>
       <StyledNav>
         {!dash ? (
           <ul>

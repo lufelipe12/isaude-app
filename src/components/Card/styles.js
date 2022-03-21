@@ -28,7 +28,6 @@ export const Container = styled.div`
   box-shadow: 0px 10px 13px -7px #000000,
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
   margin: 20px;
-
   :hover {
     box-shadow: 0px 3px 4px 3px #000000;
     -webkit-box-shadow: 0px 8px 10px -5px #000000;
