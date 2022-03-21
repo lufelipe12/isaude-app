@@ -13,6 +13,8 @@ import {
 import pdfMaker from "../../utils/pfvGen";
 import { useEffect, useState } from "react";
 import { GrDocumentPdf } from "react-icons/gr";
+import Tooltip from "@mui/material/Tooltip";
+import { Redirect } from "react-router-dom";
 import { MdAddCircle } from "react-icons/md";
 import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
@@ -20,6 +22,14 @@ import EditVaccineModal from "../../components/EditVaccineModal";
 const Dashboard = () => {
   const { vaccines, getVaccines } = useVaccines();
   const { user } = useUser();
+  console.log(user);
+
+  const vaccinesOrder = vaccines.sort(
+    (vaccine1, vaccine2) =>
+      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  );
+
+  console.log(vaccinesOrder);
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
@@ -48,6 +58,10 @@ const Dashboard = () => {
 
   function closeEditVaccineModal() {
     setIsEditVaccineModalOpen(false);
+  }
+
+  if (!user.token) {
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -81,13 +95,15 @@ const Dashboard = () => {
             </UserData>
           </UserInfos>
         </UserContainer>
-        <button onClick={() => pdfMaker(user, vaccines)}>
-          <GrDocumentPdf style={{ fontSize: "23px" }} />
-        </button>
+        <Tooltip title="Gerar PDF das vacinas">
+          <button onClick={() => pdfMaker(user, vaccines)}>
+            <GrDocumentPdf style={{ fontSize: "23px" }} />
+          </button>
+        </Tooltip>
       </DashHeader>
 
       <CardContainer>
-        {vaccines.map((vaccine, index) => (
+        {vaccinesOrder.map((vaccine, index) => (
           <Card
             vaccine={vaccine}
             key={index}
@@ -97,9 +113,11 @@ const Dashboard = () => {
         ))}
       </CardContainer>
       <StyledContainer>
-        <button onClick={openNewVaccineModal}>
-          <MdAddCircle style={{ fontSize: "40px" }} />
-        </button>
+        <Tooltip title="Cadastrar nova vacina">
+          <button onClick={openNewVaccineModal}>
+            <MdAddCircle style={{ fontSize: "40px" }} />
+          </button>
+        </Tooltip>
         <div>
           <NewVaccineModal
             isModalOpen={isNewVaccineModalOpen}
