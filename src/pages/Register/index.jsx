@@ -79,9 +79,6 @@ const Register = () => {
         console.log(err)
         toast.error('Cadastro inválido')
       })
-    // if (authenticated) {
-    //   return <Redirect to="/dashboard" />
-    // }
   }
 
   const arrayOfStates = [

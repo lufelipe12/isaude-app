@@ -1,13 +1,18 @@
 import Input from '../../components/Input'
 import Button from '../../components/Button'
+import { useUser } from '../../providers/user'
+import MotionRoutes from '../../motionRoutes'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import InputAdornment from '@mui/material/InputAdornment'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import IconButton from '@mui/material/IconButton'
 
-import { useUser } from '../../providers/user'
-import MotionRoutes from '../../motionRoutes'
 
 import {
   Container,
@@ -22,7 +27,9 @@ import logo from '../../assets/logo.png'
 const Login = () => {
   const history = useHistory()
 
-  const { login, user } = useUser()
+  const { login } = useUser()
+
+  const [showPassword, setShowPassword] = useState(false)
 
   const loginSchema = yup.object().shape({
     email: yup.string().email('Email inválido').required('Campo Obrigatório'),
@@ -44,6 +51,24 @@ const Login = () => {
   })
 
   const handleLogin = (data) => login(data)
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = (event) => event.preventDefault()
+console.log(showPassword)
+  const inputPropsPassword = {
+    endAdornment: (
+      <InputAdornment position='end'>
+        <IconButton
+          aria-label='toggle password visibility'
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+          edge='end'
+        >
+          {showPassword ? <VisibilityOff /> : <Visibility />}
+        </IconButton>
+      </InputAdornment>
+    ),
+  }
 
   return (
     <MotionRoutes>
@@ -67,10 +92,11 @@ const Login = () => {
             <Input
               name='password'
               label='Senha'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               register={register}
               helperText={errors.password?.message}
               error={!!errors.password}
+              InputProps={inputPropsPassword}
             />
             <ContainerButton>
               <Button colorType='primary' type='submit'>
