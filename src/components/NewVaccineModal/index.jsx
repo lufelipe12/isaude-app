@@ -1,48 +1,47 @@
-import ModalComponent from "../ModalComponent"
-import {Container} from "./styles"
-import Input from "../Input"
-import Button from "../Button"
+import ModalComponent from "../ModalComponent";
+import { Container } from "./styles";
+import Input from "../Input";
+import Button from "../Button";
 
-import {useForm} from "react-hook-form"
-import * as yup from "yup"
-import {yupResolver} from "@hookform/resolvers/yup"
-import {useVaccines} from "../../providers/vaccines"
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useVaccines } from "../../providers/vaccines";
 
-const NewVaccineModal = ({isModalOpen, closeModal}) => {
-
-  const {addVaccine} = useVaccines()
+const NewVaccineModal = ({ isModalOpen, closeModal }) => {
+  const { addVaccine } = useVaccines();
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo Obrigatório!"),
     manufacturer: yup.string().required("Campo Obrigatório!"),
-    lote: yup.string().required("Campo Obrigatório! "),
+    batch: yup.string().required("Campo Obrigatório! "),
     applicationDate: yup.string().required("Campo obrigatório!"),
     location: yup.string().required("Campo Obrigatório! "),
-    nextShot: yup.string().required("Campo Obrigatório! "),
-  })
+    nextShot: yup.string(),
+  });
 
   const initialForm = {
     name: "",
     manufacturer: "",
-    lote: "",
+    batch: "",
     applicationDate: "",
     location: "",
     nextShot: "",
-  }
+  };
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: {errors},
-  } = useForm({resolver: yupResolver(schema)})
-
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmitFunction = (data) => {
-    addVaccine(data)
-    reset(initialForm)
-    closeModal()
-  }
+    console.log(data);
+    addVaccine(data);
+    reset(initialForm);
+    closeModal();
+  };
 
   return (
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
@@ -50,8 +49,8 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         <h2>Cadastrar nova vacina</h2>
 
         <Input
-          name="name" // o que vai ser passado para o register
-          label="Vacina" // placeholder
+          name="name"
+          label="Vacina"
           type="text"
           helperText={errors.name?.message}
           error={!!errors.name}
@@ -59,52 +58,54 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
         />
 
         <Input
-          name="manufacturer" // o que vai ser passado para o register
-          label="Fabricante" // placeholder
+          name="manufacturer"
+          label="Fabricante"
           type="text"
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
         />
         <Input
-          name="lote" // o que vai ser passado para o register
-          label="Lote" // placeholder
+          name="batch"
+          label="Lote"
           type="text"
-          helperText={errors.lote?.message}
-          error={!!errors.lote}
+          helperText={errors.batch?.message}
+          error={!!errors.batch}
           register={register}
         />
         <Input
           name="applicationDate" // o que vai ser passado para o register
-          label="" // placeholder
+          label="Data da aplicação" // placeholder
           type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
+          date
         />
         <Input
-          name="location" // o que vai ser passado para o register
-          label="Local da aplicação" // placeholder
+          name="location"
+          label="Local da aplicação"
           type="text"
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
         />
         <Input
-          name="nextShot" // o que vai ser passado para o register
-          label="" // placeholder
+          name="nextShot"
+          label="Data da próxima dose"
           type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
+          date
         />
 
-        <Button type="submit" colorType="Primary">
+        <Button type="submit" colorType="primary">
           Cadastrar vacina
         </Button>
       </Container>
     </ModalComponent>
-  )
-}
+  );
+};
 
-export default NewVaccineModal
+export default NewVaccineModal;

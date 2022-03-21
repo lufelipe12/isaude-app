@@ -85,6 +85,7 @@ const Dashboard = () => {
           <GrDocumentPdf style={{ fontSize: "23px" }} />
         </button>
       </DashHeader>
+
       <CardContainer>
         {vaccines.map((vaccine, index) => (
           <Card
@@ -99,7 +100,6 @@ const Dashboard = () => {
         <button onClick={openNewVaccineModal}>
           <MdAddCircle style={{ fontSize: "40px" }} />
         </button>
-
         <div>
           <NewVaccineModal
             isModalOpen={isNewVaccineModalOpen}

@@ -1,10 +1,3 @@
-//Receber por prop o objeto vacina.
-
-//Exibir as seguintes informações: Nome, nome do fabricante, data da aplicação, lote, local,
-//data da próxima dose (se houver próxima data, exibir a próxima data. se não houver, colocar dose única ou esquema completo)
-
-// Deve conter um botão para deletar a vacina e um botão para editar, que abre o modal para editar a vacina.
-//Seguir a estilização do figma.
 import { useVaccines } from "../../providers/vaccines";
 import {
   Container,
@@ -67,7 +60,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
             <Info type={"label"}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
             <Info type={"label"}>Lote</Info>
-            <Info>{vaccine.lote}</Info>
+            <Info>{vaccine.batch}</Info>
           </ContainerColumn>
         </ContainerInfo>
         <ContainerStatus>
@@ -77,7 +70,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
               <button onClick={handleOpenEditVaccineModal}>
                 <FaRegEdit />
               </button>
-              <button onClick={() => delVaccine(vaccine.id)}>
+              <button onClick={() => delVaccine(vaccine._id)}>
                 <FaTrash />
               </button>
             </ContainerButtons>

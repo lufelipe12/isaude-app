@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
 
 export const Container = styled.div`
   display: flex;
@@ -29,6 +28,11 @@ export const Container = styled.div`
   box-shadow: 0px 10px 13px -7px #000000,
     14px 20px 7px 3px rgba(66, 66, 66, 0.06);
   margin: 20px;
+
+  :hover {
+    box-shadow: 0px 3px 4px 3px #000000;
+    -webkit-box-shadow: 0px 8px 10px -5px #000000;
+  }
 `;
 
 export const ContainerTop = styled.div`
@@ -93,7 +97,6 @@ export const Info = styled.p`
         return css`
           color: var(--grey-2);
         `;
-
       default:
         return css`
           color: var(--black);
@@ -106,7 +109,6 @@ export const ContainerStatus = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
   div {
     width: 100%;
     display: flex;
@@ -120,14 +122,10 @@ export const Status = styled.h3`
   text-align: center;
   color: var(--white);
   font-size: 18px;
-
   margin-top: 10px;
   padding-top: 7px;
-
   border-radius: 4px;
-
   background: var(--green);
-
   ${(props) => {
     if (props.time <= 0) {
       return `

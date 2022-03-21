@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ButtonStyled = styled.div`
   button {
@@ -29,4 +29,4 @@ export const ButtonStyled = styled.div`
     color: #fff;
     background-color: var(--orange);
   }
-`;
+`

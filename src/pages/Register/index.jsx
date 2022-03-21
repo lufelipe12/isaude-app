@@ -70,7 +70,7 @@ const Register = () => {
     delete data.passwordConfirm
 
     api
-      .post('/register', data)
+      .post('/user', data)
       .then((response) => {
         history.push('/login')
         toast.success('Cadastro realizado com sucesso! Faça o login')
