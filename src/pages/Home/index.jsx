@@ -41,7 +41,7 @@ const Home = () => {
           </li>
         </ol>
       </Curiosidades>
-      {/* <iframe title='Calensário' src="https://calendar.google.com/calendar/embed?src=larissaspaulino%40gmail.com&ctz=America%2FSao_Paulo" style={{width: "800px", height: "600px"}}  /> */}
+      {/* <iframe title='Calendário' src="https://calendar.google.com/calendar/embed?src=larissaspaulino%40gmail.com&ctz=America%2FSao_Paulo" style={{width: "800px", height: "600px"}}  /> */}
       <Footer />
     </Container>
   )
