@@ -19,22 +19,10 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
   const monthToMs = 2628000000;
 
   function dataConverter(data) {
-    const dataArr = data.split("/");
-    let newDataArr = [];
-
-    for (let i = 0; i < dataArr.length; i++) {
-      if (i < dataArr.length - 1) {
-        newDataArr.unshift(dataArr[i]);
-      } else {
-        newDataArr.push(dataArr[i]);
-      }
-    }
-    const formatedData = newDataArr.join("/");
-
-    return formatedData;
+    return data.split("-").reverse().join("/")
   }
 
-  const nextShotDate = new Date(dataConverter(vaccine.nextShot));
+  const nextShotDate = new Date(vaccine.nextShot);
 
   const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2);
 
@@ -52,9 +40,9 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
         <ContainerInfo>
           <ContainerColumn>
             <Info type={"label"}>Aplicação</Info>
-            <Info>{vaccine.applicationDate}</Info>
+            <Info>{dataConverter(vaccine.applicationDate)}</Info>
             <Info type={"label"}>Próxima dose</Info>
-            <Info>{vaccine.nextShot}</Info>
+            <Info>{dataConverter(vaccine.nextShot)}</Info>
           </ContainerColumn>
           <ContainerColumn>
             <Info type={"label"}>Fabricante</Info>

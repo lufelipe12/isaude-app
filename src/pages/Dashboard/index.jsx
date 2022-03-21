@@ -13,7 +13,7 @@ import {
   FilterInputMobile,
   ButtonSearchMobile,
 } from "./styles";
-import pdfMaker from "../../utils/pfvGen";
+import pdfMaker from "../../utils/pdfGen";
 import { useEffect, useState } from "react";
 import { GrDocumentPdf } from "react-icons/gr";
 import Tooltip from "@mui/material/Tooltip";
@@ -37,6 +37,15 @@ const Dashboard = () => {
 
   //Estados e funções do modal para editar uma vacina:
   const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
+
+  useEffect(() => {
+    getVaccines();
+  }, []);
+
+  const vaccinesOrder = vaccines.sort(
+    (vaccine1, vaccine2) =>
+      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  );
 
   function openNewVaccineModal() {
     setIsNewVaccineModalOpen(true);
@@ -70,6 +79,10 @@ const Dashboard = () => {
     return <Redirect to="/login" />;
   }
 
+  function dataConverter(data) {
+    return data.split("-").reverse().join("/");
+  }
+
   return (
     <main>
       <Header dash setFilterInput={setFilterInput} filterInput={filterInput} />
@@ -93,7 +106,7 @@ const Dashboard = () => {
             <UserData>
               <div>
                 <span>Nascimento</span>
-                <p>{user.info.dateOfBirth}</p>
+                <p>{dataConverter(user.info.dateOfBirth)}</p>
               </div>
               <div>
                 <span>Sexo</span>
@@ -111,7 +124,7 @@ const Dashboard = () => {
           </UserInfos>
         </UserContainer>
         <Tooltip title="Gerar PDF das vacinas">
-          <button onClick={() => pdfMaker(user, vaccines)}>
+          <button onClick={() => pdfMaker(user.info, vaccines)}>
             <GrDocumentPdf style={{ fontSize: "23px" }} />
           </button>
         </Tooltip>
@@ -137,7 +150,6 @@ const Dashboard = () => {
             <MdAddCircle style={{ fontSize: "40px" }} />
           </button>
         </Tooltip>
-
         <div>
           <NewVaccineModal
             isModalOpen={isNewVaccineModalOpen}

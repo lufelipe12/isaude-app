@@ -30,6 +30,7 @@ export const VaccinesProvider = ({ children }) => {
       .then((res) => {
         toast.success("Vacina cadastrada");
         getVaccines();
+        console.log(res.data)
       })
       .catch((err) => toast.error("Ops!! Algo deu errado."));
   };
@@ -55,7 +56,7 @@ export const VaccinesProvider = ({ children }) => {
         toast.success("Vacina deletada");
         getVaccines();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(token));
   };
 
   useEffect(() => {
