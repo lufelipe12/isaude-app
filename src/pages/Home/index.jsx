@@ -1,33 +1,24 @@
-
 import Button from '../../components/Button'
 import { NewsCarousel } from '../../components/NewsCarousel'
-import Header from "../../components/Header";
-import {Footer} from "../../components/Footer";
-import Curiosidades from "../../components/Curiosidades";
-import MotionRoutes from "../../motionRoutes";
-import { Container } from "./styles";
+import Header from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import Curiosidades from '../../components/Curiosidades'
+import MotionRoutes from '../../motionRoutes'
+import { Container } from './styles'
 
-import historyImg from "../../assets/history.jpg";
-import importanceImg from "../../assets/importance.jpg";
-import erradicationImg from "../../assets/erradication.jpg";
-
-
+import historyImg from '../../assets/history.jpg'
+import importanceImg from '../../assets/importance.jpg'
+import erradicationImg from '../../assets/erradication.jpg'
 
 const Home = () => {
   return (
     <MotionRoutes>
       <Container>
         <Header />
-        <section className='BeginSection'>
-        <p>Acompanhe sua Saúde
-        </p>
-        <Button colorType="primary">Entrar</Button>
-        <Button colorType="secondary">Cadastrar</Button>
+        <section className='CarouselSection'>
+          <h2>Notícias</h2>
+          <NewsCarousel />
         </section>
-      <section className='CarouselSection'>
-        <h2>Notícias</h2>
-        <NewsCarousel/>
-      </section>
         <Curiosidades img={historyImg} imageFirst>
           A história das vacinas é muito mais antiga do que imaginam! No século
           XVIII o médico inglês Edward Jenner utilizou a vacina para prevenir
@@ -62,7 +53,7 @@ const Home = () => {
         <Footer />
       </Container>
     </MotionRoutes>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from 'styled-components'
 
 const appearFromRight = keyframes`
     from {
@@ -60,7 +60,6 @@ export const Form = styled.form`
   padding: 10px;
   width: 286px;
   animation: ${appearFromRight} 1.4s;
-
 
   p {
     margin-top: 10px;

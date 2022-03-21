@@ -130,11 +130,11 @@ export const ContainerStatus = styled.div`
   div {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 
-    > p {
-      width: 150px;
+    > div {
+      width: fit-content;
     }
   }
 `

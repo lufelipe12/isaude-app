@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -27,6 +27,6 @@ export const Container = styled.div`
 
   @media (max-width: 650px) {
     flex-direction: ${(props) =>
-      props.imageFirst ? "column" : "column-reverse"};
+      props.imageFirst ? 'column' : 'column-reverse'};
   }
 `

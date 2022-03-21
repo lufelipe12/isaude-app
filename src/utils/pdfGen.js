@@ -1,8 +1,8 @@
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 const pdfMaker = (userData, vaccinesList) => {
-  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+  pdfMake.vfs = pdfFonts.pdfMake.vfs
 
   const vaccines = vaccinesList.map((vaccine) => {
     return [
@@ -10,11 +10,11 @@ const pdfMaker = (userData, vaccinesList) => {
       { text: vaccine.manufacturer, fontSize: 9, margin: [0, 2, 0, 2] },
       { text: vaccine.applicationDate, fontSize: 9, margin: [0, 2, 0, 2] },
       { text: vaccine.nextShot, fontSize: 9, margin: [0, 2, 0, 2] },
-    ];
-  });
+    ]
+  })
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/");
+    return data.split('-').reverse().join('/')
   }
 
   const title = [
@@ -22,41 +22,41 @@ const pdfMaker = (userData, vaccinesList) => {
       text: `Nome: ${userData.name}  Nascimento: ${dataConverter(
         userData.dateOfBirth
       )}  Sexo: ${userData.gender}`,
-      alignment: "center",
+      alignment: 'center',
       fontSize: 15,
       bold: true,
       margin: [15, 20, 0, 45],
     },
-  ];
+  ]
 
   const main = [
     {
       table: {
         headerRows: 1,
-        widths: ["*", "*", "*", "*"],
+        widths: ['*', '*', '*', '*'],
         body: [
           [
             {
-              text: "Vacina",
-              style: "tableHeader",
+              text: 'Vacina',
+              style: 'tableHeader',
               bold: true,
               fontSize: 10,
             },
             {
-              text: "Fabricante",
-              style: "tableHeader",
+              text: 'Fabricante',
+              style: 'tableHeader',
               bold: true,
               fontSize: 10,
             },
             {
-              text: "Data da aplicação",
-              style: "tableHeader",
+              text: 'Data da aplicação',
+              style: 'tableHeader',
               bold: true,
               fontSize: 10,
             },
             {
-              text: "Próxima dose",
-              style: "tableHeader",
+              text: 'Próxima dose',
+              style: 'tableHeader',
               bold: true,
               fontSize: 10,
             },
@@ -64,32 +64,32 @@ const pdfMaker = (userData, vaccinesList) => {
           ...vaccines,
         ],
       },
-      layout: "headerLineOnly",
+      layout: 'headerLineOnly',
       // layout: "lightHorizontalLine",
     },
-  ];
+  ]
 
   const footer = (currentPage, pageCount) => {
     return [
       {
         text: `${currentPage} / ${pageCount}`,
-        alignment: "right",
+        alignment: 'right',
         fontSize: 9,
         margin: [0, 10, 20, 0],
       },
-    ];
-  };
+    ]
+  }
 
   const docDefinitions = {
-    pageSize: "A4",
+    pageSize: 'A4',
     pageMargins: [15, 50, 15, 40],
 
     header: [title],
     content: [main],
     footer: footer,
-  };
+  }
 
-  pdfMake.createPdf(docDefinitions).download();
-};
+  pdfMake.createPdf(docDefinitions).download()
+}
 
-export default pdfMaker;
+export default pdfMaker

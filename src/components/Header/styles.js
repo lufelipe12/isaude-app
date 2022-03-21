@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const StyledHeader = styled.header`
   width: 100%;
@@ -13,8 +13,7 @@ export const StyledHeader = styled.header`
     width: 90px;
     height: 90px;
   }
-
-`;
+`
 
 export const StyledNav = styled.nav`
   width: 90px;
@@ -96,7 +95,7 @@ export const StyledNav = styled.nav`
       font-size: 19px;
     }
   }
-`;
+`
 
 export const FilterInput = styled.input`
   display: none;
@@ -109,7 +108,7 @@ export const FilterInput = styled.input`
     background: #f3ffe2;
     margin-right: 10px;
   }
-`;
+`
 
 export const ButtonSearch = styled.button`
   display: none;
@@ -124,7 +123,7 @@ export const ButtonSearch = styled.button`
     border-radius: 10px;
     background-color: var(--dark-blue-2);
   }
-`;
+`
 
 export const ButtonLogout = styled.button`
   width: 50px;
@@ -133,11 +132,11 @@ export const ButtonLogout = styled.button`
   background-color: var(--dark-blue-2);
   font-size: 16px;
   border: none;
-`;
+`
 
 export const ContainerSearch = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: block;
   }
-`;
+`

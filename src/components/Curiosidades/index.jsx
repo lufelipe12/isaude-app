@@ -1,6 +1,6 @@
-import {Container} from "./styles"
+import { Container } from './styles'
 
-const Curiosidades = ({img, children, imageFirst}) => {
+const Curiosidades = ({ img, children, imageFirst }) => {
   return imageFirst ? (
     <Container imageFirst>
       <img src={img} alt={img} />
