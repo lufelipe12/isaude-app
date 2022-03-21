@@ -1,7 +1,7 @@
-import { useVaccines } from '../../providers/vaccines'
-import { useUser } from '../../providers/user'
-import Card from '../../components/Card'
-import Header from '../../components/Header'
+import {useVaccines} from "../../providers/vaccines"
+import {useUser} from "../../providers/user"
+import Card from "../../components/Card"
+import Header from "../../components/Header"
 import {
   CardContainer,
   DashHeader,
@@ -9,20 +9,19 @@ import {
   UserContainer,
   UserData,
   UserInfos,
-} from './styles'
-import pdfMaker from '../../utils/pfvGen'
-import { useEffect, useState } from 'react'
-import { GrDocumentPdf } from 'react-icons/gr'
-import Tooltip from '@mui/material/Tooltip'
-import { Redirect } from 'react-router-dom'
-import { MdAddCircle } from 'react-icons/md'
-import NewVaccineModal from '../../components/NewVaccineModal'
-import EditVaccineModal from '../../components/EditVaccineModal'
+} from "./styles"
+import pdfMaker from "../../utils/pfvGen"
+import {useEffect, useState} from "react"
+import {GrDocumentPdf} from "react-icons/gr"
+import {MdAddCircle} from "react-icons/md"
+import { Tooltip } from "@mui/material"
+import { Redirect } from "react-router-dom"
+import NewVaccineModal from "../../components/NewVaccineModal"
+import EditVaccineModal from "../../components/EditVaccineModal"
 
 const Dashboard = () => {
-  const { vaccines, getVaccines } = useVaccines()
-  const { user } = useUser()
-  console.log(user)
+  const {vaccines, getVaccines} = useVaccines()
+  const {user} = useUser()
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
@@ -63,8 +62,8 @@ const Dashboard = () => {
       <DashHeader>
         <UserContainer>
           <img
-            src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
-            alt='userImage'
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+            alt="userImage"
           />
           <UserInfos>
             <h3>{user.info.name}</h3>
@@ -94,6 +93,7 @@ const Dashboard = () => {
           </button>
         </Tooltip>
       </DashHeader>
+
       <CardContainer>
         {vaccines.map((vaccine, index) => (
           <Card

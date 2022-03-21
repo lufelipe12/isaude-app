@@ -6,9 +6,7 @@ const Input = ({
   register,
   error = "",
   helperText = "",
-  icon: Icon,
   date = false,
-
   ...rest
 }) => {
   return (

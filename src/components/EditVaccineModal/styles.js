@@ -7,7 +7,7 @@ export const Container = styled.form`
   justify-content: space-between;
 
   h2 {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 `
 

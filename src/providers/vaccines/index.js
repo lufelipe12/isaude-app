@@ -14,7 +14,7 @@ export const VaccinesProvider = ({ children }) => {
 
   const getVaccines = () => {
     api
-      .get("/vaccines", {
+      .get(`/user/${info._id}/vaccines`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setVaccines(response.data))
@@ -24,8 +24,8 @@ export const VaccinesProvider = ({ children }) => {
   const addVaccine = (vaccine) => {
     api
       .post(
-        "/vaccines",
-        { userId: info.id, ...vaccine },
+        `/user/${info._id}/vaccines`,
+        vaccine,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -38,8 +38,9 @@ export const VaccinesProvider = ({ children }) => {
   };
 
   const changeVaccine = (vaccine, idToChange) => {
+   
     api
-      .patch(`/vaccines/${idToChange}`, vaccine, {
+      .patch(`/user/${info._id}/vaccines/${idToChange}`, vaccine, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((_) => {
@@ -51,7 +52,7 @@ export const VaccinesProvider = ({ children }) => {
 
   const delVaccine = (id) => {
     api
-      .delete(`/vaccines/${id}`, {
+      .delete(`/user/${info._id}/vaccines/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
