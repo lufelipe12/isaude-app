@@ -31,13 +31,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
   });
 
   const onSubmitFunction = (data) => {
-    console.log(data);
-    // const newData = {}
-    // for (const info in data) {
-    //   if (data[info]) {
-    //     newData[info] = data[info]
-    //   }
-    // }
     if (data.nextShot === "") {
       delete data.nextShot;
     }
