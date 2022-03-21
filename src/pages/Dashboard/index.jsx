@@ -21,6 +21,13 @@ const Dashboard = () => {
   const { vaccines, getVaccines } = useVaccines();
   const { user } = useUser();
 
+  const vaccinesOrder = vaccines.sort(
+    (vaccine1, vaccine2) =>
+      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  );
+
+  console.log(vaccinesOrder);
+
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
@@ -87,7 +94,7 @@ const Dashboard = () => {
       </DashHeader>
 
       <CardContainer>
-        {vaccines.map((vaccine, index) => (
+        {vaccinesOrder.map((vaccine, index) => (
           <Card
             vaccine={vaccine}
             key={index}
