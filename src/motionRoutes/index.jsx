@@ -6,7 +6,7 @@ const MotionRoutes = ({ children }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opactity: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.6 }}
     >
       {children}
     </motion.div>

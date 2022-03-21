@@ -41,13 +41,9 @@ const Login = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
-  });
+  })
 
-  const handleLogin = (data) => login(data);
-
-  if (user.token) {
-    return <Redirect to="/dashboard" />;
-  }
+  const handleLogin = (data) => login(data)
 
   return (
     <MotionRoutes>

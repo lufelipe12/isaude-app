@@ -14,9 +14,6 @@ export const StyledHeader = styled.header`
     height: 90px;
   }
 
-  img:hover {
-    cursor: pointer;
-  }
 `;
 
 export const StyledNav = styled.nav`

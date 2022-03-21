@@ -1,17 +1,16 @@
-import ModalComponent from "../ModalComponent";
-import { Container } from "./styles";
-import Input from "../Input";
-import Button from "../Button";
+import ModalComponent from '../ModalComponent'
+import { Container } from './styles'
+import Input from '../Input'
+import Button from '../Button'
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useVaccines } from "../../providers/vaccines";
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useVaccines } from '../../providers/vaccines'
 
-const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
-  const {changeVaccine} = useVaccines()
-  
+const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
+  const { changeVaccine } = useVaccines()
 
   const schema = yup.object().shape({
     name: yup.string(),
@@ -20,7 +19,7 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     applicationDate: yup.string(),
     location: yup.string(),
     nextShot: yup.string(),
-  });
+  })
 
   const {
     register,
@@ -29,22 +28,21 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-  });
+  })
 
   const onSubmitFunction = (data) => {
-    console.log(data);
-    // const newData = {}
-    // for (const info in data) {
-    //   if (data[info]) {
-    //     newData[info] = data[info]
-    //   }
-    // }
-    if (data.nextShot === "") {
-      delete data.nextShot;
+    const newData = {}
+    for (const info in data) {
+      if (data[info]) {
+        newData[info] = data[info]
+      }
     }
-    changeVaccine(data, vaccineToChange._id);
-    closeModal();
-  };
+    if (data.nextShot === '') {
+      delete data.nextShot
+    }
+    changeVaccine(newData, vaccineToChange._id)
+    closeModal()
+  }
 
   return (
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
@@ -53,69 +51,69 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
         <p>Preencha apenas os campos que deseja mudar</p>
 
         <Input
-          name="name"
-          label="Nome"
-          type="text"
+          name='name'
+          label='Nome'
+          type='text'
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
-          defaultValue={vaccineToChange.name}
+          // defaultValue={vaccineToChange.name}
         />
 
         <Input
-          name="manufacturer"
-          label="Fabricante"
-          type="text"
+          name='manufacturer'
+          label='Fabricante'
+          type='text'
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
-          defaultValue={vaccineToChange.manufacturer}
+          // defaultValue={vaccineToChange.manufacturer}
         />
         <Input
-          name="batch"
-          label="Lote"
-          type="text"
+          name='batch'
+          label='Lote'
+          type='text'
           helperText={errors.batch?.message}
           error={!!errors.batch}
           register={register}
-          defaultValue={vaccineToChange.batch}
+          // defaultValue={vaccineToChange.batch}
         />
         <Input
-          name="applicationDate"
-          label="Data de aplicação"
-          type="date"
+          name='applicationDate'
+          label='Data de aplicação'
+          type='date'
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
           date
-          defaultValue={vaccineToChange.applicationDate}
+          // defaultValue={vaccineToChange.applicationDate}
         />
         <Input
-          name="location"
-          label="Local de aplicação"
-          type="text"
+          name='location'
+          label='Local de aplicação'
+          type='text'
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
-          defaultValue={vaccineToChange.location}
+          // defaultValue={vaccineToChange.location}
         />
         <Input
-          name="nextShot"
-          label="Próxima dose"
-          type="date"
+          name='nextShot'
+          label='Próxima dose'
+          type='date'
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
           date
-          defaultValue={vaccineToChange.nextShot}
+          // defaultValue={vaccineToChange.nextShot}
         />
 
-        <Button type="submit" colorType="primary">
+        <Button type='submit' colorType='primary'>
           Mudar detalhes da vacina
         </Button>
       </Container>
     </ModalComponent>
-  );
-};
+  )
+}
 
-export default EditVaccineModal;
+export default EditVaccineModal

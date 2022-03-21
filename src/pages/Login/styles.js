@@ -1,4 +1,16 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
+const appearFromRight = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(70px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+`
 
 export const Container = styled.div`
   display: flex;
@@ -47,6 +59,8 @@ export const Form = styled.form`
   border-radius: 9px;
   padding: 10px;
   width: 286px;
+  animation: ${appearFromRight} 1s;
+
 
   p {
     margin-top: 10px;
