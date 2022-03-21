@@ -37,8 +37,14 @@ export const UserProvider = ({ children }) => {
       })
   }
 
+  const logout = () => {
+    localStorage.clear()
+    setUser({token: "", info: ""})
+    history.push("/")
+  }
+
   return (
-    <UserContext.Provider value={{ user, login }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
   )

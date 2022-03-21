@@ -53,7 +53,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
           <ContainerColumn>
             <Info type={"label"}>Aplicação</Info>
             <Info>{vaccine.applicationDate}</Info>
-            <Info type={"label"}>Próxima</Info>
+            <Info type={"label"}>Próxima dose</Info>
             <Info>{vaccine.nextShot}</Info>
           </ContainerColumn>
           <ContainerColumn>

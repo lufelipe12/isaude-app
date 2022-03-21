@@ -21,23 +21,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
     nextShot: yup.string(),
   });
 
-  // const initialForm = {
-  //   name: "",
-  //   manufacturer: "",
-  //   batch: "",
-  //   applicationDate: "",
-  //   location: "",
-  //   nextShot: "",
-  // }
-  // const [defaultValues] = useState({
-  //   name: vaccineToChange.name,
-  //   manufacturer: vaccineToChange.manufacturer,
-  //   batch: vaccineToChange.batch,
-  //   applicationDate: vaccineToChange.applicationDate,
-  //   nextShot: vaccineToChange.nextShot,
-  //   location: vaccineToChange.location
-  // })
-
   const {
     register,
     handleSubmit,
@@ -55,7 +38,9 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
     //     newData[info] = data[info]
     //   }
     // }
-
+    if (data.nextShot === "") {
+      delete data.nextShot;
+    }
     changeVaccine(data, vaccineToChange._id);
     closeModal();
   };

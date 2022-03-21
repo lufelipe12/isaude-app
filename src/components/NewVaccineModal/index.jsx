@@ -77,8 +77,8 @@ const NewVaccineModal = ({ isModalOpen, closeModal }) => {
           register={register}
         />
         <Input
-          name="applicationDate" // o que vai ser passado para o register
-          label="Data da aplicação" // placeholder
+          name="applicationDate"
+          label="Data da aplicação"
           type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
