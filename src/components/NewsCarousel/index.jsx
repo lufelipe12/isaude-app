@@ -4,6 +4,7 @@ import { ContainerCarousel } from "./styles"
 import covid from "../../assets/covid.jpeg"
 import vaccine from "../../assets/vacinação.jpeg"
 import tranmition from "../../assets/transmissão.jpeg"
+import { useState } from "react"
 
 export const NewsCarousel = () =>{
     // Lista de itens, que sera substituida por uma lista de notícias.
@@ -29,21 +30,17 @@ export const NewsCarousel = () =>{
             img:vaccine
         },
     ]
+
     let newArr=[]
     const newsPortions = () => {
         
         for (let i =0; i<=Math.floor(news.length/3); i++){
             newArr.push([]);
         }
-        // let newArr=[]
-        console.log(newArr)
         news.forEach((item,index)=>newArr[Math.floor(index/3)]?.push(item) )
-        console.log(newArr)
-
         return(newArr)
     }
     newsPortions()
-    console.log(newArr)
 
     return (
         <ContainerCarousel>
@@ -52,11 +49,19 @@ export const NewsCarousel = () =>{
             // Coursel é o componente da biblioteca, next e prev fazem a troca automática
                 next={ (next, active) => console.log(`we left ${active}, and are now at ${next}`) }
                 prev={ (prev, active) => console.log(`we left ${active}, and are now at ${prev}`) }>
-                {newArr.map((item)=><div className="CarouselBox">
+    
+                {window.matchMedia("(min-width:600px)").matches?
+                    newArr.map((item)=>
+                        <div className="CarouselBox">
                             {item.map((card,i)=><CarouselCard key={i} item={card}/>)}
-                        </div>)}
-                    
-                
+                        </div>)
+                    :
+                    news.map((item, i)=>
+                        <div className="CarouselBox">
+                            <CarouselCard  key={i} item={item}/>
+                        </div>)
+                        
+                 }
             </Carousel>
         </ContainerCarousel>
     )       

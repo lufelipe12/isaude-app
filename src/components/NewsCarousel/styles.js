@@ -6,7 +6,7 @@ export const ContainerCarousel = styled.div`
     .Carousel{
         display:flex;
         flex-direction:column;
-        width:1200px;
+        width:80vw;
         height:250px;
         font-size:15px;
         font-weight:600;
@@ -29,5 +29,11 @@ export const ContainerCarousel = styled.div`
     }
     .CarouselBox{
         
+    }
+
+    @media (max-width: 600px){
+        .Carousel{
+
+        }
     }
 `
