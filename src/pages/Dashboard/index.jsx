@@ -22,14 +22,11 @@ import EditVaccineModal from "../../components/EditVaccineModal";
 const Dashboard = () => {
   const { vaccines, getVaccines } = useVaccines();
   const { user } = useUser();
-  console.log(user);
 
   const vaccinesOrder = vaccines.sort(
     (vaccine1, vaccine2) =>
       new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
   );
-
-  console.log(vaccinesOrder);
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
@@ -96,7 +93,7 @@ const Dashboard = () => {
           </UserInfos>
         </UserContainer>
         <Tooltip title="Gerar PDF das vacinas">
-          <button onClick={() => pdfMaker(user, vaccines)}>
+          <button onClick={() => pdfMaker(user.info, vaccines)}>
             <GrDocumentPdf style={{ fontSize: "23px" }} />
           </button>
         </Tooltip>
