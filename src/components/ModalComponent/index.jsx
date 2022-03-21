@@ -1,10 +1,10 @@
-import Modal from "react-modal"
+import Modal from "react-modal";
 
 // Props esperadas: isModalOpen: estado que determina se o modal está aberto.
 // closeModal: função para fechar o modal.
 
-const ModalComponent = ({children, isModalOpen, closeModal}) => {
-  Modal.setAppElement("#root")
+const ModalComponent = ({ children, isModalOpen, closeModal }) => {
+  Modal.setAppElement("#root");
 
   return (
     
@@ -19,7 +19,7 @@ const ModalComponent = ({children, isModalOpen, closeModal}) => {
       </button>
       {children}
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalComponent
+export default ModalComponent;

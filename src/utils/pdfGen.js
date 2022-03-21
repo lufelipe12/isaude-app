@@ -13,9 +13,15 @@ const pdfMaker = (userData, vaccinesList) => {
     ];
   });
 
+  function dataConverter(data) {
+    return data.split("-").reverse().join("/");
+  }
+
   const title = [
     {
-      text: `Nome: ${userData.name}  Nascimento: ${userData.birthday}  Sexo: ${userData.gender}`,
+      text: `Nome: ${userData.name}  Nascimento: ${dataConverter(
+        userData.dateOfBirth
+      )}  Sexo: ${userData.gender}`,
       alignment: "center",
       fontSize: 15,
       bold: true,
