@@ -43,12 +43,7 @@ const Login = () => {
     resolver: yupResolver(loginSchema),
   })
 
-
   const handleLogin = (data) => login(data)
-
-  if (user.token) {
-    return <Redirect to="/dashboard" />
-  }
 
   return (
     <Container>

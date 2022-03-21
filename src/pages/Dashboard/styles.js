@@ -57,20 +57,19 @@ export const UserData = styled.section`
   align-items: flex-start;
   flex-wrap: wrap;
 
-  div {
-    margin: 0px 6px;
-  }
-
+.segunda-coluna {
+  margin-left: 7px;
+}
   span {
     color: var(--grey-2);
     font-weight: bold;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   p {
     color: var(--dark-blue-2);
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
   }
 `;
 

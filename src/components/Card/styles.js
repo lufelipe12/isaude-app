@@ -76,14 +76,17 @@ export const ContainerInfo = styled.div`
   background: var(--grey);
   margin-top: 10px;
   width: 235px;
+  height: 125px;
+  padding: 10px;
   border-radius: 10px;
 `;
 
 export const ContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 10px 10px 25px;
-  padding-left: 5px;
+  width: 50%;
+  padding: 0px 5px;
+
   border-left: 2px solid #424242;
 `;
 
@@ -112,6 +115,11 @@ export const ContainerStatus = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+
+    > p {
+      width: 150px;
+    }
   }
 `;
 
