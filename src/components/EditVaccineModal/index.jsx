@@ -9,35 +9,27 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import {useVaccines} from "../../providers/vaccines"
 
 const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
-  const { changeVaccine } = useVaccines()
+  const {changeVaccine} = useVaccines()
 
   const schema = yup.object().shape({
     name: yup.string(),
     manufacturer: yup.string(),
-    lote: yup.string(),
+    batch: yup.string(),
     applicationDate: yup.string(),
     location: yup.string(),
     nextShot: yup.string(),
   })
 
-  const initialForm = {
-    name: "",
-    manufacturer: "",
-    lote: "",
-    applicationDate: "",
-    location: "",
-    nextShot: "",
-  }
-
   const {
     register,
     handleSubmit,
-    reset,
     formState: {errors},
-  } = useForm({resolver: yupResolver(schema)})
+  } = useForm({
+    resolver: yupResolver(schema)
+  })
 
   const onSubmitFunction = (data) => {
-    changeVaccine(data, vaccineToChange.id) 
+    changeVaccine(data, vaccineToChange._id)
     closeModal()
   }
 
@@ -45,8 +37,9 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
       <Container onSubmit={handleSubmit(onSubmitFunction)}>
         <h2>
-          Mudar detalhes da vacina: Preencha apenas os campos que deseja mudar!{" "}
+          Editar vacina
         </h2>
+        <p>Preencha apenas os campos que deseja mudar</p>
 
         <Input
           name="name" 
@@ -68,13 +61,13 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           defaultValue={vaccineToChange.manufacturer}
         />
         <Input
-          name="lote" 
+          name="batch" 
           label="Lote" 
           type="text"
-          helperText={errors.lote?.message}
-          error={!!errors.lote}
+          helperText={errors.batch?.message}
+          error={!!errors.batch}
           register={register}
-          defaultValue={vaccineToChange.lote}
+          defaultValue={vaccineToChange.batch}
         />
         <Input
           name="applicationDate" 

@@ -2,7 +2,6 @@ import { useVaccines } from "../../providers/vaccines";
 import { useUser } from "../../providers/user";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
-
 import {
   CardContainer,
   DashHeader,
@@ -25,7 +24,6 @@ import EditVaccineModal from "../../components/EditVaccineModal";
 
 const Dashboard = () => {
   const { vaccines, getVaccines, setVaccines } = useVaccines();
-  const [filteredVaccines, setFilteredVaccines] = useState(() => vaccines);
   const [filterInput, setFilterInput] = useState("");
   const { user } = useUser();
 
@@ -127,6 +125,7 @@ const Dashboard = () => {
           </button>
         </Tooltip>
       </DashHeader>
+
       <CardContainer>
         {vaccines.map((vaccine, index) => (
           <Card

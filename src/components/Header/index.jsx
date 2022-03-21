@@ -8,18 +8,15 @@ import {
   ContainerSearch,
 } from "./styles";
 
+import { useUser } from "../../providers/user";
+
 import { useHistory, Link } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 
 const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
   const history = useHistory();
-
+  const { logout } = useUser();
   const backHome = () => {
-    history.push("/");
-  };
-
-  const logout = () => {
-    localStorage.clear();
     history.push("/");
   };
 
