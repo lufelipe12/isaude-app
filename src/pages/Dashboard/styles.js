@@ -1,4 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const appearFromDown = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(70px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+`
+
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -79,10 +92,12 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  
+  
   @media (min-width: 767px) {
     flex-direction: row;
     flex-wrap: wrap;
+    animation: ${appearFromDown} 1.6s;
   }
 `;
 

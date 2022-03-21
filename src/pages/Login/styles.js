@@ -59,7 +59,7 @@ export const Form = styled.form`
   border-radius: 9px;
   padding: 10px;
   width: 286px;
-  animation: ${appearFromRight} 1s;
+  animation: ${appearFromRight} 1.4s;
 
 
   p {

@@ -18,7 +18,7 @@ export const Container = styled.div`
   height: 680px;
   background: var(--white);
   border-radius: 10px;
-  animation: ${appearFromLeft} 1s;
+  animation: ${appearFromLeft} 1.4s;
 
   form {
     display: flex;
