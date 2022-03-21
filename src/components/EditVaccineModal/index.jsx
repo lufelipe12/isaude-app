@@ -10,6 +10,7 @@ import {useVaccines} from "../../providers/vaccines"
 
 const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
   const {changeVaccine} = useVaccines()
+  
 
   const schema = yup.object().shape({
     name: yup.string(),

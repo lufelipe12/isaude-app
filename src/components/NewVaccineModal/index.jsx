@@ -37,6 +37,7 @@ const NewVaccineModal = ({isModalOpen, closeModal}) => {
   } = useForm({resolver: yupResolver(schema)})
 
   const onSubmitFunction = (data) => {
+    console.log(data)
     if (data.nextShot === "") {
       delete data.nextShot;
     }

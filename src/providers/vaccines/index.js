@@ -33,6 +33,7 @@ export const VaccinesProvider = ({ children }) => {
       .then((res) => {
         toast.success("Vacina cadastrada");
         getVaccines();
+        console.log(res.data)
       })
       .catch((err) => toast.error("Ops!! Algo deu errado."));
   };

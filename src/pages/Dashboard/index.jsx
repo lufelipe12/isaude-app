@@ -56,6 +56,11 @@ const Dashboard = () => {
     return <Redirect to='/login' />
   }
 
+  function dataConverter(data) {
+    return data.split("-").reverse().join("/")
+  }
+
+
   return (
     <main>
       <Header dash />
@@ -70,7 +75,7 @@ const Dashboard = () => {
             <UserData>
               <div>
                 <span>Nascimento</span>
-                <p>{user.info.dateOfBirth}</p>
+                <p>{dataConverter(user.info.dateOfBirth)}</p>
               </div>
               <div>
                 <span>Sexo</span>
