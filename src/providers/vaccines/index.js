@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import { toast } from "react-toastify";
 
@@ -8,7 +9,7 @@ const VaccinesContext = createContext([]);
 
 export const VaccinesProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([]);
-
+  const [filterInput, setFilterInput] = useState("");
   const { user } = useUser();
   const { token, info } = user;
 
@@ -57,6 +58,17 @@ export const VaccinesProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    if (!filterInput) {
+      getVaccines();
+    } else {
+      const filterd = vaccines.filter((element) =>
+        element.name.toLowerCase().includes(filterInput.toLowerCase())
+      );
+      setVaccines(filterd);
+    }
+  }, [filterInput]);
+
   return (
     <VaccinesContext.Provider
       value={{
@@ -66,6 +78,8 @@ export const VaccinesProvider = ({ children }) => {
         delVaccine,
         getVaccines,
         setVaccines,
+        filterInput,
+        setFilterInput,
       }}
     >
       {children}

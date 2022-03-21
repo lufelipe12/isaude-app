@@ -23,8 +23,9 @@ import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
 
 const Dashboard = () => {
-  const { vaccines, getVaccines, setVaccines } = useVaccines();
-  const [filterInput, setFilterInput] = useState("");
+  const { vaccines, getVaccines, setVaccines, filterInput, setFilterInput } =
+    useVaccines();
+
   const { user } = useUser();
 
   // Estados e funções do modal para cadastrar uma nova vacina:
@@ -36,10 +37,6 @@ const Dashboard = () => {
 
   //Estados e funções do modal para editar uma vacina:
   const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
-
-  useEffect(() => {
-    getVaccines();
-  }, []);
 
   function openNewVaccineModal() {
     setIsNewVaccineModalOpen(true);
@@ -57,16 +54,17 @@ const Dashboard = () => {
     setIsEditVaccineModalOpen(false);
   }
 
-  function FilterCards() {
-    if (filterInput === "") {
-      getVaccines();
-    } else {
-      const filterd = vaccines.filter((element) =>
-        element.name.toLowerCase().includes(filterInput.toLowerCase())
-      );
-      setVaccines(filterd);
-    }
-  }
+  // function FilterCards(churros) {
+  //   setFilterInput(churros);
+  //   if (filterInput === "") {
+  //     getVaccines();
+  //   } else {
+  //     const filterd = vaccines.filter((element) =>
+  //       element.name.toLowerCase().includes(filterInput.toLowerCase())
+  //     );
+  //     setVaccines(filterd);
+  //   }
+  // }
 
   if (!user.token) {
     return <Redirect to="/login" />;
@@ -74,12 +72,7 @@ const Dashboard = () => {
 
   return (
     <main>
-      <Header
-        dash
-        setFilterInput={setFilterInput}
-        filterInput={filterInput}
-        FilterCards={FilterCards}
-      />
+      <Header dash setFilterInput={setFilterInput} filterInput={filterInput} />
       <DashHeader>
         <ContainerSearchMobile>
           <FilterInputMobile
@@ -88,9 +81,7 @@ const Dashboard = () => {
             value={filterInput}
             onChange={(event) => setFilterInput(event.target.value)}
           />
-          <ButtonSearchMobile onClick={FilterCards}>
-            Pesquisar
-          </ButtonSearchMobile>
+          <ButtonSearchMobile>Pesquisar</ButtonSearchMobile>
         </ContainerSearchMobile>
         <UserContainer>
           <img
@@ -127,14 +118,18 @@ const Dashboard = () => {
       </DashHeader>
 
       <CardContainer>
-        {vaccines.map((vaccine, index) => (
-          <Card
-            vaccine={vaccine}
-            key={index}
-            setVaccineToChange={setVaccineToChange}
-            openEditVaccineModal={openEditVaccineModal}
-          />
-        ))}
+        {vaccines.length ? (
+          vaccines.map((vaccine, index) => (
+            <Card
+              vaccine={vaccine}
+              key={index}
+              setVaccineToChange={setVaccineToChange}
+              openEditVaccineModal={openEditVaccineModal}
+            />
+          ))
+        ) : (
+          <p>Não encontramos {filterInput} nas suas vacinas cadastradas</p>
+        )}
       </CardContainer>
       <StyledContainer>
         <Tooltip title="Cadastrar nova vacina">
