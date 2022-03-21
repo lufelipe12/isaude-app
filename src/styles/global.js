@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -66,6 +66,6 @@ export const GlobalStyle = createGlobalStyle`
     right: 36px;
     top: 21px;
 }
-
-
 `
+
+export const primary = '#1695A3'

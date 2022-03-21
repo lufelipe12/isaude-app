@@ -96,6 +96,10 @@ export const StyledContainer = styled.div`
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: var(--blue-2);
+
+    :hover {
+      color: var(--orange);
+    }
   }
 `;
 export const ContainerSearchMobile = styled.div`

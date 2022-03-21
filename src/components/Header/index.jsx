@@ -9,6 +9,7 @@ import {
 } from "./styles";
 
 import { useHistory, Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 
 const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
   const history = useHistory();
@@ -18,14 +19,15 @@ const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
   };
 
   const logout = () => {
-    //função de remover usuário autenticado
     localStorage.clear();
     history.push("/");
   };
 
   return (
     <StyledHeader>
-      <img src={logo} alt="logoiSaude" onClick={backHome} />
+      <Tooltip title="Página inicial">
+        <img src={logo} alt="logoiSaude" onClick={backHome} />
+      </Tooltip>
       <StyledNav>
         {!dash ? (
           <ul>

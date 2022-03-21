@@ -38,12 +38,8 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
 
   const onSubmitFunction = (data) => {
     changeVaccine(data, vaccineToChange.id) 
-    reset(initialForm)
     closeModal()
   }
-
-  // const vaccine = vaccines.find(vaccine => vaccine.id === vaccineToChange.id)
-  // console.log(vaccine)
 
   return (
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
@@ -53,56 +49,64 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
         </h2>
 
         <Input
-          name="name" // o que vai ser passado para o register
-          label={vaccineToChange.name} // placeholder
+          name="name" 
+          label='Nome' 
           type="text"
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
+          defaultValue={vaccineToChange.name}
         />
 
         <Input
-          name="manufacturer" // o que vai ser passado para o register
-          label={vaccineToChange.manufacturer} // placeholder
+          name="manufacturer" 
+          label="Fabricante" 
           type="text"
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
+          defaultValue={vaccineToChange.manufacturer}
         />
         <Input
-          name="lote" // o que vai ser passado para o register
-          label={vaccineToChange.lote} // placeholder
+          name="lote" 
+          label="Lote" 
           type="text"
           helperText={errors.lote?.message}
           error={!!errors.lote}
           register={register}
+          defaultValue={vaccineToChange.lote}
         />
         <Input
-          name="applicationDate" // o que vai ser passado para o register
-          label={vaccineToChange.applicationDate} // placeholder
-          type="text"
+          name="applicationDate" 
+          label="Data de aplicação"
+          type="date"
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
+          date
+          defaultValue={vaccineToChange.applicationDate}
         />
         <Input
-          name="location" // o que vai ser passado para o register
-          label={vaccineToChange.location} // placeholder
+          name="location" 
+          label="Local de aplicação" 
           type="text"
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
+          defaultValue={vaccineToChange.location}
         />
         <Input
-          name="nextShot" // o que vai ser passado para o register
-          label={vaccineToChange.nextShot} // placeholder
-          type="text"
+          name="nextShot" 
+          label="Próxima dose" 
+          type="date"
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
+          date
+          defaultValue={vaccineToChange.nextShot}
         />
 
-        <Button type="submit" colorType="Primary">
+        <Button type="submit" colorType="primary">
           Mudar detalhes da vacina
         </Button>
       </Container>

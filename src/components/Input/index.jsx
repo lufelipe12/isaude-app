@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import {TextField} from "@mui/material"
 
 const Input = ({
   name,
@@ -6,6 +6,9 @@ const Input = ({
   register,
   error = "",
   helperText = "",
+  icon: Icon,
+  date = false,
+
   ...rest
 }) => {
   return (
@@ -19,8 +22,13 @@ const Input = ({
         error={!!error}
         helperText={helperText}
         {...rest}
+        InputLabelProps={
+          date && {
+            shrink: true,
+          }
+        }
       />
     </>
-  );
-};
-export default Input;
+  )
+}
+export default Input

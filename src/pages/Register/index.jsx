@@ -2,18 +2,22 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Redirect, useHistory } from "react-router-dom";
-import { MenuItem } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { FaMailBulk } from "react-icons/fa";
+import { MenuItem, TextField } from "@mui/material";
+import Input from "../../components/Input";
+import { Container, FullContainer, ImageContainer } from "./styles";
+import Select from "../../components/Select";
+import Button from "../../components/Button";
+import InputMask from "react-input-mask";
 import InputAdornment from "@mui/material/InputAdornment";
+import api from "../../services/api";
+import logo from "../../assets/logo.png";
+import { toast } from "react-toastify";
+
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
-
-import Input from "../../components/Input";
-import { Container } from "./styles";
-import Select from "../../components/Select";
-import Button from "../../components/Button";
-import axios from "axios";
 
 const Register = () => {
   const history = useHistory();
@@ -59,21 +63,20 @@ const Register = () => {
       ...showPassword,
       confirmPassword: !showPassword.confirmPassword,
     });
-
   const handleMouseDownPassword = (event) => event.preventDefault();
 
-  //{
   const onSubmit = (data) => {
     delete data.passwordConfirm;
-    console.log(data);
 
-    axios
+    api
       .post("/register", data)
       .then((response) => {
         history.push("/login");
+        toast.success("Cadastro realizado com sucesso! Faça o login");
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Cadastro inválido");
       });
     // if (authenticated) {
     //   return <Redirect to="/dashboard" />
@@ -142,116 +145,123 @@ const Register = () => {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="name"
-          label="Nome"
-          type="text"
-          helperText={errors.name?.message}
-          error={!!errors.name}
-          register={register}
-          // icon={FaMailBulk}
-        />
+    <FullContainer>
+      <Container>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            name="name"
+            label="Nome"
+            type="text"
+            helperText={errors.name?.message}
+            error={!!errors.name}
+            register={register}
+          />
 
-        <Input
-          name="email"
-          label="Email"
-          type="email"
-          helperText={errors.email?.message}
-          error={!!errors.email}
-          register={register}
-          // icon={FaMailBulk}
-        />
+          <Input
+            name="email"
+            label="Email"
+            type="email"
+            helperText={errors.email?.message}
+            error={!!errors.email}
+            register={register}
+            Icon={FaMailBulk}
+          />
+          <InputMask mask="999.999.999-99" defaultValue="" {...register("cpf")}>
+            {(inputProps) => {
+              return (
+                <TextField
+                  name="cpf"
+                  label="CPF"
+                  type="text"
+                  helperText={errors.cpf?.message}
+                  error={!!errors.cpf}
+                  {...inputProps}
+                />
+              );
+            }}
+          </InputMask>
 
-        <Input
-          name="cpf"
-          label="CPF"
-          type="text"
-          helperText={errors.cpf?.message}
-          error={!!errors.cpf}
-          register={register}
-          // icon={FaMailBulk}
-        />
+          <Input
+            name="dateOfBirth"
+            label="Data de nascimento"
+            type="date"
+            helperText={errors.dateOfBirth?.message}
+            error={!!errors.dateOfBirth}
+            register={register}
+            date
+          />
 
-        <Input
-          name="dateOfBirth"
-          label=""
-          type="date"
-          helperText={errors.dateOfBirth?.message}
-          error={!!errors.dateOfBirth}
-          register={register}
-          // icon={FaMailBulk}
-        />
+          <Select
+            name="gender"
+            label="Gênero"
+            register={register}
+            error={!!errors.gender}
+            helperText={errors.gender?.message}
+          >
+            {arrayOfGenders.map((gender, index) => (
+              <MenuItem key={index} value={gender}>
+                {gender}
+              </MenuItem>
+            ))}
+          </Select>
 
-        <Select
-          name="gender"
-          label="Gênero"
-          register={register}
-          error={!!errors.gender}
-          helperText={errors.gender?.message}
-        >
-          {arrayOfGenders.map((gender, index) => (
-            <MenuItem key={index} value={gender}>
-              {gender}
-            </MenuItem>
-          ))}
-        </Select>
+          <Input
+            name="city"
+            label="Cidade"
+            type="text"
+            helperText={errors.city?.message}
+            error={!!errors.city}
+            register={register}
+          />
 
-        <Input
-          name="city"
-          label="Cidade"
-          type="text"
-          helperText={errors.city?.message}
-          error={!!errors.city}
-          register={register}
-          // icon={FaMailBulk}
-        />
+          <Select
+            name="state"
+            register={register}
+            label="Estado"
+            error={!!errors.state}
+            helperText={errors.state?.message}
+          >
+            {arrayOfStates.map((state, index) => (
+              <MenuItem key={index} value={state}>
+                {state}
+              </MenuItem>
+            ))}
+          </Select>
 
-        <Select
-          name="state"
-          register={register}
-          label="Estado"
-          error={!!errors.state}
-          helperText={errors.state?.message}
-        >
-          {arrayOfStates.map((state, index) => (
-            <MenuItem key={index} value={state}>
-              {state}
-            </MenuItem>
-          ))}
-        </Select>
+          <Input
+            name="password"
+            label="Senha"
+            type={showPassword.password ? "text" : "password"}
+            helperText={errors.password?.message}
+            error={!!errors.password}
+            register={register}
+            InputProps={inputPropsPassword}
+          />
 
-        <Input
-          name="password"
-          label="Senha"
-          type={showPassword.password ? "text" : "password"}
-          helperText={errors.password?.message}
-          error={!!errors.password}
-          register={register}
-          InputProps={inputPropsPassword}
-          // icon={FaMailBulk}
-        />
-
-        <Input
-          name="passwordConfirm"
-          label="Confirmar Senha"
-          type={showPassword.confirmPassword ? "text" : "password"}
-          helperText={errors.passwordConfirm?.message}
-          error={!!errors.passwordConfirm}
-          register={register}
-          InputProps={inputPropsConfirmPassword}
-          // icon={FaMailBulk}
-        />
-        <Button colorType="terciary" type="submit">
-          Cadastrar
-        </Button>
-      </form>
-
-      <span>
-        {/* Já possui uma conta? Faça o <Redirect to={"/login"}>Login</Redirect> */}
-      </span>
-    </Container>
+          <Input
+            name="passwordConfirm"
+            label="Confirmar Senha"
+            type={showPassword.confirmPassword ? "text" : "password"}
+            helperText={errors.passwordConfirm?.message}
+            error={!!errors.passwordConfirm}
+            register={register}
+            InputProps={inputPropsConfirmPassword}
+          />
+          <Button colorType="terciary" type="submit">
+            Cadastrar
+          </Button>
+          <p>
+            Já possui uma conta? Faça o
+            <span onClick={() => history.push("/login")}> login</span>
+          </p>
+        </form>
+      </Container>
+      <ImageContainer>
+        <figure>
+          <img src={logo} alt="ImageRegister" />
+        </figure>
+      </ImageContainer>
+    </FullContainer>
   );
 };
 export default Register;

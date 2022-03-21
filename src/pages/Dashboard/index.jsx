@@ -2,6 +2,7 @@ import { useVaccines } from "../../providers/vaccines";
 import { useUser } from "../../providers/user";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
+
 import {
   CardContainer,
   DashHeader,
@@ -16,6 +17,8 @@ import {
 import pdfMaker from "../../utils/pfvGen";
 import { useEffect, useState } from "react";
 import { GrDocumentPdf } from "react-icons/gr";
+import Tooltip from "@mui/material/Tooltip";
+import { Redirect } from "react-router-dom";
 import { MdAddCircle } from "react-icons/md";
 import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
@@ -30,6 +33,7 @@ const Dashboard = () => {
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
+
   const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
@@ -56,10 +60,18 @@ const Dashboard = () => {
   }
 
   function FilterCards() {
-    const filterd = vaccines.filter((element) =>
-      element.name.toLowerCase().includes(filterInput.toLowerCase())
-    );
-    setVaccines(filterd);
+    if (filterInput === "") {
+      getVaccines();
+    } else {
+      const filterd = vaccines.filter((element) =>
+        element.name.toLowerCase().includes(filterInput.toLowerCase())
+      );
+      setVaccines(filterd);
+    }
+  }
+
+  if (!user.token) {
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -109,9 +121,11 @@ const Dashboard = () => {
             </UserData>
           </UserInfos>
         </UserContainer>
-        <button onClick={() => pdfMaker(user, vaccines)}>
-          <GrDocumentPdf style={{ fontSize: "23px" }} />
-        </button>
+        <Tooltip title="Gerar PDF das vacinas">
+          <button onClick={() => pdfMaker(user, vaccines)}>
+            <GrDocumentPdf style={{ fontSize: "23px" }} />
+          </button>
+        </Tooltip>
       </DashHeader>
       <CardContainer>
         {vaccines.map((vaccine, index) => (
@@ -124,9 +138,11 @@ const Dashboard = () => {
         ))}
       </CardContainer>
       <StyledContainer>
-        <button onClick={openNewVaccineModal}>
-          <MdAddCircle style={{ fontSize: "40px" }} />
-        </button>
+        <Tooltip title="Cadastrar nova vacina">
+          <button onClick={openNewVaccineModal}>
+            <MdAddCircle style={{ fontSize: "40px" }} />
+          </button>
+        </Tooltip>
 
         <div>
           <NewVaccineModal

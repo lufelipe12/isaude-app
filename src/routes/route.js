@@ -9,7 +9,9 @@
 //         <ReactDOMRoute
 //             {...rest}
 //             render={() => {
-//                 return isPrivate === !!user.token ? <Component /> : <Redirect to={isPrivate ? "/login" : "/"}/>
+//                 // return isPrivate === !!user.token 
+//                 // ? <Component /> 
+//                 // : <Redirect to={isPrivate ? "/login" : "/dashboard"}/>
 //             }}
 //         />
 //     )
