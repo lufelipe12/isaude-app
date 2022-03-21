@@ -22,6 +22,8 @@ import { MdAddCircle } from "react-icons/md";
 import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
 
+import { motion } from "framer-motion";
+
 const Dashboard = () => {
   const { vaccines, getVaccines, setVaccines } = useVaccines();
   const [filterInput, setFilterInput] = useState("");
@@ -39,7 +41,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getVaccines();
-  }, [])
+  }, []);
 
   const vaccinesOrder = vaccines.sort(
     (vaccine1, vaccine2) =>
@@ -78,9 +80,8 @@ const Dashboard = () => {
   }
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/")
+    return data.split("-").reverse().join("/");
   }
-
 
   return (
     <main>
@@ -130,9 +131,15 @@ const Dashboard = () => {
           </UserInfos>
         </UserContainer>
         <Tooltip title="Gerar PDF das vacinas">
-          <button onClick={() => pdfMaker(user.info, vaccines)}>
-            <GrDocumentPdf style={{ fontSize: "23px" }} />
-          </button>
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            <button onClick={() => pdfMaker(user.info, vaccines)}>
+              <GrDocumentPdf style={{ fontSize: "23px" }} />
+            </button>
+          </motion.button>
         </Tooltip>
       </DashHeader>
 
@@ -149,7 +156,9 @@ const Dashboard = () => {
       <StyledContainer>
         <Tooltip title="Cadastrar nova vacina">
           <button onClick={openNewVaccineModal}>
-            <MdAddCircle style={{ fontSize: "40px" }} />
+            <motion.button whileHover={{ scale: 1.1 }}>
+              <MdAddCircle style={{ fontSize: "40px" }} />
+            </motion.button>
           </button>
         </Tooltip>
         <div>
