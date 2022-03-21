@@ -23,7 +23,6 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
   }
 
   const nextShotDate = new Date(vaccine.nextShot);
-  console.log(dataConverter(vaccine.nextShot))
 
   const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2);
 

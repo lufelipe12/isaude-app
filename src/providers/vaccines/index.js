@@ -60,7 +60,14 @@ export const VaccinesProvider = ({ children }) => {
 
   return (
     <VaccinesContext.Provider
-      value={{ vaccines, changeVaccine, addVaccine, delVaccine, getVaccines }}
+      value={{
+        vaccines,
+        changeVaccine,
+        addVaccine,
+        delVaccine,
+        getVaccines,
+        setVaccines,
+      }}
     >
       {children}
     </VaccinesContext.Provider>

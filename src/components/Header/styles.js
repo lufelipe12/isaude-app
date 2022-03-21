@@ -70,15 +70,6 @@ export const StyledNav = styled.nav`
     justify-content: flex-end;
   }
 
-  button {
-    width: 50px;
-    color: #fff;
-    font-weight: bold;
-    background-color: var(--dark-blue-2);
-    font-size: 20px;
-    border: none;
-  }
-
   @media (min-width: 768px) {
     width: 500px;
     display: flex;
@@ -107,5 +98,49 @@ export const StyledNav = styled.nav`
     a {
       font-size: 19px;
     }
+  }
+`;
+
+export const FilterInput = styled.input`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    border-radius: 10px;
+    padding: 5px;
+    border: none;
+    font-size: 15px;
+    background: #f3ffe2;
+    margin-right: 10px;
+  }
+`;
+
+export const ButtonSearch = styled.button`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    padding: 8px;
+    margin-right: 20px;
+    border: 0.7px solid var(--white);
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: var(--dark-blue-2);
+  }
+`;
+
+export const ButtonLogout = styled.button`
+  width: 50px;
+  color: #fff;
+  font-weight: bold;
+  background-color: var(--dark-blue-2);
+  font-size: 16px;
+  border: none;
+`;
+
+export const ContainerSearch = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
   }
 `;

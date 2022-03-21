@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ export const DashHeader = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
   }
-`
+`;
 
 export const UserContainer = styled.div`
   width: 300px;
@@ -35,7 +35,7 @@ export const UserContainer = styled.div`
     margin: 20px;
     border-radius: 5px;
   }
-`
+`;
 
 export const UserInfos = styled.div`
   width: 200px;
@@ -47,7 +47,7 @@ export const UserInfos = styled.div`
     font-weight: bold;
     font-size: 14px;
   }
-`
+`;
 
 export const UserData = styled.section`
   width: 150px;
@@ -72,7 +72,7 @@ export const UserData = styled.section`
     font-weight: bold;
     font-size: 10px;
   }
-`
+`;
 
 export const CardContainer = styled.div`
   height: 100%;
@@ -85,7 +85,7 @@ export const CardContainer = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
-`
+`;
 
 export const StyledContainer = styled.div`
   width: 100%;
@@ -101,4 +101,42 @@ export const StyledContainer = styled.div`
       color: var(--orange);
     }
   }
-`
+`;
+export const ContainerSearchMobile = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const FilterInputMobile = styled.input`
+  width: 160px;
+  display: block;
+  border-radius: 10px;
+  padding: 8px;
+  border: none;
+  font-size: 15px;
+  background: #f3ffe2;
+  margin-right: 10px;
+  margin-top: 10px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const ButtonSearchMobile = styled.button`
+  display: block;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 10px;
+  background-color: var(--dark-blue);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;

@@ -9,8 +9,11 @@ import {
   UserContainer,
   UserData,
   UserInfos,
+  ContainerSearchMobile,
+  FilterInputMobile,
+  ButtonSearchMobile,
 } from "./styles";
-import pdfMaker from "../../utils/pfvGen";
+import pdfMaker from "../../utils/pdfGen";
 import { useEffect, useState } from "react";
 import { GrDocumentPdf } from "react-icons/gr";
 import Tooltip from "@mui/material/Tooltip";
@@ -20,18 +23,15 @@ import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
 
 const Dashboard = () => {
-  const { vaccines, getVaccines } = useVaccines();
+  const { vaccines, getVaccines, setVaccines } = useVaccines();
+  const [filterInput, setFilterInput] = useState("");
   const { user } = useUser();
-
-  const vaccinesOrder = vaccines.sort(
-    (vaccine1, vaccine2) =>
-      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
-  );
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
+
   const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
@@ -39,7 +39,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     getVaccines();
-  }, []);
+  }, [])
+
+  const vaccinesOrder = vaccines.sort(
+    (vaccine1, vaccine2) =>
+      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  );
 
   function openNewVaccineModal() {
     setIsNewVaccineModalOpen(true);
@@ -57,6 +62,17 @@ const Dashboard = () => {
     setIsEditVaccineModalOpen(false);
   }
 
+  function FilterCards() {
+    if (filterInput === "") {
+      getVaccines();
+    } else {
+      const filterd = vaccines.filter((element) =>
+        element.name.toLowerCase().includes(filterInput.toLowerCase())
+      );
+      setVaccines(filterd);
+    }
+  }
+
   if (!user.token) {
     return <Redirect to="/login" />;
   }
@@ -68,8 +84,24 @@ const Dashboard = () => {
 
   return (
     <main>
-      <Header dash />
+      <Header
+        dash
+        setFilterInput={setFilterInput}
+        filterInput={filterInput}
+        FilterCards={FilterCards}
+      />
       <DashHeader>
+        <ContainerSearchMobile>
+          <FilterInputMobile
+            type="text"
+            placeholder="Pesquise sua vacina"
+            value={filterInput}
+            onChange={(event) => setFilterInput(event.target.value)}
+          />
+          <ButtonSearchMobile onClick={FilterCards}>
+            Pesquisar
+          </ButtonSearchMobile>
+        </ContainerSearchMobile>
         <UserContainer>
           <img
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
