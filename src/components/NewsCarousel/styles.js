@@ -27,13 +27,4 @@ export const ContainerCarousel = styled.div`
         justify-content:center;
         align-items:center;
     }
-    .CarouselBox{
-        
-    }
-
-    @media (max-width: 600px){
-        .Carousel{
-
-        }
-    }
 `
