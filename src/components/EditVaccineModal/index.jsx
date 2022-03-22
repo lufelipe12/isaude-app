@@ -23,6 +23,15 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
     nextShot: yup.string(),
   })
 
+  const initialForm = {
+    name: "",
+    manufacturer: "",
+    batch: "",
+    applicationDate: "",
+    location: "",
+    nextShot: "",
+  };
+
   const {
     register,
     handleSubmit,
@@ -45,6 +54,7 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
       }
     }
 
+    reset(initialForm);
     changeVaccine(newData, vaccineToChange._id)
     closeModal()
   }
@@ -62,7 +72,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
-          // defaultValue={vaccineToChange.name}
         />
 
         <Input
@@ -72,7 +81,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
-          // defaultValue={vaccineToChange.manufacturer}
         />
         <Input
           name="batch"
@@ -81,7 +89,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           helperText={errors.batch?.message}
           error={!!errors.batch}
           register={register}
-          // defaultValue={vaccineToChange.batch}
         />
         <Input
           name="applicationDate"
@@ -91,7 +98,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           error={!!errors.applicationDate}
           register={register}
           date
-          // defaultValue={vaccineToChange.applicationDate}
         />
         <Input
           name="location"
@@ -100,7 +106,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
-          // defaultValue={vaccineToChange.location}
         />
         <Input
           name="nextShot"
@@ -110,7 +115,6 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
           error={!!errors.nextShot}
           register={register}
           date
-          // defaultValue={vaccineToChange.nextShot}
         />
         <CheckContainer>
           <input type="checkbox" onChange={() => setVaccinated(!vaccinated)} />
