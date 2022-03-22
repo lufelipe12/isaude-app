@@ -3,7 +3,6 @@ import {
   StyledHeader,
   StyledNav,
   FilterInput,
-  ButtonSearch,
   ButtonLogout,
   ContainerSearch,
 } from './styles'

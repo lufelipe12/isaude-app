@@ -7,8 +7,6 @@ import tranmition from "../../assets/ministro.jpg"
 import diabetes from "../../assets/diabetes-glicemia-glicose-17032022183012613.jpeg"
 import peopleEurope from "../../assets/peopleEurope.jpg"
 import seteEstados from "../../assets/seteEstados.jpg"
-import { useState } from "react"
-import { Link } from "react-router-dom"
 
 export const NewsCarousel = () =>{
     // Lista de itens, que sera substituida por uma lista de notícias.
@@ -71,10 +69,7 @@ export const NewsCarousel = () =>{
     return (
         <ContainerCarousel>
             {/* CointainerCarousel é apenas um componente de estilização */}
-            <Carousel className="Carousel"
-            // Coursel é o componente da biblioteca, next e prev fazem a troca automática
-                next={ (next, active) => console.log(`we left ${active}, and are now at ${next}`) }
-                prev={ (prev, active) => console.log(`we left ${active}, and are now at ${prev}`) }>
+            <Carousel className="Carousel">
     
                 {window.matchMedia("(min-width:600px)").matches?
                     newArr.map((item,index)=>

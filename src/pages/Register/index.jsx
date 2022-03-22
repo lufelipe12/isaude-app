@@ -16,12 +16,8 @@ import api from '../../services/api'
 import logo from '../../assets/logo.png'
 import MotionRoutes from '../../motionRoutes'
 
-
 const Register = () => {
-  const history = useHistory();
-  const backHome = () => {
-    history.push("/");
-  };
+  const history = useHistory()
 
   const [showPassword, setShowPassword] = useState({
     password: false,
@@ -59,7 +55,7 @@ const Register = () => {
 
   const handleClickShowPassword = () =>
     setShowPassword({ ...showPassword, password: !showPassword.password })
-    
+
   const handleClickShowConfirmPassword = () =>
     setShowPassword({
       ...showPassword,

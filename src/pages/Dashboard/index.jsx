@@ -18,7 +18,6 @@ import pdfMaker from '../../utils/pdfGen'
 import { useEffect, useState } from 'react'
 import { GrDocumentPdf } from 'react-icons/gr'
 import Tooltip from '@mui/material/Tooltip'
-import { Redirect } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
 import NewVaccineModal from '../../components/NewVaccineModal'
 import EditVaccineModal from '../../components/EditVaccineModal'
@@ -26,7 +25,7 @@ import Loading from '../../assets/loadingCircles.gif'
 import { motion } from 'framer-motion'
 
 const Dashboard = () => {
-  const { vaccines, getVaccines, setVaccines, filterInput, setFilterInput } =
+  const { vaccines, getVaccines, filterInput, setFilterInput } =
     useVaccines()
 
   const { user } = useUser()
