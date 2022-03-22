@@ -1,21 +1,57 @@
-import Button from '../../components/Button'
-import { NewsCarousel } from '../../components/NewsCarousel'
-import Header from '../../components/Header'
-import { Footer } from '../../components/Footer'
-import Curiosidades from '../../components/Curiosidades'
-import MotionRoutes from '../../motionRoutes'
-import { Container } from './styles'
+import Header from "../../components/Header"
+import {Footer} from "../../components/Footer"
+import {
+  Container,
+  HeadSection,
+  HeadBackground,
+  HeadContent,
+  ButtonsContainer,
+} from "./styles"
+import Curiosidades from "../../components/Curiosidades"
+import Button from "../../components/Button"
 
-import historyImg from '../../assets/history.jpg'
-import importanceImg from '../../assets/importance.jpg'
-import erradicationImg from '../../assets/erradication.jpg'
+import {useHistory} from "react-router-dom"
+
+import {NewsCarousel} from "../../components/NewsCarousel"
+
+import MotionRoutes from "../../motionRoutes"
+
+import historyImg from "../../assets/history.jpg"
+import importanceImg from "../../assets/importance.jpg"
+import erradicationImg from "../../assets/erradication.jpg"
 
 const Home = () => {
+  const history = useHistory()
+
   return (
     <MotionRoutes>
       <Container>
         <Header />
-        <section className='CarouselSection'>
+        <HeadSection>
+          <HeadContent>
+            <h1>Acompanhe sua saúde! </h1>
+            <h2>
+              Cadastre e fique de olho em todas as suas vacinas, de forma fácil
+              e automática!
+            </h2>
+            <ButtonsContainer>
+              <Button
+                colorType="primary"
+                onClick={() => history.push("/login")}
+              >
+                Entrar
+              </Button>
+              <Button
+                colorType="secondary"
+                onClick={() => history.push("/register")}
+              >
+                Cadastrar
+              </Button>
+            </ButtonsContainer>
+          </HeadContent>
+          <HeadBackground />
+        </HeadSection>
+        <section className="CarouselSection">
           <h2>Notícias</h2>
           <NewsCarousel />
         </section>

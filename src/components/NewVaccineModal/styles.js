@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const Container = styled.form`
-  height: 550px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, {keyframes} from "styled-components"
 
 const appearFromRight = keyframes`
     from {
@@ -35,7 +35,7 @@ export const Logo = styled.div`
   }
   @media (min-width: 768px) {
     width: 50%;
-    height: 100%;
+    height: 100vh;
   }
 `
 

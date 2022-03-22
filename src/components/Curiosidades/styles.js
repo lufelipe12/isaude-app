@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.div`
     max-width: 300px;
     height: 300px;
     object-fit: contain;
-    min-width: 300px;
+    min-width: 270px;
     padding-bottom: 30px;
   }
 
@@ -24,7 +24,8 @@ export const Container = styled.div`
     font-size: 15px;
     font-weight: 600;
     max-width: 300px;
-    min-width: 300px;
+    text-align: justify;
+    min-width: 270px;
   }
 
   li {
@@ -35,4 +36,4 @@ export const Container = styled.div`
     flex-direction: ${(props) =>
       props.imageFirst ? "column" : "column-reverse"};
   }
-`;
+`
