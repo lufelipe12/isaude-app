@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, {keyframes} from "styled-components"
 
 const appearFromLeft = keyframes`
     from {
@@ -81,7 +81,7 @@ export const FullContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   background: #021e33;
 `
 export const ImageContainer = styled.div`
