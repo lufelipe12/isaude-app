@@ -10,11 +10,15 @@ import {
 import Curiosidades from "../../components/Curiosidades"
 import Button from "../../components/Button"
 
+import {useHistory} from "react-router-dom"
+
 import historyImg from "../../assets/history.jpg"
 import importanceImg from "../../assets/importance.jpg"
 import erradicationImg from "../../assets/erradication.jpg"
 
 const Home = () => {
+  const history = useHistory()
+
   return (
     <Container>
       <Header />
@@ -26,8 +30,17 @@ const Home = () => {
             automática!
           </h2>
           <ButtonsContainer>
-            <Button colorType="primary"> Entrar </Button>
-            <Button colorType="secondary"> Cadastrar </Button>
+            <Button colorType="primary" onClick={() => history.push("/login")}>
+              {" "}
+              Entrar{" "}
+            </Button>
+            <Button
+              colorType="secondary"
+              onClick={() => history.push("/register")}
+            >
+              {" "}
+              Cadastrar{" "}
+            </Button>
           </ButtonsContainer>
         </HeadContent>
         <HeadBackground />

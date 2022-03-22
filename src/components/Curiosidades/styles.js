@@ -12,7 +12,7 @@ export const Container = styled.div`
     max-width: 300px;
     height: 200px;
     object-fit: contain;
-    min-width: 300px;
+    min-width: 270px;
     padding-bottom: 30px;
   }
 
@@ -22,7 +22,7 @@ export const Container = styled.div`
     width: 50%;
     max-width: 300px;
     text-align: justify;
-    min-width: 300px;
+    min-width: 270px;
   }
 
   @media (max-width: 650px) {
