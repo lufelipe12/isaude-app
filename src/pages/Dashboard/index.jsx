@@ -23,6 +23,7 @@ import { MdAddCircle } from "react-icons/md";
 import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
 import Loading from "../../assets/loadingCircles.gif";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
   const { vaccines, getVaccines, setVaccines, filterInput, setFilterInput } =
@@ -84,10 +85,6 @@ const Dashboard = () => {
   //   }
   // }
 
-  if (!user.token) {
-    return <Redirect to="/login" />;
-  }
-
   function dataConverter(data) {
     return data.split("-").reverse().join("/");
   }
@@ -113,28 +110,38 @@ const Dashboard = () => {
             <h3>{user.info.name}</h3>
             <UserData>
               <div>
-                <span>Nascimento</span>
-                <p>{dataConverter(user.info.dateOfBirth)}</p>
+                <div>
+                  <span>Nascimento</span>
+                  <p>{dataConverter(user.info.dateOfBirth)}</p>
+                </div>
+                <div>
+                  <span>CPF</span>
+                  <p>{user.info.cpf}</p>
+                </div>
               </div>
-              <div>
-                <span>Sexo</span>
-                <p>{user.info.gender}</p>
-              </div>
-              <div>
-                <span>CPF</span>
-                <p>{user.info.cpf}</p>
-              </div>
-              <div>
-                <span>Estado</span>
-                <p>{user.info.state}</p>
+              <div className="segunda-coluna">
+                <div>
+                  <span>Sexo</span>
+                  <p>{user.info.gender}</p>
+                </div>
+                <div>
+                  <span>Estado</span>
+                  <p>{user.info.state}</p>
+                </div>
               </div>
             </UserData>
           </UserInfos>
         </UserContainer>
         <Tooltip title="Gerar PDF das vacinas">
-          <button onClick={() => pdfMaker(user.info, vaccines)}>
-            <GrDocumentPdf style={{ fontSize: "23px" }} />
-          </button>
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            <button onClick={() => pdfMaker(user.info, vaccines)}>
+              <GrDocumentPdf style={{ fontSize: "23px" }} />
+            </button>
+          </motion.button>
         </Tooltip>
       </DashHeader>
       {loadingCard ? (
@@ -150,7 +157,8 @@ const Dashboard = () => {
             ))
           ) : (
             <ErrorSearchMessage>
-              Não encontramos {filterInput} nas suas vacinas cadastradas
+              Não encontramos <span>{filterInput}</span> nas suas vacinas
+              cadastradas
             </ErrorSearchMessage>
           )}
         </CardContainer>
@@ -161,7 +169,9 @@ const Dashboard = () => {
       <StyledContainer>
         <Tooltip title="Cadastrar nova vacina">
           <button onClick={openNewVaccineModal}>
-            <MdAddCircle style={{ fontSize: "40px" }} />
+            <motion.button whileHover={{ scale: 1.1 }}>
+              <MdAddCircle style={{ fontSize: "40px" }} />
+            </motion.button>
           </button>
         </Tooltip>
         <div>

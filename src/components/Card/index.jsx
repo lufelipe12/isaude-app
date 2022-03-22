@@ -1,4 +1,4 @@
-import { useVaccines } from "../../providers/vaccines";
+import { useVaccines } from "../../providers/vaccines"
 import {
   Container,
   ContainerTop,
@@ -8,27 +8,28 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from "./styles";
-import { FaRegEdit, FaTrash } from "react-icons/fa";
+} from "./styles"
+
+import { FaRegEdit, FaTrash } from "react-icons/fa"
 
 function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
-  const { delVaccine } = useVaccines();
+  const { delVaccine } = useVaccines()
 
-  const atualDate = new Date();
+  const atualDate = new Date()
 
-  const monthToMs = 2628000000;
+  const monthToMs = 2628000000
 
   function dataConverter(data) {
     return data.split("-").reverse().join("/")
   }
 
-  const nextShotDate = new Date(vaccine.nextShot);
+  const nextShotDate = new Date(vaccine.nextShot)
 
-  const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2);
+  const time = ((nextShotDate - atualDate) / monthToMs).toFixed(2)
 
   function handleOpenEditVaccineModal() {
-    setVaccineToChange(vaccine);
-    openEditVaccineModal();
+    setVaccineToChange(vaccine)
+    openEditVaccineModal()
   }
 
   return (
@@ -38,13 +39,13 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
           <h3>{vaccine.name}</h3>
         </ContainerTop>
         <ContainerInfo>
-          <ContainerColumn>
+          <ContainerColumn time={time}>
             <Info type={"label"}>Aplicação</Info>
             <Info>{dataConverter(vaccine.applicationDate)}</Info>
             <Info type={"label"}>Próxima dose</Info>
             <Info>{dataConverter(vaccine.nextShot)}</Info>
           </ContainerColumn>
-          <ContainerColumn>
+          <ContainerColumn time={time}>
             <Info type={"label"}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
             <Info type={"label"}>Lote</Info>
@@ -73,7 +74,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
         </ContainerStatus>
       </Container>
     </>
-  );
+  )
 }
 
-export default Card;
+export default Card

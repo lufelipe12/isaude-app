@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from '../../assets/logo.png'
 import {
   StyledHeader,
   StyledNav,
@@ -6,49 +6,38 @@ import {
   ButtonSearch,
   ButtonLogout,
   ContainerSearch,
-} from "./styles";
+} from './styles'
 
-import { useUser } from "../../providers/user";
-
-import { useHistory, Link } from "react-router-dom";
-import Tooltip from "@mui/material/Tooltip";
+import { useUser } from '../../providers/user'
+import { Link } from 'react-router-dom'
 
 const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
-  const history = useHistory();
-  const { logout } = useUser();
-  const backHome = () => {
-    history.push("/");
-  };
+  const { logout } = useUser()
 
   return (
     <StyledHeader>
-      <Tooltip title="Página inicial">
-        <img src={logo} alt="logoiSaude" onClick={backHome} />
-      </Tooltip>
+      <img src={logo} alt='logoiSaude' />
+
       <StyledNav>
         {!dash ? (
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <hr />
             <li>
               <Link>Sobre</Link>
             </li>
             <hr />
             <li>
-              <Link to="/register">Cadastrar</Link>
+              <Link to='/register'>Cadastrar</Link>
             </li>
             <li>
-              <Link to="/login">Entrar</Link>
+              <Link to='/login'>Entrar</Link>
             </li>
             <hr />
           </ul>
         ) : (
           <ContainerSearch>
             <FilterInput
-              type="text"
-              placeholder="Pesquise sua vacina"
+              type='text'
+              placeholder='Pesquise sua vacina'
               value={filterInput}
               onChange={(event) => setFilterInput(event.target.value)}
             />
@@ -58,7 +47,7 @@ const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
         )}
       </StyledNav>
     </StyledHeader>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

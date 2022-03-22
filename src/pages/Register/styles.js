@@ -1,4 +1,16 @@
-import styled from "styled-components"
+import styled, { keyframes } from 'styled-components'
+
+const appearFromLeft = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(-70px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+`
 
 export const Container = styled.div`
   width: 300px;
@@ -6,6 +18,7 @@ export const Container = styled.div`
   height: 680px;
   background: var(--white);
   border-radius: 10px;
+  animation: ${appearFromLeft} 1.4s;
 
   form {
     display: flex;
@@ -16,6 +29,7 @@ export const Container = styled.div`
     height: 680px;
     padding: 20px;
   }
+
   span {
     display: flex;
     flex-direction: row;
@@ -31,6 +45,7 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
+
   p {
     display: flex;
     flex-direction: row;

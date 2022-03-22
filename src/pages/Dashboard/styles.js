@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const appearFromDown = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(70px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+`;
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -57,20 +69,19 @@ export const UserData = styled.section`
   align-items: flex-start;
   flex-wrap: wrap;
 
-  div {
-    margin: 0px 6px;
+  .segunda-coluna {
+    margin-left: 7px;
   }
-
   span {
     color: var(--grey-2);
     font-weight: bold;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   p {
     color: var(--dark-blue-2);
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
   }
 `;
 
@@ -84,6 +95,7 @@ export const CardContainer = styled.div`
   @media (min-width: 767px) {
     flex-direction: row;
     flex-wrap: wrap;
+    animation: ${appearFromDown} 1.6s;
   }
 `;
 
@@ -152,7 +164,7 @@ export const ImageLoading = styled.img`
 
 export const ErrorSearchMessage = styled.span`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
   margin: 15px auto;
@@ -160,4 +172,24 @@ export const ErrorSearchMessage = styled.span`
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: var(--grey-2);
   font-weight: 700;
+  font-size: 16px;
+  padding: 5px;
+  span {
+    font-weight: 700;
+    color: black;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+  }
+  span {
+    font-weight: 700;
+    margin-left: 6px;
+    margin-right: 6px;
+    color: black;
+  }
 `;

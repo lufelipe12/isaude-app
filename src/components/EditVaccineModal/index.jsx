@@ -1,17 +1,18 @@
-import ModalComponent from "../ModalComponent";
-import { Container } from "./styles";
-import Input from "../Input";
-import Button from "../Button";
+import ModalComponent from "../ModalComponent"
+import { CheckContainer, Container } from "./styles"
+import Input from "../Input"
+import Button from "../Button"
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useVaccines } from "../../providers/vaccines";
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { useVaccines } from "../../providers/vaccines"
 
-const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
-  const {changeVaccine} = useVaccines()
-  
+const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
+  const { changeVaccine } = useVaccines()
+
+  const [vaccinated, setVaccinated] = useState(false)
 
   const schema = yup.object().shape({
     name: yup.string(),
@@ -20,7 +21,16 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     applicationDate: yup.string(),
     location: yup.string(),
     nextShot: yup.string(),
-  });
+  })
+
+  const initialForm = {
+    name: "",
+    manufacturer: "",
+    batch: "",
+    applicationDate: "",
+    location: "",
+    nextShot: "",
+  };
 
   const {
     register,
@@ -29,22 +39,25 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-  });
+  })
 
   const onSubmitFunction = (data) => {
-    console.log(data);
-    // const newData = {}
-    // for (const info in data) {
-    //   if (data[info]) {
-    //     newData[info] = data[info]
-    //   }
-    // }
-    if (data.nextShot === "") {
-      delete data.nextShot;
+    if (vaccinated) {
+      data.nextShot = "Esquema completo"
+      setVaccinated(false)
     }
-    changeVaccine(data, vaccineToChange._id);
-    closeModal();
-  };
+
+    const newData = {}
+    for (const info in data) {
+      if (data[info]) {
+        newData[info] = data[info]
+      }
+    }
+
+    reset(initialForm);
+    changeVaccine(newData, vaccineToChange._id)
+    closeModal()
+  }
 
   return (
     <ModalComponent isModalOpen={isModalOpen} closeModal={closeModal}>
@@ -59,7 +72,6 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
-          defaultValue={vaccineToChange.name}
         />
 
         <Input
@@ -69,7 +81,6 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
-          defaultValue={vaccineToChange.manufacturer}
         />
         <Input
           name="batch"
@@ -78,7 +89,6 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           helperText={errors.batch?.message}
           error={!!errors.batch}
           register={register}
-          defaultValue={vaccineToChange.batch}
         />
         <Input
           name="applicationDate"
@@ -88,7 +98,6 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           error={!!errors.applicationDate}
           register={register}
           date
-          defaultValue={vaccineToChange.applicationDate}
         />
         <Input
           name="location"
@@ -97,7 +106,6 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
-          defaultValue={vaccineToChange.location}
         />
         <Input
           name="nextShot"
@@ -107,15 +115,18 @@ const EditVaccineModal = ({isModalOpen, closeModal, vaccineToChange}) => {
           error={!!errors.nextShot}
           register={register}
           date
-          defaultValue={vaccineToChange.nextShot}
         />
+        <CheckContainer>
+          <input type="checkbox" onChange={() => setVaccinated(!vaccinated)} />
+          <span>Confirmar vacinação?</span>
+        </CheckContainer>
 
         <Button type="submit" colorType="primary">
           Mudar detalhes da vacina
         </Button>
       </Container>
     </ModalComponent>
-  );
-};
+  )
+}
 
-export default EditVaccineModal;
+export default EditVaccineModal

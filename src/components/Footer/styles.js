@@ -44,6 +44,7 @@ export const ContainerQuite = styled.div`
   img {
     width: 297px;
     border-radius: 113px;
+    margin-top: 10px;
   }
   @media (min-width: 768px) {
     position: relative;
