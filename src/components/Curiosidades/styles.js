@@ -10,19 +10,26 @@ export const Container = styled.div`
   img {
     width: 50%;
     max-width: 300px;
-    height: 200px;
+    height: 300px;
     object-fit: contain;
     min-width: 270px;
     padding-bottom: 30px;
   }
 
   p {
-    color: #225378;
-    font-family: sans-serif;
+    color: var(--blue-1);
     width: 50%;
+    font-family: "Roboto", sans-serif;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 600;
     max-width: 300px;
     text-align: justify;
     min-width: 270px;
+  }
+
+  li {
+    margin-top: 5px;
   }
 
   @media (max-width: 650px) {

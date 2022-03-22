@@ -1,16 +1,16 @@
-import { createContext, useState, useContext } from "react";
-import { toast } from "react-toastify";
+import { createContext, useState, useContext } from 'react'
+import { toast } from 'react-toastify'
 
-import api from "../../services/api";
-import { useUser } from "../user";
+import api from '../../services/api'
+import { useUser } from '../user'
 
-const VaccinesContext = createContext([]);
+const VaccinesContext = createContext([])
 
 export const VaccinesProvider = ({ children }) => {
-  const [vaccines, setVaccines] = useState([]);
+  const [vaccines, setVaccines] = useState([])
 
-  const { user } = useUser();
-  const { token, info } = user;
+  const { user } = useUser()
+  const { token, info } = user
 
   const getVaccines = () => {
     api
@@ -18,8 +18,8 @@ export const VaccinesProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setVaccines(response.data))
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
   const addVaccine = (vaccine) => {
     api
@@ -27,12 +27,12 @@ export const VaccinesProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        toast.success("Vacina cadastrada");
-        getVaccines();
+        toast.success('Vacina cadastrada')
+        getVaccines()
         console.log(res.data)
       })
-      .catch((err) => toast.error("Ops!! Algo deu errado."));
-  };
+      .catch((err) => toast.error('Ops!! Algo deu errado.'))
+  }
 
   const changeVaccine = (vaccine, idToChange) => {
     api
@@ -40,11 +40,11 @@ export const VaccinesProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((_) => {
-        toast.success("Vacina atualizada");
-        getVaccines();
+        toast.success('Vacina atualizada')
+        getVaccines()
       })
-      .catch((err) => toast.error("Ops!! Algo deu errado."));
-  };
+      .catch((err) => toast.error('Ops!! Algo deu errado.'))
+  }
 
   const delVaccine = (id) => {
     api
@@ -52,11 +52,11 @@ export const VaccinesProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
-        toast.success("Vacina deletada");
-        getVaccines();
+        toast.success('Vacina deletada')
+        getVaccines()
       })
-      .catch((err) => console.log(token));
-  };
+      .catch((err) => console.log(token))
+  }
 
   return (
     <VaccinesContext.Provider
@@ -71,7 +71,7 @@ export const VaccinesProvider = ({ children }) => {
     >
       {children}
     </VaccinesContext.Provider>
-  );
-};
+  )
+}
 
-export const useVaccines = () => useContext(VaccinesContext);
+export const useVaccines = () => useContext(VaccinesContext)

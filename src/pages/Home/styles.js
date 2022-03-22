@@ -89,5 +89,13 @@ export const ButtonsContainer = styled.div`
     width: 70%;
     padding-top: 15px;
     max-width: 145px;
+    button {
+      width: 140px;
+    }
+  }
+
+  .CarouselSection {
+    height: 600px;
+    background-color: var(--light-blue-2);
   }
 `

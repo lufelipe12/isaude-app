@@ -3,11 +3,11 @@ import {
   ContainerLeaders,
   ContainerQuite,
   ContainerOthers,
-} from "./styles";
+} from './styles'
 
-import equipe from "../../assets/equipe.jpg";
+import equipe from '../../assets/equipe.jpg'
 
-function Footer() {
+export function Footer() {
   return (
     <Container>
       <ContainerLeaders>
@@ -34,7 +34,7 @@ function Footer() {
       </ContainerLeaders>
       <ContainerQuite>
         <h3>EQUIPE</h3>
-        <img src={equipe} alt="" />
+        <img src={equipe} alt='' />
       </ContainerQuite>
       <ContainerOthers>
         <div>
@@ -47,7 +47,5 @@ function Footer() {
         </div>
       </ContainerOthers>
     </Container>
-  );
+  )
 }
-
-export default Footer;
