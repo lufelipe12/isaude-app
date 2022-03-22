@@ -35,10 +35,6 @@ const Login = () => {
     email: yup.string().email('Email inválido').required('Campo Obrigatório'),
     password: yup
       .string()
-      // .matches(
-      //   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-      //   "Senha fraca"
-      // )
       .required('Campo Obrigatório'),
   })
 
@@ -54,7 +50,7 @@ const Login = () => {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword)
   const handleMouseDownPassword = (event) => event.preventDefault()
-console.log(showPassword)
+  
   const inputPropsPassword = {
     endAdornment: (
       <InputAdornment position='end'>
