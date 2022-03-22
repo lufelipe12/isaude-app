@@ -1,7 +1,14 @@
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
-import {Container} from "./styles"
+import {
+  Container,
+  HeadSection,
+  HeadBackground,
+  HeadContent,
+  ButtonsContainer,
+} from "./styles"
 import Curiosidades from "../../components/Curiosidades"
+import Button from "../../components/Button"
 
 import historyImg from "../../assets/history.jpg"
 import importanceImg from "../../assets/importance.jpg"
@@ -11,6 +18,20 @@ const Home = () => {
   return (
     <Container>
       <Header />
+      <HeadSection>
+        <HeadContent>
+          <h1>Acompanhe sua saúde! </h1>
+          <h2>
+            Cadastre e fique de olho em todas as suas vacinas, de forma fácil e
+            automática!
+          </h2>
+          <ButtonsContainer>
+            <Button colorType="primary"> Entrar </Button>
+            <Button colorType="secondary"> Cadastrar </Button>
+          </ButtonsContainer>
+        </HeadContent>
+        <HeadBackground />
+      </HeadSection>
       <Curiosidades img={historyImg} imageFirst>
         A história das vacinas é muito mais antiga do que imaginam! No século
         XVIII o médico inglês Edward Jenner utilizou a vacina para prevenir
