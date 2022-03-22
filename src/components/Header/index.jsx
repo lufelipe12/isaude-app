@@ -28,6 +28,8 @@ const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
               <Link to='/login'>Entrar</Link>
             </li>
             <hr />
+            <hr />
+            <hr />
           </ul>
         ) : (
           <ContainerSearch>
