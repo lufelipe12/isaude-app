@@ -3,22 +3,19 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useHistory } from 'react-router-dom'
-import { FaMailBulk } from 'react-icons/fa'
-import { MenuItem, TextField } from '@mui/material'
-import Input from '../../components/Input'
+import { toast } from 'react-toastify'
+import InputMask from 'react-input-mask'
+import { MenuItem, TextField, InputAdornment, IconButton } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+
 import { Container, FullContainer, ImageContainer } from './styles'
+import Input from '../../components/Input'
 import Select from '../../components/Select'
 import Button from '../../components/Button'
-import InputMask from 'react-input-mask'
-import InputAdornment from '@mui/material/InputAdornment'
 import api from '../../services/api'
 import logo from '../../assets/logo.png'
 import MotionRoutes from '../../motionRoutes'
 
-import { toast } from 'react-toastify'
-import Visibility from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import IconButton from '@mui/material/IconButton'
 
 const Register = () => {
   const history = useHistory()
@@ -59,11 +56,13 @@ const Register = () => {
 
   const handleClickShowPassword = () =>
     setShowPassword({ ...showPassword, password: !showPassword.password })
+    
   const handleClickShowConfirmPassword = () =>
     setShowPassword({
       ...showPassword,
       confirmPassword: !showPassword.confirmPassword,
     })
+
   const handleMouseDownPassword = (event) => event.preventDefault()
 
   const onSubmit = (data) => {
@@ -71,7 +70,7 @@ const Register = () => {
 
     api
       .post('/user', data)
-      .then((response) => {
+      .then(() => {
         history.push('/login')
         toast.success('Cadastro realizado com sucesso! Faça o login')
       })
@@ -163,8 +162,8 @@ const Register = () => {
               helperText={errors.email?.message}
               error={!!errors.email}
               register={register}
-              Icon={FaMailBulk}
             />
+
             <InputMask
               mask='999.999.999-99'
               defaultValue=''

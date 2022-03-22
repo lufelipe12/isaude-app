@@ -99,10 +99,11 @@ export const StyledNav = styled.nav`
 
 export const FilterInput = styled.input`
   display: none;
+
   @media (min-width: 768px) {
     display: block;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 5px 5px 13px;
     border: none;
     font-size: 15px;
     background: #f3ffe2;
