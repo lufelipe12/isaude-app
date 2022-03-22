@@ -1,4 +1,4 @@
-import { useVaccines } from '../../providers/vaccines'
+import { useVaccines } from "../../providers/vaccines"
 import {
   Container,
   ContainerTop,
@@ -8,8 +8,9 @@ import {
   ContainerStatus,
   Status,
   ContainerButtons,
-} from './styles'
-import { FaRegEdit, FaTrash } from 'react-icons/fa'
+} from "./styles"
+
+import { FaRegEdit, FaTrash } from "react-icons/fa"
 
 function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
   const { delVaccine } = useVaccines()
@@ -19,7 +20,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
   const monthToMs = 2628000000
 
   function dataConverter(data) {
-    return data.split('-').reverse().join('/')
+    return data.split("-").reverse().join("/")
   }
 
   const nextShotDate = new Date(vaccine.nextShot)
@@ -39,15 +40,15 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
         </ContainerTop>
         <ContainerInfo>
           <ContainerColumn time={time}>
-            <Info type={'label'}>Aplicação</Info>
+            <Info type={"label"}>Aplicação</Info>
             <Info>{dataConverter(vaccine.applicationDate)}</Info>
-            <Info type={'label'}>Próxima dose</Info>
+            <Info type={"label"}>Próxima dose</Info>
             <Info>{dataConverter(vaccine.nextShot)}</Info>
           </ContainerColumn>
           <ContainerColumn time={time}>
-            <Info type={'label'}>Fabricante</Info>
+            <Info type={"label"}>Fabricante</Info>
             <Info>{vaccine.manufacturer}</Info>
-            <Info type={'label'}>Lote</Info>
+            <Info type={"label"}>Lote</Info>
             <Info>{vaccine.batch}</Info>
           </ContainerColumn>
         </ContainerInfo>
@@ -65,10 +66,10 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
           </div>
           <Status time={time}>
             {time <= 0
-              ? 'NÃO VACINADO'
+              ? "NÃO VACINADO"
               : time < 1
-              ? 'VACINAÇÃO PRÓXIMA'
-              : 'VACINADO'}
+              ? "VACINAÇÃO PRÓXIMA"
+              : "VACINADO"}
           </Status>
         </ContainerStatus>
       </Container>
