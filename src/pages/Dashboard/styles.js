@@ -193,3 +193,16 @@ export const ErrorSearchMessage = styled.span`
     color: black;
   }
 `;
+
+export const SkeletonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 800px;
+  margin: 0px 20px;
+
+  > div {
+    margin: 15px;
+  }
+`

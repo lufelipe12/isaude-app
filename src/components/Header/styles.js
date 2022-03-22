@@ -32,7 +32,7 @@ export const StyledNav = styled.nav`
 
   hr {
     background-color: var(--light-blue-2);
-    height: 6px;
+    height: 4px;
   }
 
   li {
