@@ -128,9 +128,9 @@ export const FilterInputMobile = styled.input`
   display: block;
   border-radius: 10px;
   padding: 8px;
-  border: none;
+  border: 1.2px solid var(--dark-blue);
   font-size: 15px;
-  background: #f3ffe2;
+
   margin-right: 10px;
   margin-top: 10px;
 
