@@ -63,14 +63,11 @@ export const NewsCarousel = () =>{
         news.forEach((item,index)=>newArr[Math.floor(index/3)]?.push(item) )
         return(newArr)
     }
-    console.log(newArr)
     newsPortions()
 
     return (
         <ContainerCarousel>
-            {/* CointainerCarousel é apenas um componente de estilização */}
             <Carousel className="Carousel">
-    
                 {window.matchMedia("(min-width:600px)").matches?
                     newArr.map((item,index)=>
                         <div className="CarouselBox">
