@@ -11,26 +11,21 @@ import {
   UserInfos,
   ContainerSearchMobile,
   FilterInputMobile,
-  ImageLoading,
-  ErrorSearchMessage,
+  SkeletonContainer
 } from './styles'
 import pdfMaker from '../../utils/pdfGen'
 import { useEffect, useState } from 'react'
 import { GrDocumentPdf } from 'react-icons/gr'
-import Tooltip from '@mui/material/Tooltip'
-import { Redirect } from 'react-router-dom'
+import { Tooltip, Skeleton } from '@mui/material'
 import { MdAddCircle } from 'react-icons/md'
 import NewVaccineModal from '../../components/NewVaccineModal'
 import EditVaccineModal from '../../components/EditVaccineModal'
-import Loading from '../../assets/loadingCircles.gif'
 import { motion } from 'framer-motion'
 
 const Dashboard = () => {
-  const { vaccines, getVaccines, setVaccines, filterInput, setFilterInput } =
-    useVaccines()
+  const { vaccines, getVaccines, filterInput, setFilterInput } = useVaccines()
 
   const { user } = useUser()
-  const [loadingCard, setLoadingCard] = useState(false)
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
@@ -45,12 +40,6 @@ const Dashboard = () => {
   useEffect(() => {
     getVaccines()
   }, [])
-
-  useEffect(() => {
-    if (vaccines.length) {
-      setLoadingCard(true)
-    }
-  }, [vaccines])
 
   const vaccinesOrder = vaccines.sort(
     (vaccine1, vaccine2) =>
@@ -131,27 +120,51 @@ const Dashboard = () => {
           </motion.button>
         </Tooltip>
       </DashHeader>
-      {loadingCard ? (
-        <CardContainer>
-          {vaccines.length ? (
-            vaccinesOrder.map((vaccine, index) => (
-              <Card
-                vaccine={vaccine}
-                key={index}
-                setVaccineToChange={setVaccineToChange}
-                openEditVaccineModal={openEditVaccineModal}
-              />
-            ))
-          ) : (
-            <ErrorSearchMessage>
-              Não encontramos <span>{filterInput}</span> nas suas vacinas
-              cadastradas
-            </ErrorSearchMessage>
-          )}
-        </CardContainer>
-      ) : (
-        <ImageLoading src={Loading} alt='loading' />
-      )}
+      <CardContainer>
+        {vaccines.length === 0 ? (
+          <SkeletonContainer>
+            <div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div>
+            <div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div>
+            <div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div>
+            <div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div><div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div><div>
+              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton />
+              <Skeleton width='60%' />
+            </div>
+           
+           
+          </SkeletonContainer>
+        ) : (
+          vaccinesOrder.map((vaccine, index) => (
+            <Card
+              vaccine={vaccine}
+              key={index}
+              setVaccineToChange={setVaccineToChange}
+              openEditVaccineModal={openEditVaccineModal}
+            />
+          ))
+        )}
+      </CardContainer>
 
       <StyledContainer>
         <Tooltip title='Cadastrar nova vacina'>
