@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components"
 
 export const Container = styled.div`
   display: flex;
@@ -111,7 +111,7 @@ export const Info = styled.p`
   margin: 5px;
   ${(props) => {
     switch (props.type) {
-      case 'label':
+      case "label":
         return css`
           color: var(--grey-2);
         `
