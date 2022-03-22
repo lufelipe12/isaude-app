@@ -9,11 +9,9 @@ import {
 } from './styles'
 
 import { useUser } from '../../providers/user'
-
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
-  const history = useHistory()
   const { logout } = useUser()
 
   return (
