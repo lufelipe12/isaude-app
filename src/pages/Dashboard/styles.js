@@ -140,3 +140,24 @@ export const ButtonSearchMobile = styled.button`
     display: none;
   }
 `;
+
+export const ImageLoading = styled.img`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  margin: 20px auto;
+`;
+
+export const ErrorSearchMessage = styled.span`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 15px auto;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: var(--grey-2);
+  font-weight: 700;
+`;

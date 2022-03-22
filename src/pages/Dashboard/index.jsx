@@ -11,7 +11,8 @@ import {
   UserInfos,
   ContainerSearchMobile,
   FilterInputMobile,
-  ButtonSearchMobile,
+  ImageLoading,
+  ErrorSearchMessage,
 } from "./styles";
 import pdfMaker from "../../utils/pdfGen";
 import { useEffect, useState } from "react";
@@ -21,12 +22,14 @@ import { Redirect } from "react-router-dom";
 import { MdAddCircle } from "react-icons/md";
 import NewVaccineModal from "../../components/NewVaccineModal";
 import EditVaccineModal from "../../components/EditVaccineModal";
+import Loading from "../../assets/loadingCircles.gif";
 
 const Dashboard = () => {
   const { vaccines, getVaccines, setVaccines, filterInput, setFilterInput } =
     useVaccines();
 
   const { user } = useUser();
+  const [loadingCard, setLoadingCard] = useState(false);
 
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
@@ -41,6 +44,12 @@ const Dashboard = () => {
   useEffect(() => {
     getVaccines();
   }, []);
+
+  useEffect(() => {
+    if (vaccines.length) {
+      setLoadingCard(true);
+    }
+  }, [vaccines]);
 
   const vaccinesOrder = vaccines.sort(
     (vaccine1, vaccine2) =>
@@ -94,7 +103,6 @@ const Dashboard = () => {
             value={filterInput}
             onChange={(event) => setFilterInput(event.target.value)}
           />
-          <ButtonSearchMobile>Pesquisar</ButtonSearchMobile>
         </ContainerSearchMobile>
         <UserContainer>
           <img
@@ -129,21 +137,27 @@ const Dashboard = () => {
           </button>
         </Tooltip>
       </DashHeader>
+      {loadingCard ? (
+        <CardContainer>
+          {vaccines.length ? (
+            vaccines.map((vaccine, index) => (
+              <Card
+                vaccine={vaccine}
+                key={index}
+                setVaccineToChange={setVaccineToChange}
+                openEditVaccineModal={openEditVaccineModal}
+              />
+            ))
+          ) : (
+            <ErrorSearchMessage>
+              Não encontramos {filterInput} nas suas vacinas cadastradas
+            </ErrorSearchMessage>
+          )}
+        </CardContainer>
+      ) : (
+        <ImageLoading src={Loading} alt="loading" />
+      )}
 
-      <CardContainer>
-        {vaccines.length ? (
-          vaccines.map((vaccine, index) => (
-            <Card
-              vaccine={vaccine}
-              key={index}
-              setVaccineToChange={setVaccineToChange}
-              openEditVaccineModal={openEditVaccineModal}
-            />
-          ))
-        ) : (
-          <p>Não encontramos {filterInput} nas suas vacinas cadastradas</p>
-        )}
-      </CardContainer>
       <StyledContainer>
         <Tooltip title="Cadastrar nova vacina">
           <button onClick={openNewVaccineModal}>

@@ -21,6 +21,9 @@ import IconButton from "@mui/material/IconButton";
 
 const Register = () => {
   const history = useHistory();
+  const backHome = () => {
+    history.push("/");
+  };
 
   const [showPassword, setShowPassword] = useState({
     password: false,

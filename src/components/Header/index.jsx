@@ -52,7 +52,7 @@ const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
               value={filterInput}
               onChange={(event) => setFilterInput(event.target.value)}
             />
-            <ButtonSearch>Pesquisar</ButtonSearch>
+
             <ButtonLogout onClick={logout}>Sair</ButtonLogout>
           </ContainerSearch>
         )}
