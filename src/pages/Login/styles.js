@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components"
+
+const appearFromRight = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(70px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px)
+    }
+`
 
 export const Container = styled.div`
   display: flex;
@@ -11,7 +23,7 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`;
+`
 
 export const Logo = styled.div`
   width: 180px;
@@ -23,9 +35,9 @@ export const Logo = styled.div`
   }
   @media (min-width: 768px) {
     width: 50%;
-    height: 100%;
+    height: 100vh;
   }
-`;
+`
 
 export const ContainerForm = styled.div`
   display: flex;
@@ -33,10 +45,10 @@ export const ContainerForm = styled.div`
   justify-content: center;
   @media (min-width: 768px) {
     width: 50%;
-    height: 150%;
+    height: 100%;
     background: var(--white);
   }
-`;
+`
 
 export const Form = styled.form`
   display: flex;
@@ -47,6 +59,7 @@ export const Form = styled.form`
   border-radius: 9px;
   padding: 10px;
   width: 286px;
+  animation: ${appearFromRight} 1.4s;
 
   p {
     margin-top: 10px;
@@ -58,11 +71,11 @@ export const Form = styled.form`
     padding: 30px;
     box-shadow: 2px 7px 16px 7px rgba(0, 0, 0, 0.63);
   }
-`;
+`
 
 export const Label = styled.p`
   margin-right: 200px;
-`;
+`
 
 export const ContainerButton = styled.div`
   margin: 20px;
@@ -70,4 +83,4 @@ export const ContainerButton = styled.div`
   @media (min-width: 768px) {
     width: 289px;
   }
-`;
+`

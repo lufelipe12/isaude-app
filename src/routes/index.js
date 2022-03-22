@@ -1,12 +1,10 @@
-// import { Switch } from 'react-router-dom'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 
-
+import Route from './route'
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-// import Route from './route'
 
 const Routes = () => {
   return (
@@ -16,7 +14,7 @@ const Routes = () => {
       <Route exact path='/login' component={Login} />
       <Route exact path='/register' component={Register} />
     </Switch>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

@@ -31,4 +31,9 @@ export const ContainerCarousel = styled.div`
         
     }
 
+    @media (max-width: 600px){
+        .Carousel{
+
+        }
+    }
 `

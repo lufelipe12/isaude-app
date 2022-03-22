@@ -1,10 +1,30 @@
-import { Select as SelectMui, InputLabel, FormControl, FormHelperText } from '@mui/material'
+import {
+  Select as SelectMui,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+} from '@mui/material'
 
-const Select = ({ children, helperText = null, register, name, label, defaultValue = '', ...rest }) => {
+const Select = ({
+  children,
+  helperText = null,
+  register,
+  name,
+  label,
+  defaultValue = '',
+  ...rest
+}) => {
   return (
     <FormControl fullWidth>
       <InputLabel id={label}>{label}</InputLabel>
-      <SelectMui defaultValue={defaultValue} name={name} {...register(name)} labelId={label} label={label} {...rest}>
+      <SelectMui
+        defaultValue={defaultValue}
+        name={name}
+        {...register(name)}
+        labelId={label}
+        label={label}
+        {...rest}
+      >
         {children}
       </SelectMui>
       <FormHelperText>{helperText}</FormHelperText>
