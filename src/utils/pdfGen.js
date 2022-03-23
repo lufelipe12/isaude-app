@@ -10,17 +10,17 @@ const pdfMaker = (userData, vaccinesList) => {
 
   const vaccines = vaccinesList.map((vaccine) => {
     return [
-      { text: vaccine.name, fontSize: 9, margin: [0, 2, 0, 2] },
-      { text: vaccine.manufacturer, fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: vaccine.name, fontSize: 9, margin: [20, 3, 20, 3] },
+      { text: vaccine.manufacturer, fontSize: 9, margin: [20, 3, 20, 3] },
       {
         text: dataConverter(vaccine.applicationDate),
         fontSize: 9,
-        margin: [0, 2, 0, 2],
+        margin: [20, 3, 20, 3],
       },
       {
         text: dataConverter(vaccine.nextShot),
         fontSize: 9,
-        margin: [0, 2, 0, 2],
+        margin: [20, 3, 20, 3],
       },
     ]
   })
@@ -42,6 +42,7 @@ const pdfMaker = (userData, vaccinesList) => {
       table: {
         headerRows: 1,
         widths: ["*", "*", "*", "*"],
+
         body: [
           [
             {
@@ -49,24 +50,28 @@ const pdfMaker = (userData, vaccinesList) => {
               style: "tableHeader",
               bold: true,
               fontSize: 10,
+              margin: [20, 3, 20, 3],
             },
             {
               text: "Fabricante",
               style: "tableHeader",
               bold: true,
               fontSize: 10,
+              margin: [20, 3, 20, 3],
             },
             {
               text: "Data da aplicação",
               style: "tableHeader",
               bold: true,
               fontSize: 10,
+              margin: [20, 3, 20, 3],
             },
             {
               text: "Próxima dose",
               style: "tableHeader",
               bold: true,
               fontSize: 10,
+              margin: [20, 3, 20, 3],
             },
           ],
           ...vaccines,
@@ -90,7 +95,7 @@ const pdfMaker = (userData, vaccinesList) => {
 
   const docDefinitions = {
     pageSize: "A4",
-    pageMargins: [15, 50, 15, 40],
+    pageMargins: [30, 50, 30, 40],
 
     header: [title],
     content: [main],
