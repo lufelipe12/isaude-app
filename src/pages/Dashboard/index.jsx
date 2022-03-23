@@ -13,6 +13,7 @@ import {
   FilterInputMobile,
   SkeletonContainer,
   ButtonsFilterContainer,
+  StyledButton,
 } from "./styles"
 import pdfMaker from "../../utils/pdfGen"
 import { useEffect, useState } from "react"
@@ -22,6 +23,9 @@ import { MdAddCircle } from "react-icons/md"
 import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
 import { motion } from "framer-motion"
+import { TiCancel } from "react-icons/ti"
+import { BsShieldCheck } from "react-icons/bs"
+import { FiCalendar } from "react-icons/fi"
 
 const Dashboard = () => {
   const { vaccines, setVaccines, getVaccines, filterInput, setFilterInput } =
@@ -93,10 +97,13 @@ const Dashboard = () => {
   }
 
   const FilterByDate = () => {
-    const newVaccines = vaccines
-    const vaccinesOdered = newVaccines.sort(
-      (vaccine1, vaccine2) =>
-        new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+    const newVaccines = [...vaccines]
+    const vaccinesOdered = newVaccines.sort((vaccine1, vaccine2) =>
+      vaccine2.applicationDate > vaccine1.applicationDate
+        ? -1
+        : vaccine2.applicationDate < vaccine1.applicationDate
+        ? 1
+        : 0
     )
     setFilterVaccines(vaccinesOdered)
   }
@@ -160,10 +167,22 @@ const Dashboard = () => {
           </Tooltip>
         </UserContainer>
         <ButtonsFilterContainer>
-          <button onClick={FilterByAll}>Todos</button>
-          <button onClick={FilterByVaccined}>Esquema Completo</button>
-          <button onClick={FilterByDate}>Data</button>
-          <button onClick={FilterNextShot}>À Vacinar</button>
+          <StyledButton onClick={FilterByAll}>Todos</StyledButton>
+          <Tooltip title="Por data de aplicação">
+            <button onClick={FilterByDate}>
+              <FiCalendar style={{ color: "#225378", fontSize: "22px" }} />
+            </button>
+          </Tooltip>
+          <Tooltip title="Vacinação completa">
+            <button onClick={FilterByVaccined}>
+              <BsShieldCheck style={{ color: "green", fontSize: "22px" }} />
+            </button>
+          </Tooltip>
+          <Tooltip title="À vacinar">
+            <button onClick={FilterNextShot}>
+              <TiCancel style={{ color: "red", fontSize: "27px" }} />
+            </button>
+          </Tooltip>
         </ButtonsFilterContainer>
       </DashHeader>
       <CardContainer>

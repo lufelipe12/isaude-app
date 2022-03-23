@@ -212,36 +212,27 @@ export const SkeletonContainer = styled.div`
 
 export const ButtonsFilterContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  width: 200px;
+`
 
-  button {
-    font-size: 13px;
-    border: 3px solid var(--light-blue-1);
-    border-radius: 10px;
-    padding: 5px 7px;
-    background: #fff;
-    margin-top: 5px;
-    color: var(--blue-1);
-    font-weight: 600;
-    width: 150px;
-    height: 30px;
-
-    :hover {
-      transition: 0.3s;
-      background: var(--light-blue-1);
-      color: #fff;
-    }
+export const StyledButton = styled.button`
+  border: 3px solid var(--light-blue-1);
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 5px 7px;
+  background: #fff;
+  margin-top: 5px;
+  color: var(--blue-1);
+  font-weight: 600;
+  height: 30px;
+  :hover {
+    transition: 0.3s;
+    color: var(--blue-2);
   }
 
   @media (min-width: 768px) {
-    flex-direction: row;
-
-    button {
-      margin-left: 10px;
-      font-size: 14px;
-      width: fit-content;
-    }
+    margin-left: 10px;
   }
 `
