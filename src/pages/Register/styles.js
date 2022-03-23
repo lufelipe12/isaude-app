@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components'
 
 const appearFromLeft = keyframes`
     from {
@@ -10,7 +10,7 @@ const appearFromLeft = keyframes`
         opacity: 1;
         transform: translateX(0px)
     }
-`;
+`
 
 export const Container = styled.div`
   width: 83%;
@@ -60,13 +60,10 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-
     font-style: normal;
-
     font-size: 14px;
-
     color: #868e96;
-    margin-top: 0px;
+    margin-top: 10px;
   }
 
   @media (min-width: 768px) {
@@ -78,13 +75,13 @@ export const Container = styled.div`
       height: 100%;
     }
   }
-`;
+`
 
 export const ContainerRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
+`
 
 export const FullContainer = styled.div`
   display: flex;
@@ -98,7 +95,7 @@ export const FullContainer = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
   }
-`;
+`
 export const ImageContainer = styled.div`
   width: 60%;
   height: 100vh;
@@ -113,7 +110,7 @@ export const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
   }
-`;
+`
 
 export const ImageHome = styled.span`
   align-self: flex-start;
@@ -122,7 +119,11 @@ export const ImageHome = styled.span`
   padding: 5px;
   margin-top: 15px;
   margin-left: 15px;
+
+  :hover {
+    cursor: pointer;
+  }
   @media (min-width: 768px) {
     margin-right: 15px;
   }
-`;
+`
