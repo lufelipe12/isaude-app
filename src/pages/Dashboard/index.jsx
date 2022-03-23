@@ -1,7 +1,7 @@
-import { useVaccines } from "../../providers/vaccines";
-import { useUser } from "../../providers/user";
-import Card from "../../components/Card";
-import Header from "../../components/Header";
+import { useVaccines } from "../../providers/vaccines"
+import { useUser } from "../../providers/user"
+import Card from "../../components/Card"
+import Header from "../../components/Header"
 import {
   CardContainer,
   DashHeader,
@@ -13,37 +13,39 @@ import {
   FilterInputMobile,
   SkeletonContainer,
   ButtonsFilterContainer,
-} from "./styles";
-import pdfMaker from "../../utils/pdfGen";
-import { useEffect, useState } from "react";
-import { GrDocumentPdf } from "react-icons/gr";
-import { Tooltip, Skeleton } from "@mui/material";
-import { MdAddCircle } from "react-icons/md";
-import NewVaccineModal from "../../components/NewVaccineModal";
-import EditVaccineModal from "../../components/EditVaccineModal";
-import { motion } from "framer-motion";
+} from "./styles"
+import pdfMaker from "../../utils/pdfGen"
+import { useEffect, useState } from "react"
+import { GrDocumentPdf } from "react-icons/gr"
+import { Tooltip, Skeleton } from "@mui/material"
+import { MdAddCircle } from "react-icons/md"
+import NewVaccineModal from "../../components/NewVaccineModal"
+import EditVaccineModal from "../../components/EditVaccineModal"
+import { motion } from "framer-motion"
 
 const Dashboard = () => {
   const { vaccines, setVaccines, getVaccines, filterInput, setFilterInput } =
-    useVaccines();
+    useVaccines()
 
-  const { user } = useUser();
+  const { user } = useUser()
 
-  const [filterVaccines, setFilterVaccines] = useState([]);
+  const [filterVaccines, setFilterVaccines] = useState([])
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState("");
+  const [vaccineToChange, setVaccineToChange] = useState("")
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
 
   useEffect(() => {
-    getVaccines();
-  }, []);
+    getVaccines()
+  }, [])
+
+  useEffect(() => {}, [filterVaccines])
 
   const vaccinesOrder = vaccines.sort((vaccine1, vaccine2) =>
     vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
@@ -51,65 +53,57 @@ const Dashboard = () => {
       : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
       ? 1
       : 0
-  );
+  )
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true);
+    setIsNewVaccineModalOpen(true)
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false);
+    setIsNewVaccineModalOpen(false)
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true);
+    setIsEditVaccineModalOpen(true)
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false);
+    setIsEditVaccineModalOpen(false)
   }
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/");
+    return data.split("-").reverse().join("/")
   }
 
   const FilterNextShot = () => {
-    const newVaccines = vaccines;
+    const newVaccines = vaccines
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot !== "Esquema completo";
-    });
-    setFilterVaccines(filterd);
-  };
+      return element.nextShot !== "Esquema completo"
+    })
+    setFilterVaccines(filterd)
+  }
+
   const FilterByVaccined = () => {
-    const newVaccines = vaccines;
+    const newVaccines = vaccines
 
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot === "Esquema completo";
-    });
-    setFilterVaccines(filterd);
-  };
+      return element.nextShot === "Esquema completo"
+    })
+    setFilterVaccines(filterd)
+  }
 
   const FilterByDate = () => {
-    const newVaccines = vaccines;
-    newVaccines.sort(
+    const newVaccines = vaccines
+    const vaccinesOdered = newVaccines.sort(
       (vaccine1, vaccine2) =>
         new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
-    );
-    setFilterVaccines(newVaccines);
-  };
+    )
+    setFilterVaccines(vaccinesOdered)
+  }
 
   const FilterByAll = () => {
-    const newVaccines = vaccines;
-
-    newVaccines.sort((vaccine1, vaccine2) =>
-      vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
-        ? -1
-        : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
-        ? 1
-        : 0
-    );
-    setFilterVaccines(newVaccines);
-  };
+    setFilterVaccines([])
+  }
 
   return (
     <main>
@@ -123,12 +117,7 @@ const Dashboard = () => {
             onChange={(event) => setFilterInput(event.target.value)}
           />
         </ContainerSearchMobile>
-        <ButtonsFilterContainer>
-          <button onClick={FilterByAll}>Todos</button>
-          <button onClick={FilterByVaccined}>Esquema Completo</button>
-          <button onClick={FilterByDate}>Data</button>
-          <button onClick={FilterNextShot}>À Vacinar</button>
-        </ButtonsFilterContainer>
+
         <UserContainer>
           <img
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
@@ -159,17 +148,23 @@ const Dashboard = () => {
               </div>
             </UserData>
           </UserInfos>
+          <Tooltip title="Gerar PDF das vacinas">
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+              }}
+              onClick={() => pdfMaker(user.info, vaccines)}
+            >
+              <GrDocumentPdf style={{ fontSize: "23px" }} />
+            </motion.button>
+          </Tooltip>
         </UserContainer>
-        <Tooltip title="Gerar PDF das vacinas">
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-            }}
-            onClick={() => pdfMaker(user.info, vaccines)}
-          >
-            <GrDocumentPdf style={{ fontSize: "23px" }} />
-          </motion.button>
-        </Tooltip>
+        <ButtonsFilterContainer>
+          <button onClick={FilterByAll}>Todos</button>
+          <button onClick={FilterByVaccined}>Esquema Completo</button>
+          <button onClick={FilterByDate}>Data</button>
+          <button onClick={FilterNextShot}>À Vacinar</button>
+        </ButtonsFilterContainer>
       </DashHeader>
       <CardContainer>
         {vaccines.length === 0 ? (
@@ -248,7 +243,7 @@ const Dashboard = () => {
         </div>
       </StyledContainer>
     </main>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
