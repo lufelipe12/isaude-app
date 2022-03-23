@@ -46,6 +46,7 @@ export const UserContainer = styled.div`
     height: 110px;
     margin: 20px;
     border-radius: 5px;
+    cursor: copy;
   }
 `;
 

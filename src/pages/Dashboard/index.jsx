@@ -1,3 +1,13 @@
+import { useStete } from 'react'
+import pdfMaker from '../../utils/pdfGen'
+import { useEffect, useState } from 'react'
+import { GrDocumentPdf } from 'react-icons/gr'
+import { Tooltip, Skeleton } from '@mui/material'
+import { MdAddCircle } from 'react-icons/md'
+import NewVaccineModal from '../../components/NewVaccineModal'
+import EditVaccineModal from '../../components/EditVaccineModal'
+import { motion } from 'framer-motion'
+
 import { useVaccines } from '../../providers/vaccines'
 import { useUser } from '../../providers/user'
 import Card from '../../components/Card'
@@ -13,17 +23,10 @@ import {
   FilterInputMobile,
   SkeletonContainer
 } from './styles'
-import pdfMaker from '../../utils/pdfGen'
-import { useEffect, useState } from 'react'
-import { GrDocumentPdf } from 'react-icons/gr'
-import { Tooltip, Skeleton } from '@mui/material'
-import { MdAddCircle } from 'react-icons/md'
-import NewVaccineModal from '../../components/NewVaccineModal'
-import EditVaccineModal from '../../components/EditVaccineModal'
-import { motion } from 'framer-motion'
 
 const Dashboard = () => {
   const { vaccines, getVaccines, filterInput, setFilterInput } = useVaccines()
+  const [profilePicture, setProfilePicture] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png")
 
   const { user } = useUser()
 
@@ -66,6 +69,14 @@ const Dashboard = () => {
     return data.split('-').reverse().join('/')
   }
 
+  const uploadProfilePicture = (e) => {
+    const reader = new FileReader();
+    console.log(reader)
+    const file = e.target.files[0];
+    reader.onloadend = () => setProfilePicture(reader.result)
+    reader.readAsDataURL(file);
+  }
+
   return (
     <main>
       <Header dash setFilterInput={setFilterInput} filterInput={filterInput} />
@@ -79,10 +90,14 @@ const Dashboard = () => {
           />
         </ContainerSearchMobile>
         <UserContainer>
-          <img
-            src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
+          <Tooltip title='Clique para mudar sua foto de perfil'>
+              <img
+            src={profilePicture}
             alt='userImage'
+            onClick={(e) => uploadProfilePicture(e)}
           />
+          </Tooltip>
+        
           <UserInfos>
             <h3>{user.info.name}</h3>
             <UserData>
