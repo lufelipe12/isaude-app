@@ -11,11 +11,12 @@ const Select = ({
   register,
   name,
   label,
+  error = '',
   defaultValue = '',
   ...rest
 }) => {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth error={error}>
       <InputLabel id={label}>{label}</InputLabel>
       <SelectMui
         defaultValue={defaultValue}

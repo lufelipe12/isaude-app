@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components"
+import styled, { keyframes } from "styled-components";
 
 const appearFromRight = keyframes`
     from {
@@ -10,7 +10,7 @@ const appearFromRight = keyframes`
         opacity: 1;
         transform: translateX(0px)
     }
-`
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`
+`;
 
 export const Logo = styled.div`
   width: 180px;
@@ -37,7 +37,7 @@ export const Logo = styled.div`
     width: 50%;
     height: 100vh;
   }
-`
+`;
 
 export const ContainerForm = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ export const ContainerForm = styled.div`
     height: 100%;
     background: var(--white);
   }
-`
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -71,11 +71,11 @@ export const Form = styled.form`
     padding: 30px;
     box-shadow: 2px 7px 16px 7px rgba(0, 0, 0, 0.63);
   }
-`
+`;
 
 export const Label = styled.p`
   margin-right: 200px;
-`
+`;
 
 export const ContainerButton = styled.div`
   margin: 20px;
@@ -83,4 +83,13 @@ export const ContainerButton = styled.div`
   @media (min-width: 768px) {
     width: 289px;
   }
-`
+`;
+
+export const ImageHome = styled.span`
+  align-self: flex-start;
+  background: var(--light-blue-2);
+  border-radius: 100px;
+  padding: 5px;
+  margin-top: 15px;
+  margin-left: 15px;
+`;
