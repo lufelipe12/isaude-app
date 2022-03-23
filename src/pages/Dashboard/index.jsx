@@ -1,7 +1,7 @@
-import { useVaccines } from "../../providers/vaccines"
-import { useUser } from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from "../../providers/vaccines";
+import { useUser } from "../../providers/user";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import {
   CardContainer,
   DashHeader,
@@ -12,34 +12,36 @@ import {
   ContainerSearchMobile,
   FilterInputMobile,
   SkeletonContainer,
-} from "./styles"
-import pdfMaker from "../../utils/pdfGen"
-import { useEffect, useState } from "react"
-import { GrDocumentPdf } from "react-icons/gr"
-import { Tooltip, Skeleton } from "@mui/material"
-import { MdAddCircle } from "react-icons/md"
-import NewVaccineModal from "../../components/NewVaccineModal"
-import EditVaccineModal from "../../components/EditVaccineModal"
-import { motion } from "framer-motion"
+  ButtonsFilterContainer,
+} from "./styles";
+import pdfMaker from "../../utils/pdfGen";
+import { useEffect, useState } from "react";
+import { GrDocumentPdf } from "react-icons/gr";
+import { Tooltip, Skeleton } from "@mui/material";
+import { MdAddCircle } from "react-icons/md";
+import NewVaccineModal from "../../components/NewVaccineModal";
+import EditVaccineModal from "../../components/EditVaccineModal";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
-  const { vaccines, getVaccines, filterInput, setFilterInput } = useVaccines()
+  const { vaccines, setVaccines, getVaccines, filterInput, setFilterInput } =
+    useVaccines();
 
-  const { user } = useUser()
+  const { user } = useUser();
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState("")
+  const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
 
   useEffect(() => {
-    getVaccines()
-  }, [])
+    getVaccines();
+  }, []);
 
   const vaccinesOrder = vaccines.sort((vaccine1, vaccine2) =>
     vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
@@ -47,27 +49,67 @@ const Dashboard = () => {
       : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
       ? 1
       : 0
-  )
+  );
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true)
+    setIsNewVaccineModalOpen(true);
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false)
+    setIsNewVaccineModalOpen(false);
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true)
+    setIsEditVaccineModalOpen(true);
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false)
+    setIsEditVaccineModalOpen(false);
   }
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/")
+    return data.split("-").reverse().join("/");
   }
+
+  const FilterNextShot = () => {
+    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
+    const vaccinesLocalStorage = user.vaccines;
+    const filterd = vaccinesLocalStorage.filter((element) => {
+      return element.nextShot !== "Esquema completo";
+    });
+    setVaccines(filterd);
+  };
+  const FilterByVaccined = () => {
+    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
+    const vaccinesLocalStorage = user.vaccines;
+    const filterd = vaccinesLocalStorage.filter((element) => {
+      return element.nextShot === "Esquema completo";
+    });
+    setVaccines(filterd);
+  };
+
+  const FilterByDate = () => {
+    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
+    const vaccinesLocalStorage = user.vaccines;
+    vaccines.sort(
+      (vaccine1, vaccine2) =>
+        new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+    );
+    setVaccines(vaccinesLocalStorage);
+  };
+
+  const FilterByAll = () => {
+    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
+    const vaccinesLocalStorage = user.vaccines;
+    vaccinesLocalStorage.sort((vaccine1, vaccine2) =>
+      vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
+        ? -1
+        : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
+        ? 1
+        : 0
+    );
+    setVaccines(vaccinesLocalStorage);
+  };
 
   return (
     <main>
@@ -81,6 +123,12 @@ const Dashboard = () => {
             onChange={(event) => setFilterInput(event.target.value)}
           />
         </ContainerSearchMobile>
+        <ButtonsFilterContainer>
+          <button onClick={FilterByAll}>Todos</button>
+          <button onClick={FilterByVaccined}>Esquema Completo</button>
+          <button onClick={FilterByDate}>Data</button>
+          <button onClick={FilterNextShot}>À Vacinar</button>
+        </ButtonsFilterContainer>
         <UserContainer>
           <img
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
@@ -191,7 +239,7 @@ const Dashboard = () => {
         </div>
       </StyledContainer>
     </main>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

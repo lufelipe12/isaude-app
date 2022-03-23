@@ -205,4 +205,10 @@ export const SkeletonContainer = styled.div`
   > div {
     margin: 15px;
   }
-`
+`;
+
+export const ButtonsFilterContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
