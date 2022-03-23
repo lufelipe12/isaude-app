@@ -186,7 +186,11 @@ const Dashboard = () => {
         </ButtonsFilterContainer>
       </DashHeader>
       <CardContainer>
-        {vaccines.length === 0 ? (
+        {vaccines.length === 0 && filterInput.length !== 0 ? (
+          //Condição de se o input está com algo digitado mas nada é encontrado
+          <p>Vacina não encontrada</p>
+        ) : vaccines.length === 0 ? (
+          //condição se o array de vacinas está realmente vazio
           <SkeletonContainer>
             <div>
               <Skeleton variant="rectangular" width={210} height={118} />
@@ -220,6 +224,7 @@ const Dashboard = () => {
             </div>
           </SkeletonContainer>
         ) : filterVaccines.length === 0 ? (
+          //condição se o filtro é aplicado
           vaccinesOrder.map((vaccine, index) => (
             <Card
               vaccine={vaccine}
