@@ -29,6 +29,8 @@ const Dashboard = () => {
 
   const { user } = useUser();
 
+  const [filterVaccines, setFilterVaccines] = useState([]);
+
   // Estados e funções do modal para cadastrar uma nova vacina:
   const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
@@ -72,43 +74,41 @@ const Dashboard = () => {
   }
 
   const FilterNextShot = () => {
-    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
-    const vaccinesLocalStorage = user.vaccines;
-    const filterd = vaccinesLocalStorage.filter((element) => {
+    const newVaccines = vaccines;
+    const filterd = newVaccines.filter((element) => {
       return element.nextShot !== "Esquema completo";
     });
-    setVaccines(filterd);
+    setFilterVaccines(filterd);
   };
   const FilterByVaccined = () => {
-    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
-    const vaccinesLocalStorage = user.vaccines;
-    const filterd = vaccinesLocalStorage.filter((element) => {
+    const newVaccines = vaccines;
+
+    const filterd = newVaccines.filter((element) => {
       return element.nextShot === "Esquema completo";
     });
-    setVaccines(filterd);
+    setFilterVaccines(filterd);
   };
 
   const FilterByDate = () => {
-    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
-    const vaccinesLocalStorage = user.vaccines;
-    vaccines.sort(
+    const newVaccines = vaccines;
+    newVaccines.sort(
       (vaccine1, vaccine2) =>
         new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
     );
-    setVaccines(vaccinesLocalStorage);
+    setFilterVaccines(newVaccines);
   };
 
   const FilterByAll = () => {
-    const user = JSON.parse(localStorage.getItem("@iSaude:info"));
-    const vaccinesLocalStorage = user.vaccines;
-    vaccinesLocalStorage.sort((vaccine1, vaccine2) =>
+    const newVaccines = vaccines;
+
+    newVaccines.sort((vaccine1, vaccine2) =>
       vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
         ? -1
         : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
         ? 1
         : 0
     );
-    setVaccines(vaccinesLocalStorage);
+    setFilterVaccines(newVaccines);
   };
 
   return (
@@ -205,8 +205,17 @@ const Dashboard = () => {
               <Skeleton width="60%" />
             </div>
           </SkeletonContainer>
-        ) : (
+        ) : filterVaccines.length === 0 ? (
           vaccinesOrder.map((vaccine, index) => (
+            <Card
+              vaccine={vaccine}
+              key={index}
+              setVaccineToChange={setVaccineToChange}
+              openEditVaccineModal={openEditVaccineModal}
+            />
+          ))
+        ) : (
+          filterVaccines.map((vaccine, index) => (
             <Card
               vaccine={vaccine}
               key={index}

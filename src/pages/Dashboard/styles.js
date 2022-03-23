@@ -24,7 +24,6 @@ export const DashHeader = styled.div`
   }
 
   @media (min-width: 768px) {
-    flex-direction: row;
   }
 `;
 
@@ -209,6 +208,24 @@ export const SkeletonContainer = styled.div`
 
 export const ButtonsFilterContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
+  button {
+    font-size: 14px;
+    border: 1px solid var(--dark-blue);
+    border-radius: 10px;
+    padding: 5px;
+    background: var(--dark-blue);
+    margin-top: 5px;
+    color: var(--white);
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-self: flex-end;
+
+    button {
+      margin-left: 10px;
+    }
+  }
 `;

@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import { toast } from "react-toastify";
@@ -12,7 +13,6 @@ export const VaccinesProvider = ({ children }) => {
   const [filterInput, setFilterInput] = useState("");
   const { user } = useUser();
   const { token, info } = user;
-  console.log(vaccines);
 
   const getVaccines = () => {
     api
@@ -31,11 +31,7 @@ export const VaccinesProvider = ({ children }) => {
       .then((res) => {
         toast.success("Vacina cadastrada");
         getVaccines();
-        const user = JSON.parse(localStorage.getItem("@iSaude:info"));
 
-        user.vaccines.push(vaccine);
-
-        localStorage.setItem("@iSaude:info", JSON.stringify(user));
         console.log(res.data);
       })
       .catch((err) => toast.error("Ops!! Algo deu errado."));
@@ -61,11 +57,6 @@ export const VaccinesProvider = ({ children }) => {
       .then(() => {
         toast.success("Vacina deletada");
         getVaccines();
-        const user = JSON.parse(localStorage.getItem("@iSaude:info"));
-
-        user.vaccines(vaccine);
-
-        localStorage.setItem("@iSaude:info", JSON.stringify(user));
       })
       .catch((err) => console.log(token));
   };
