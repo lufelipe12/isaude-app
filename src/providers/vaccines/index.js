@@ -61,6 +61,11 @@ export const VaccinesProvider = ({ children }) => {
       .then(() => {
         toast.success("Vacina deletada");
         getVaccines();
+        const user = JSON.parse(localStorage.getItem("@iSaude:info"));
+
+        user.vaccines(vaccine);
+
+        localStorage.setItem("@iSaude:info", JSON.stringify(user));
       })
       .catch((err) => console.log(token));
   };
