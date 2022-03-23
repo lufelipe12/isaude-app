@@ -1,7 +1,7 @@
-import { useVaccines } from '../../providers/vaccines'
-import { useUser } from '../../providers/user'
-import Card from '../../components/Card'
-import Header from '../../components/Header'
+import { useVaccines } from "../../providers/vaccines"
+import { useUser } from "../../providers/user"
+import Card from "../../components/Card"
+import Header from "../../components/Header"
 import {
   CardContainer,
   DashHeader,
@@ -11,16 +11,16 @@ import {
   UserInfos,
   ContainerSearchMobile,
   FilterInputMobile,
-  SkeletonContainer
-} from './styles'
-import pdfMaker from '../../utils/pdfGen'
-import { useEffect, useState } from 'react'
-import { GrDocumentPdf } from 'react-icons/gr'
-import { Tooltip, Skeleton } from '@mui/material'
-import { MdAddCircle } from 'react-icons/md'
-import NewVaccineModal from '../../components/NewVaccineModal'
-import EditVaccineModal from '../../components/EditVaccineModal'
-import { motion } from 'framer-motion'
+  SkeletonContainer,
+} from "./styles"
+import pdfMaker from "../../utils/pdfGen"
+import { useEffect, useState } from "react"
+import { GrDocumentPdf } from "react-icons/gr"
+import { Tooltip, Skeleton } from "@mui/material"
+import { MdAddCircle } from "react-icons/md"
+import NewVaccineModal from "../../components/NewVaccineModal"
+import EditVaccineModal from "../../components/EditVaccineModal"
+import { motion } from "framer-motion"
 
 const Dashboard = () => {
   const { vaccines, getVaccines, filterInput, setFilterInput } = useVaccines()
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState('')
+  const [vaccineToChange, setVaccineToChange] = useState("")
 
   //Estados e funções do modal para editar uma vacina:
   const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
@@ -41,9 +41,12 @@ const Dashboard = () => {
     getVaccines()
   }, [])
 
-  const vaccinesOrder = vaccines.sort(
-    (vaccine1, vaccine2) =>
-      new Date(vaccine1.applicationDate) - new Date(vaccine2.applicationDate)
+  const vaccinesOrder = vaccines.sort((vaccine1, vaccine2) =>
+    vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
+      ? -1
+      : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
+      ? 1
+      : 0
   )
 
   function openNewVaccineModal() {
@@ -63,7 +66,7 @@ const Dashboard = () => {
   }
 
   function dataConverter(data) {
-    return data.split('-').reverse().join('/')
+    return data.split("-").reverse().join("/")
   }
 
   return (
@@ -72,16 +75,16 @@ const Dashboard = () => {
       <DashHeader>
         <ContainerSearchMobile>
           <FilterInputMobile
-            type='text'
-            placeholder='Pesquise sua vacina'
+            type="text"
+            placeholder="Pesquise sua vacina"
             value={filterInput}
             onChange={(event) => setFilterInput(event.target.value)}
           />
         </ContainerSearchMobile>
         <UserContainer>
           <img
-            src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
-            alt='userImage'
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
+            alt="userImage"
           />
           <UserInfos>
             <h3>{user.info.name}</h3>
@@ -96,7 +99,7 @@ const Dashboard = () => {
                   <p>{user.info.cpf}</p>
                 </div>
               </div>
-              <div className='segunda-coluna'>
+              <div className="segunda-coluna">
                 <div>
                   <span>Sexo</span>
                   <p>{user.info.gender}</p>
@@ -109,14 +112,14 @@ const Dashboard = () => {
             </UserData>
           </UserInfos>
         </UserContainer>
-        <Tooltip title='Gerar PDF das vacinas'>
+        <Tooltip title="Gerar PDF das vacinas">
           <motion.button
             whileHover={{
               scale: 1.1,
             }}
             onClick={() => pdfMaker(user.info, vaccines)}
           >
-            <GrDocumentPdf style={{ fontSize: '23px' }} />
+            <GrDocumentPdf style={{ fontSize: "23px" }} />
           </motion.button>
         </Tooltip>
       </DashHeader>
@@ -124,35 +127,35 @@ const Dashboard = () => {
         {vaccines.length === 0 ? (
           <SkeletonContainer>
             <div>
-              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton variant="rectangular" width={210} height={118} />
               <Skeleton />
-              <Skeleton width='60%' />
+              <Skeleton width="60%" />
             </div>
             <div>
-              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton variant="rectangular" width={210} height={118} />
               <Skeleton />
-              <Skeleton width='60%' />
+              <Skeleton width="60%" />
             </div>
             <div>
-              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton variant="rectangular" width={210} height={118} />
               <Skeleton />
-              <Skeleton width='60%' />
+              <Skeleton width="60%" />
             </div>
             <div>
-              <Skeleton variant='rectangular' width={210} height={118} />
+              <Skeleton variant="rectangular" width={210} height={118} />
               <Skeleton />
-              <Skeleton width='60%' />
-            </div><div>
-              <Skeleton variant='rectangular' width={210} height={118} />
-              <Skeleton />
-              <Skeleton width='60%' />
-            </div><div>
-              <Skeleton variant='rectangular' width={210} height={118} />
-              <Skeleton />
-              <Skeleton width='60%' />
+              <Skeleton width="60%" />
             </div>
-           
-           
+            <div>
+              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton />
+              <Skeleton width="60%" />
+            </div>
+            <div>
+              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton />
+              <Skeleton width="60%" />
+            </div>
           </SkeletonContainer>
         ) : (
           vaccinesOrder.map((vaccine, index) => (
@@ -167,12 +170,12 @@ const Dashboard = () => {
       </CardContainer>
 
       <StyledContainer>
-        <Tooltip title='Cadastrar nova vacina'>
+        <Tooltip title="Cadastrar nova vacina">
           <motion.button
             whileHover={{ scale: 1.1 }}
             onClick={openNewVaccineModal}
           >
-            <MdAddCircle style={{ fontSize: '40px' }} />
+            <MdAddCircle style={{ fontSize: "40px" }} />
           </motion.button>
         </Tooltip>
         <div>
