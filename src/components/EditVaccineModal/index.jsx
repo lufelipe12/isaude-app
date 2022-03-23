@@ -1,13 +1,14 @@
-import ModalComponent from "../ModalComponent"
-import { CheckContainer, Container } from "./styles"
-import Input from "../Input"
-import Button from "../Button"
+import ModalComponent from '../ModalComponent'
+import { CheckContainer, Container } from './styles'
+import Input from '../Input'
+import { useVaccines } from '../../providers/vaccines'
+import Button from '../Button'
 
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import * as yup from "yup"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { useVaccines } from "../../providers/vaccines"
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { toast } from 'react-toastify'
 
 const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
   const { changeVaccine } = useVaccines()
@@ -24,13 +25,13 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
   })
 
   const initialForm = {
-    name: "",
-    manufacturer: "",
-    batch: "",
-    applicationDate: "",
-    location: "",
-    nextShot: "",
-  };
+    name: '',
+    manufacturer: '',
+    batch: '',
+    applicationDate: '',
+    location: '',
+    nextShot: '',
+  }
 
   const {
     register,
@@ -43,7 +44,7 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
 
   const onSubmitFunction = (data) => {
     if (vaccinated) {
-      data.nextShot = "Esquema completo"
+      data.nextShot = 'Esquema completo'
       setVaccinated(false)
     }
 
@@ -54,8 +55,12 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
       }
     }
 
-    reset(initialForm);
-    changeVaccine(newData, vaccineToChange._id)
+    reset(initialForm)
+    if (Object.keys(newData).length !== 0) {
+      changeVaccine(newData, vaccineToChange._id)
+    } else {
+      toast('Nenhum dado foi alterado')
+    }
     closeModal()
   }
 
@@ -66,62 +71,62 @@ const EditVaccineModal = ({ isModalOpen, closeModal, vaccineToChange }) => {
         <p>Preencha apenas os campos que deseja mudar</p>
 
         <Input
-          name="name"
-          label="Nome"
-          type="text"
+          name='name'
+          label='Nome'
+          type='text'
           helperText={errors.name?.message}
           error={!!errors.name}
           register={register}
         />
 
         <Input
-          name="manufacturer"
-          label="Fabricante"
-          type="text"
+          name='manufacturer'
+          label='Fabricante'
+          type='text'
           helperText={errors.manufacturer?.message}
           error={!!errors.manufacturer}
           register={register}
         />
         <Input
-          name="batch"
-          label="Lote"
-          type="text"
+          name='batch'
+          label='Lote'
+          type='text'
           helperText={errors.batch?.message}
           error={!!errors.batch}
           register={register}
         />
         <Input
-          name="applicationDate"
-          label="Data de aplicação"
-          type="date"
+          name='applicationDate'
+          label='Data de aplicação'
+          type='date'
           helperText={errors.applicationDate?.message}
           error={!!errors.applicationDate}
           register={register}
           date
         />
         <Input
-          name="location"
-          label="Local de aplicação"
-          type="text"
+          name='location'
+          label='Local de aplicação'
+          type='text'
           helperText={errors.location?.message}
           error={!!errors.location}
           register={register}
         />
         <Input
-          name="nextShot"
-          label="Próxima dose"
-          type="date"
+          name='nextShot'
+          label='Próxima dose'
+          type='date'
           helperText={errors.nextShot?.message}
           error={!!errors.nextShot}
           register={register}
           date
         />
         <CheckContainer>
-          <input type="checkbox" onChange={() => setVaccinated(!vaccinated)} />
+          <input type='checkbox' onChange={() => setVaccinated(!vaccinated)} />
           <span>Confirmar vacinação?</span>
         </CheckContainer>
 
-        <Button type="submit" colorType="primary">
+        <Button type='submit' colorType='primary'>
           Mudar detalhes da vacina
         </Button>
       </Container>

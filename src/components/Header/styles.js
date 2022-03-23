@@ -32,7 +32,7 @@ export const StyledNav = styled.nav`
 
   hr {
     background-color: var(--light-blue-2);
-    height: 6px;
+    height: 4px;
   }
 
   li {
@@ -63,17 +63,17 @@ export const StyledNav = styled.nav`
   div {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   @media (min-width: 768px) {
-    width: 500px;
+    width: 330px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
     ul {
-      width: 480px;
+      width: 300px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -107,7 +107,6 @@ export const FilterInput = styled.input`
     border: none;
     font-size: 15px;
     background: #f3ffe2;
-    margin-right: 10px;
   }
 `
 

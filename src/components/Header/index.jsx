@@ -22,15 +22,13 @@ const Header = ({ dash = false, setFilterInput, filterInput, FilterCards }) => {
         {!dash ? (
           <ul>
             <li>
-              <Link>Sobre</Link>
-            </li>
-            <hr />
-            <li>
               <Link to='/register'>Cadastrar</Link>
             </li>
             <li>
               <Link to='/login'>Entrar</Link>
             </li>
+            <hr />
+            <hr />
             <hr />
           </ul>
         ) : (
