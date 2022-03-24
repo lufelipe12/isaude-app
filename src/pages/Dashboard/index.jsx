@@ -1,7 +1,7 @@
-import {useVaccines} from "../../providers/vaccines"
-import {useUser} from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from '../../providers/vaccines'
+import { useUser } from '../../providers/user'
+import Card from '../../components/Card'
+import Header from '../../components/Header'
 import {
   CardContainer,
   DashHeader,
@@ -14,23 +14,23 @@ import {
   SkeletonContainer,
   ButtonsFilterContainer,
   StyledButton,
-} from "./styles"
-import pdfMaker from "../../utils/pdfGen"
-import {useEffect, useState} from "react"
-import {GrDocumentPdf} from "react-icons/gr"
-import {Tooltip, Skeleton} from "@mui/material"
-import {MdAddCircle} from "react-icons/md"
-import NewVaccineModal from "../../components/NewVaccineModal"
-import EditVaccineModal from "../../components/EditVaccineModal"
-import {motion} from "framer-motion"
-import {TiCancel} from "react-icons/ti"
-import {BsShieldCheck} from "react-icons/bs"
-import {FiCalendar} from "react-icons/fi"
+} from './styles'
+import pdfMaker from '../../utils/pdfGen'
+import { useEffect, useState } from 'react'
+import { GrDocumentPdf } from 'react-icons/gr'
+import { Tooltip, Skeleton } from '@mui/material'
+import { MdAddCircle } from 'react-icons/md'
+import NewVaccineModal from '../../components/NewVaccineModal'
+import EditVaccineModal from '../../components/EditVaccineModal'
+import { motion } from 'framer-motion'
+import { TiCancel } from 'react-icons/ti'
+import { BsShieldCheck } from 'react-icons/bs'
+import { FiCalendar } from 'react-icons/fi'
 
 const Dashboard = () => {
-  const {vaccines, getVaccines, filterInput, setFilterInput} = useVaccines()
+  const { vaccines, getVaccines, filterInput, setFilterInput } = useVaccines()
 
-  const {user} = useUser()
+  const { user } = useUser()
 
   const [filterVaccines, setFilterVaccines] = useState([])
 
@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState("")
+  const [vaccineToChange, setVaccineToChange] = useState('')
 
   //Estados e funções do modal para editar uma vacina:
   const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
@@ -75,13 +75,13 @@ const Dashboard = () => {
   }
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/")
+    return data.split('-').reverse().join('/')
   }
 
   const FilterNextShot = () => {
     const newVaccines = vaccines
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot !== "Esquema completo"
+      return element.nextShot !== 'Esquema completo'
     })
     setFilterVaccines(filterd)
   }
@@ -90,7 +90,7 @@ const Dashboard = () => {
     const newVaccines = vaccines
 
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot === "Esquema completo"
+      return element.nextShot === 'Esquema completo'
     })
     setFilterVaccines(filterd)
   }
@@ -117,8 +117,8 @@ const Dashboard = () => {
       <DashHeader>
         <ContainerSearchMobile>
           <FilterInputMobile
-            type="text"
-            placeholder="Pesquise sua vacina"
+            type='text'
+            placeholder='Pesquise sua vacina'
             value={filterInput}
             onChange={(event) => setFilterInput(event.target.value)}
           />
@@ -126,8 +126,8 @@ const Dashboard = () => {
 
         <UserContainer>
           <img
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
-            alt="userImage"
+            src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png'
+            alt='userImage'
           />
           <UserInfos>
             <h3>{user.info.name}</h3>
@@ -142,7 +142,7 @@ const Dashboard = () => {
                   <p>{user.info.cpf}</p>
                 </div>
               </div>
-              <div className="segunda-coluna">
+              <div className='segunda-coluna'>
                 <div>
                   <span>Sexo</span>
                   <p>{user.info.gender}</p>
@@ -154,32 +154,32 @@ const Dashboard = () => {
               </div>
             </UserData>
           </UserInfos>
-          <Tooltip title="Gerar PDF das vacinas">
+          <Tooltip title='Gerar PDF das vacinas'>
             <motion.button
               whileHover={{
                 scale: 1.1,
               }}
               onClick={() => pdfMaker(user.info, vaccines)}
             >
-              <GrDocumentPdf style={{fontSize: "23px"}} />
+              <GrDocumentPdf style={{ fontSize: '23px' }} />
             </motion.button>
           </Tooltip>
         </UserContainer>
         <ButtonsFilterContainer>
           <StyledButton onClick={FilterByAll}>Todos</StyledButton>
-          <Tooltip title="Por data de aplicação">
+          <Tooltip title='Por data de aplicação'>
             <button onClick={FilterByDate}>
-              <FiCalendar style={{color: "#225378", fontSize: "22px"}} />
+              <FiCalendar style={{ color: '#225378', fontSize: '22px' }} />
             </button>
           </Tooltip>
-          <Tooltip title="Vacinação completa">
+          <Tooltip title='Vacinação completa'>
             <button onClick={FilterByVaccined}>
-              <BsShieldCheck style={{color: "green", fontSize: "22px"}} />
+              <BsShieldCheck style={{ color: 'green', fontSize: '22px' }} />
             </button>
           </Tooltip>
-          <Tooltip title="À vacinar">
+          <Tooltip title='À vacinar'>
             <button onClick={FilterNextShot}>
-              <TiCancel style={{color: "red", fontSize: "27px"}} />
+              <TiCancel style={{ color: 'red', fontSize: '27px' }} />
             </button>
           </Tooltip>
         </ButtonsFilterContainer>
@@ -192,34 +192,34 @@ const Dashboard = () => {
           //condição se o array de vacinas está realmente vazio
           <SkeletonContainer>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
             <div>
-              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton variant='rectangular' width={210} height={118} />
               <Skeleton />
-              <Skeleton width="60%" />
+              <Skeleton width='60%' />
             </div>
           </SkeletonContainer>
         ) : filterVaccines.length !== 0 ? (
@@ -249,12 +249,12 @@ const Dashboard = () => {
       </CardContainer>
 
       <StyledContainer>
-        <Tooltip title="Cadastrar nova vacina">
+        <Tooltip title='Cadastrar nova vacina'>
           <motion.button
-            whileHover={{scale: 1.1}}
+            whileHover={{ scale: 1.1 }}
             onClick={openNewVaccineModal}
           >
-            <MdAddCircle style={{fontSize: "40px"}} />
+            <MdAddCircle style={{ fontSize: '40px' }} />
           </motion.button>
         </Tooltip>
         <div>
