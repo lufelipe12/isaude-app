@@ -1,16 +1,15 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components"
 
 const appearFromDown = keyframes`
     from {
         opacity: 0;
         transform: translateY(70px)
     }
-
     to {
         opacity: 1;
         transform: translateY(0px)
     }
-`;
+`
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -22,10 +21,9 @@ export const DashHeader = styled.div`
     background-color: rgba(0, 0, 0, 0);
     border: none;
   }
-
   @media (min-width: 768px) {
   }
-`;
+`
 
 export const UserContainer = styled.div`
   width: 300px;
@@ -39,30 +37,27 @@ export const UserContainer = styled.div`
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
   img {
     width: 90px;
     height: 110px;
     margin: 20px;
     border-radius: 5px;
   }
-
   button {
     margin-left: 30px;
   }
-`;
+`
 
 export const UserInfos = styled.div`
   width: 200px;
   height: 105px;
   display: flex;
   flex-wrap: wrap;
-
   h3 {
     font-weight: bold;
     font-size: 14px;
   }
-`;
+`
 
 export const UserData = styled.section`
   width: 150px;
@@ -71,7 +66,6 @@ export const UserData = styled.section`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-
   .segunda-coluna {
     margin-left: 7px;
   }
@@ -80,13 +74,12 @@ export const UserData = styled.section`
     font-weight: bold;
     font-size: 10px;
   }
-
   p {
     color: var(--dark-blue-2);
     font-weight: bold;
     font-size: 12px;
   }
-`;
+`
 
 export const CardContainer = styled.div`
   height: 100%;
@@ -94,36 +87,26 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  p {
-    color: var(--grey-2);
-    font-weight: 700;
-    padding: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
   @media (min-width: 767px) {
     flex-direction: row;
     flex-wrap: wrap;
     animation: ${appearFromDown} 1.6s;
   }
-`;
+`
 
 export const StyledContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-
   button {
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: var(--blue-2);
-
     :hover {
       color: var(--orange);
     }
   }
-`;
+`
 export const ContainerSearchMobile = styled.div`
   display: flex;
   flex-direction: row;
@@ -131,7 +114,7 @@ export const ContainerSearchMobile = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const FilterInputMobile = styled.input`
   width: 160px;
@@ -140,14 +123,12 @@ export const FilterInputMobile = styled.input`
   padding: 8px;
   border: 1.2px solid var(--dark-blue);
   font-size: 15px;
-
   margin-right: 10px;
   margin-top: 10px;
-
   @media (min-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const ButtonSearchMobile = styled.button`
   display: block;
@@ -157,11 +138,10 @@ export const ButtonSearchMobile = styled.button`
   color: #fff;
   border-radius: 10px;
   background-color: var(--dark-blue);
-
   @media (min-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const ImageLoading = styled.img`
   display: flex;
@@ -170,7 +150,7 @@ export const ImageLoading = styled.img`
   width: 40px;
   height: 30px;
   margin: 20px auto;
-`;
+`
 
 export const ErrorSearchMessage = styled.span`
   display: flex;
@@ -188,7 +168,6 @@ export const ErrorSearchMessage = styled.span`
     font-weight: 700;
     color: black;
   }
-
   @media (min-width: 768px) {
     font-size: 18px;
     display: flex;
@@ -202,7 +181,7 @@ export const ErrorSearchMessage = styled.span`
     margin-right: 6px;
     color: black;
   }
-`;
+`
 
 export const SkeletonContainer = styled.div`
   display: flex;
@@ -211,18 +190,17 @@ export const SkeletonContainer = styled.div`
   flex-wrap: wrap;
   width: 800px;
   margin: 0px 20px;
-
   > div {
     margin: 15px;
   }
-`;
+`
 
 export const ButtonsFilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 200px;
-`;
+`
 
 export const StyledButton = styled.button`
   border: 3px solid var(--light-blue-1);
@@ -238,8 +216,7 @@ export const StyledButton = styled.button`
     transition: 0.3s;
     color: var(--blue-2);
   }
-
   @media (min-width: 768px) {
     margin-left: 10px;
   }
-`;
+`
