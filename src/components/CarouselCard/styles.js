@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const CarouselCardStyled = styled.div`
   width: 295px;
@@ -27,4 +27,4 @@ export const CarouselCardStyled = styled.div`
     font-weight: 400;
     text-shadow: 1px 1px 2px black;
   }
-`
+`;

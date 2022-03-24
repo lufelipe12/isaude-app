@@ -1,7 +1,7 @@
-import { useVaccines } from "../../providers/vaccines"
-import { useUser } from "../../providers/user"
-import Card from "../../components/Card"
-import Header from "../../components/Header"
+import { useVaccines } from "../../providers/vaccines";
+import { useUser } from "../../providers/user";
+import Card from "../../components/Card";
+import Header from "../../components/Header";
 import {
   CardContainer,
   DashHeader,
@@ -14,42 +14,42 @@ import {
   SkeletonContainer,
   ButtonsFilterContainer,
   StyledButton,
-} from "./styles"
-import pdfMaker from "../../utils/pdfGen"
-import { useEffect, useState } from "react"
-import { GrDocumentPdf } from "react-icons/gr"
-import { Tooltip, Skeleton } from "@mui/material"
-import { MdAddCircle } from "react-icons/md"
-import NewVaccineModal from "../../components/NewVaccineModal"
-import EditVaccineModal from "../../components/EditVaccineModal"
-import { motion } from "framer-motion"
-import { TiCancel } from "react-icons/ti"
-import { BsShieldCheck } from "react-icons/bs"
-import { FiCalendar } from "react-icons/fi"
+} from "./styles";
+import pdfMaker from "../../utils/pdfGen";
+import { useEffect, useState } from "react";
+import { GrDocumentPdf } from "react-icons/gr";
+import { Tooltip, Skeleton } from "@mui/material";
+import { MdAddCircle } from "react-icons/md";
+import NewVaccineModal from "../../components/NewVaccineModal";
+import EditVaccineModal from "../../components/EditVaccineModal";
+import { motion } from "framer-motion";
+import { TiCancel } from "react-icons/ti";
+import { BsShieldCheck } from "react-icons/bs";
+import { FiCalendar } from "react-icons/fi";
 
 const Dashboard = () => {
   const { vaccines, setVaccines, getVaccines, filterInput, setFilterInput } =
-    useVaccines()
+    useVaccines();
 
-  const { user } = useUser()
+  const { user } = useUser();
 
-  const [filterVaccines, setFilterVaccines] = useState([])
+  const [filterVaccines, setFilterVaccines] = useState([]);
 
   // Estados e funções do modal para cadastrar uma nova vacina:
-  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false)
+  const [isNewVaccineModalOpen, setIsNewVaccineModalOpen] = useState(false);
 
   // Estado para armazenar qual vacina quer mudar ao clicar no botão.
 
-  const [vaccineToChange, setVaccineToChange] = useState("")
+  const [vaccineToChange, setVaccineToChange] = useState("");
 
   //Estados e funções do modal para editar uma vacina:
-  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false)
+  const [isEditVaccineModalOpen, setIsEditVaccineModalOpen] = useState(false);
 
   useEffect(() => {
-    getVaccines()
-  }, [])
+    getVaccines();
+  }, []);
 
-  useEffect(() => {}, [filterVaccines])
+  useEffect(() => {}, [filterVaccines]);
 
   const vaccinesOrder = vaccines.sort((vaccine1, vaccine2) =>
     vaccine2.name.toLowerCase() > vaccine1.name.toLowerCase()
@@ -57,60 +57,60 @@ const Dashboard = () => {
       : vaccine2.name.toLowerCase() < vaccine1.name.toLowerCase()
       ? 1
       : 0
-  )
+  );
 
   function openNewVaccineModal() {
-    setIsNewVaccineModalOpen(true)
+    setIsNewVaccineModalOpen(true);
   }
 
   function closeNewVaccineModal() {
-    setIsNewVaccineModalOpen(false)
+    setIsNewVaccineModalOpen(false);
   }
 
   function openEditVaccineModal() {
-    setIsEditVaccineModalOpen(true)
+    setIsEditVaccineModalOpen(true);
   }
 
   function closeEditVaccineModal() {
-    setIsEditVaccineModalOpen(false)
+    setIsEditVaccineModalOpen(false);
   }
 
   function dataConverter(data) {
-    return data.split("-").reverse().join("/")
+    return data.split("-").reverse().join("/");
   }
 
   const FilterNextShot = () => {
-    const newVaccines = vaccines
+    const newVaccines = vaccines;
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot !== "Esquema completo"
-    })
-    setFilterVaccines(filterd)
-  }
+      return element.nextShot !== "Esquema completo";
+    });
+    setFilterVaccines(filterd);
+  };
 
   const FilterByVaccined = () => {
-    const newVaccines = vaccines
+    const newVaccines = vaccines;
 
     const filterd = newVaccines.filter((element) => {
-      return element.nextShot === "Esquema completo"
-    })
-    setFilterVaccines(filterd)
-  }
+      return element.nextShot === "Esquema completo";
+    });
+    setFilterVaccines(filterd);
+  };
 
   const FilterByDate = () => {
-    const newVaccines = [...vaccines]
+    const newVaccines = [...vaccines];
     const vaccinesOdered = newVaccines.sort((vaccine1, vaccine2) =>
       vaccine2.applicationDate > vaccine1.applicationDate
         ? -1
         : vaccine2.applicationDate < vaccine1.applicationDate
         ? 1
         : 0
-    )
-    setFilterVaccines(vaccinesOdered)
-  }
+    );
+    setFilterVaccines(vaccinesOdered);
+  };
 
   const FilterByAll = () => {
-    setFilterVaccines([])
-  }
+    setFilterVaccines([]);
+  };
 
   return (
     <main>
@@ -267,7 +267,7 @@ const Dashboard = () => {
         </div>
       </StyledContainer>
     </main>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

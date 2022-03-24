@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from "styled-components";
 
 const appearFromDown = keyframes`
     from {
@@ -10,7 +10,7 @@ const appearFromDown = keyframes`
         opacity: 1;
         transform: translateY(0px)
     }
-`
+`;
 
 export const DashHeader = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const DashHeader = styled.div`
 
   @media (min-width: 768px) {
   }
-`
+`;
 
 export const UserContainer = styled.div`
   width: 300px;
@@ -50,7 +50,7 @@ export const UserContainer = styled.div`
   button {
     margin-left: 30px;
   }
-`
+`;
 
 export const UserInfos = styled.div`
   width: 200px;
@@ -62,7 +62,7 @@ export const UserInfos = styled.div`
     font-weight: bold;
     font-size: 14px;
   }
-`
+`;
 
 export const UserData = styled.section`
   width: 150px;
@@ -86,7 +86,7 @@ export const UserData = styled.section`
     font-weight: bold;
     font-size: 12px;
   }
-`
+`;
 
 export const CardContainer = styled.div`
   height: 100%;
@@ -94,13 +94,20 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  p {
+    color: var(--grey-2);
+    font-weight: 700;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
   @media (min-width: 767px) {
     flex-direction: row;
     flex-wrap: wrap;
     animation: ${appearFromDown} 1.6s;
   }
-`
+`;
 
 export const StyledContainer = styled.div`
   width: 100%;
@@ -116,7 +123,7 @@ export const StyledContainer = styled.div`
       color: var(--orange);
     }
   }
-`
+`;
 export const ContainerSearchMobile = styled.div`
   display: flex;
   flex-direction: row;
@@ -124,7 +131,7 @@ export const ContainerSearchMobile = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 export const FilterInputMobile = styled.input`
   width: 160px;
@@ -140,7 +147,7 @@ export const FilterInputMobile = styled.input`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 export const ButtonSearchMobile = styled.button`
   display: block;
@@ -154,7 +161,7 @@ export const ButtonSearchMobile = styled.button`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 export const ImageLoading = styled.img`
   display: flex;
@@ -163,7 +170,7 @@ export const ImageLoading = styled.img`
   width: 40px;
   height: 30px;
   margin: 20px auto;
-`
+`;
 
 export const ErrorSearchMessage = styled.span`
   display: flex;
@@ -195,7 +202,7 @@ export const ErrorSearchMessage = styled.span`
     margin-right: 6px;
     color: black;
   }
-`
+`;
 
 export const SkeletonContainer = styled.div`
   display: flex;
@@ -208,14 +215,14 @@ export const SkeletonContainer = styled.div`
   > div {
     margin: 15px;
   }
-`
+`;
 
 export const ButtonsFilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 200px;
-`
+`;
 
 export const StyledButton = styled.button`
   border: 3px solid var(--light-blue-1);
@@ -235,4 +242,4 @@ export const StyledButton = styled.button`
   @media (min-width: 768px) {
     margin-left: 10px;
   }
-`
+`;
