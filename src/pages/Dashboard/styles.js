@@ -87,6 +87,17 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .nao-cadastrada {
+    color: var(--grey-2);
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+
+ 
   @media (min-width: 767px) {
     flex-direction: row;
     flex-wrap: wrap;

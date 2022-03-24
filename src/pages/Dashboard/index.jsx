@@ -187,7 +187,7 @@ const Dashboard = () => {
       <CardContainer>
         {vaccines.length === 0 && filterInput.length !== 0 ? (
           //Condição de se o input está com algo digitado mas nada é encontrado
-          <p>Vacina não encontrada</p>
+          <p className='nao-cadastrada'>Vacina não encontrada</p>
         ) : vaccines.length === 0 ? (
           //condição se o array de vacinas está realmente vazio
           <SkeletonContainer>
