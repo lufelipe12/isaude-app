@@ -67,18 +67,18 @@ export const NewsCarousel = () => {
       <Carousel className='Carousel'>
         {window.matchMedia('(min-width:600px)').matches
           ? newArr.map((item, index) => (
-              <div className='CarouselBox'>
+              <div className='CarouselBox' key={index}>
                 {item.map((card, i) => (
-                  <a href={card.url}>
-                    <CarouselCard key={i} item={card} />
+                  <a href={card.url} key={i}>
+                    <CarouselCard  item={card} />
                   </a>
                 ))}
               </div>
             ))
           : news.map((item, i) => (
-              <div className='CarouselBox'>
+              <div className='CarouselBox' key={i} >
                 <a href={item.url}>
-                  <CarouselCard key={i} item={item} />
+                  <CarouselCard item={item} />
                 </a>
               </div>
             ))}
