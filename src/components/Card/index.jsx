@@ -39,8 +39,8 @@ function Card({
     openEditVaccineModal()
   }
 
-  async function handleDeleteVaccine(vaccine) {
-    await delVaccine(vaccine._id)
+  function handleDeleteVaccine(vaccine) {
+    delVaccine(vaccine._id)
     if (filterVaccines.length > 0) {
       const newFilterVaccine = filterVaccines.filter(
         (vaccineInFilter) => vaccineInFilter._id !== vaccine._id
@@ -48,9 +48,6 @@ function Card({
       setFilterVaccines(newFilterVaccine)
     }
   }
-  useEffect(() => {
-    console.log(filterVaccines)
-  }, [filterVaccines])
 
   return (
     <>
