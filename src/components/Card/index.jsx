@@ -1,4 +1,4 @@
-import { useVaccines } from "../../providers/vaccines"
+import {useVaccines} from "../../providers/vaccines"
 import {
   Container,
   ContainerTop,
@@ -10,10 +10,17 @@ import {
   ContainerButtons,
 } from "./styles"
 
-import { FaRegEdit, FaTrash } from "react-icons/fa"
+import {FaRegEdit, FaTrash} from "react-icons/fa"
+import {useEffect} from "react"
 
-function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
-  const { delVaccine } = useVaccines()
+function Card({
+  vaccine,
+  setVaccineToChange,
+  openEditVaccineModal,
+  filterVaccines,
+  setFilterVaccines,
+}) {
+  const {delVaccine} = useVaccines()
 
   const atualDate = new Date()
 
@@ -31,6 +38,19 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
     setVaccineToChange(vaccine)
     openEditVaccineModal()
   }
+
+  async function handleDeleteVaccine(vaccine) {
+    await delVaccine(vaccine._id)
+    if (filterVaccines.length > 0) {
+      const newFilterVaccine = filterVaccines.filter(
+        (vaccineInFilter) => vaccineInFilter._id !== vaccine._id
+      )
+      setFilterVaccines(newFilterVaccine)
+    }
+  }
+  useEffect(() => {
+    console.log(filterVaccines)
+  }, [filterVaccines])
 
   return (
     <>
@@ -59,7 +79,7 @@ function Card({ vaccine, setVaccineToChange, openEditVaccineModal }) {
               <button onClick={handleOpenEditVaccineModal}>
                 <FaRegEdit />
               </button>
-              <button onClick={() => delVaccine(vaccine._id)}>
+              <button onClick={() => handleDeleteVaccine(vaccine)}>
                 <FaTrash />
               </button>
             </ContainerButtons>

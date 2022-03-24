@@ -1,5 +1,5 @@
-import { useVaccines } from "../../providers/vaccines"
-import { useUser } from "../../providers/user"
+import {useVaccines} from "../../providers/vaccines"
+import {useUser} from "../../providers/user"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
 import {
@@ -16,22 +16,21 @@ import {
   StyledButton,
 } from "./styles"
 import pdfMaker from "../../utils/pdfGen"
-import { useEffect, useState } from "react"
-import { GrDocumentPdf } from "react-icons/gr"
-import { Tooltip, Skeleton } from "@mui/material"
-import { MdAddCircle } from "react-icons/md"
+import {useEffect, useState} from "react"
+import {GrDocumentPdf} from "react-icons/gr"
+import {Tooltip, Skeleton} from "@mui/material"
+import {MdAddCircle} from "react-icons/md"
 import NewVaccineModal from "../../components/NewVaccineModal"
 import EditVaccineModal from "../../components/EditVaccineModal"
-import { motion } from "framer-motion"
-import { TiCancel } from "react-icons/ti"
-import { BsShieldCheck } from "react-icons/bs"
-import { FiCalendar } from "react-icons/fi"
+import {motion} from "framer-motion"
+import {TiCancel} from "react-icons/ti"
+import {BsShieldCheck} from "react-icons/bs"
+import {FiCalendar} from "react-icons/fi"
 
 const Dashboard = () => {
-  const { vaccines, setVaccines, getVaccines, filterInput, setFilterInput } =
-    useVaccines()
+  const {vaccines, getVaccines, filterInput, setFilterInput} = useVaccines()
 
-  const { user } = useUser()
+  const {user} = useUser()
 
   const [filterVaccines, setFilterVaccines] = useState([])
 
@@ -162,7 +161,7 @@ const Dashboard = () => {
               }}
               onClick={() => pdfMaker(user.info, vaccines)}
             >
-              <GrDocumentPdf style={{ fontSize: "23px" }} />
+              <GrDocumentPdf style={{fontSize: "23px"}} />
             </motion.button>
           </Tooltip>
         </UserContainer>
@@ -170,17 +169,17 @@ const Dashboard = () => {
           <StyledButton onClick={FilterByAll}>Todos</StyledButton>
           <Tooltip title="Por data de aplicação">
             <button onClick={FilterByDate}>
-              <FiCalendar style={{ color: "#225378", fontSize: "22px" }} />
+              <FiCalendar style={{color: "#225378", fontSize: "22px"}} />
             </button>
           </Tooltip>
           <Tooltip title="Vacinação completa">
             <button onClick={FilterByVaccined}>
-              <BsShieldCheck style={{ color: "green", fontSize: "22px" }} />
+              <BsShieldCheck style={{color: "green", fontSize: "22px"}} />
             </button>
           </Tooltip>
           <Tooltip title="À vacinar">
             <button onClick={FilterNextShot}>
-              <TiCancel style={{ color: "red", fontSize: "27px" }} />
+              <TiCancel style={{color: "red", fontSize: "27px"}} />
             </button>
           </Tooltip>
         </ButtonsFilterContainer>
@@ -223,23 +222,27 @@ const Dashboard = () => {
               <Skeleton width="60%" />
             </div>
           </SkeletonContainer>
-        ) : filterVaccines.length === 0 ? (
+        ) : filterVaccines.length !== 0 ? (
           //condição se o filtro é aplicado
-          vaccinesOrder.map((vaccine, index) => (
-            <Card
-              vaccine={vaccine}
-              key={index}
-              setVaccineToChange={setVaccineToChange}
-              openEditVaccineModal={openEditVaccineModal}
-            />
-          ))
-        ) : (
           filterVaccines.map((vaccine, index) => (
             <Card
               vaccine={vaccine}
               key={index}
               setVaccineToChange={setVaccineToChange}
               openEditVaccineModal={openEditVaccineModal}
+              filterVaccines={filterVaccines}
+              setFilterVaccines={setFilterVaccines}
+            />
+          ))
+        ) : (
+          vaccinesOrder.map((vaccine, index) => (
+            <Card
+              vaccine={vaccine}
+              key={index}
+              setVaccineToChange={setVaccineToChange}
+              openEditVaccineModal={openEditVaccineModal}
+              filterVaccines={filterVaccines}
+              setFilterVaccines={setFilterVaccines}
             />
           ))
         )}
@@ -248,10 +251,10 @@ const Dashboard = () => {
       <StyledContainer>
         <Tooltip title="Cadastrar nova vacina">
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{scale: 1.1}}
             onClick={openNewVaccineModal}
           >
-            <MdAddCircle style={{ fontSize: "40px" }} />
+            <MdAddCircle style={{fontSize: "40px"}} />
           </motion.button>
         </Tooltip>
         <div>
