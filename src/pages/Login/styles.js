@@ -87,9 +87,14 @@ export const ContainerButton = styled.div`
 
 export const ImageHome = styled.span`
   align-self: flex-start;
-  background: var(--light-blue-2);
+  background: var(--dark-blue);
   border-radius: 100px;
-  padding: 5px;
+  padding: 10px;
   margin-top: 15px;
   margin-left: 15px;
+  color: var(--light-blue-2);
+  font-size: 24px;
+  :hover {
+    cursor: pointer;
+  }
 `;

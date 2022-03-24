@@ -21,11 +21,16 @@ export const Container = styled.div`
     width: 50%;
     font-family: "Roboto", sans-serif;
     line-height: 20px;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 600;
     max-width: 300px;
     text-align: justify;
     min-width: 270px;
+
+    @media (min-width: 768px) {
+      min-width: 340px;
+      font-size: 1.1rem;
+    }
   }
 
   li {
