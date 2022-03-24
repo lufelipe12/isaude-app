@@ -46,6 +46,11 @@ export const UserContainer = styled.div`
   button {
     margin-left: 30px;
   }
+
+  @media screen and (max-width: 320px) {
+    overflow: auto;
+    
+  }
 `
 
 export const UserInfos = styled.div`
