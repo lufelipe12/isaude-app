@@ -1,11 +1,11 @@
-import { TextField } from '@mui/material'
+import {TextField} from "@mui/material"
 
 const Input = ({
   name,
   label,
   register,
-  error = '',
-  helperText = '',
+  error = "",
+  helperText = "",
   date = false,
   ...rest
 }) => {
@@ -15,7 +15,7 @@ const Input = ({
         name={name}
         label={label}
         {...register(name)}
-        variant='outlined'
+        variant="outlined"
         fullWidth
         error={!!error}
         helperText={helperText}

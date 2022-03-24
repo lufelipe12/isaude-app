@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from '@mui/icons-material'
 import { useEffect } from 'react'
 import { createContext, useState, useContext } from 'react'
 import { toast } from 'react-toastify'
@@ -27,11 +28,11 @@ export const VaccinesProvider = ({ children }) => {
       .post(`/user/${info._id}/vaccines`, vaccine, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(() => {
+      .then((res) => {
         toast.success('Vacina cadastrada')
         getVaccines()
       })
-      .catch(() => toast.error('Ops!! Algo deu errado.'))
+      .catch((err) => toast.error('Ops!! Algo deu errado.'))
   }
 
   const changeVaccine = (vaccine, idToChange) => {
@@ -39,11 +40,11 @@ export const VaccinesProvider = ({ children }) => {
       .patch(`/user/${info._id}/vaccines/${idToChange}`, vaccine, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(() => {
+      .then((_) => {
         toast.success('Vacina atualizada')
         getVaccines()
       })
-      .catch(() => toast.error('Ops!! Algo deu errado.'))
+      .catch((err) => toast.error('Ops!! Algo deu errado.'))
   }
 
   const delVaccine = (id) => {
@@ -55,17 +56,17 @@ export const VaccinesProvider = ({ children }) => {
         toast.success('Vacina deletada')
         getVaccines()
       })
-      .catch(() => toast.error('Ops!! Algo deu errado.'))
+      .catch((err) => console.log(token))
   }
 
   useEffect(() => {
     if (!filterInput) {
       getVaccines()
     } else {
-      const filterd = vaccines.filter((element) =>
+      const filtered = vaccines.filter((element) =>
         element.name.toLowerCase().includes(filterInput.toLowerCase())
       )
-      setVaccines(filterd)
+      setVaccines(filtered)
     }
   }, [filterInput])
 
