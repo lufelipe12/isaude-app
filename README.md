@@ -4,4 +4,6 @@ O projeto tem como objetivo o usuário controlar seu próprio esquema vacinal, a
 
 Como escalabilidade pode se pensar em uma parceria com os municípios para validação das vacinas ali registradas.
 
+Atuei como Product Owner do projeto e pude desenvolver muito bem a soft skill do trabalho em equipe!
+
 Site : https://isaude-larissaspaulino.vercel.app/
