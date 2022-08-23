@@ -7,6 +7,7 @@ Como escalabilidade pode se pensar em uma parceria com os municípios para valid
 Atuei como Product Owner do projeto e pude desenvolver muito bem a soft skill do trabalho em equipe!
 
 Tecnologias utilizadas:
+
 -React
 -Context API
 -React Icons
